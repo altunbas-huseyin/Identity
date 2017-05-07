@@ -20,6 +20,11 @@ namespace Test
             bool result = userRepo.Add("ee@tt.com", "1111", "isicam", "huseyin", "altunbas", User.UserType.Firm);
         }
 
+        [TestMethod]
+        public void LoginByEmail()
+        {
+            User user = userRepo.LoginByEmail("isicam", "ee@tt.com", "1111");
+        }
 
 
 

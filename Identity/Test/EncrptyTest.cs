@@ -13,10 +13,23 @@ namespace Test
         public void EncDenc()
         {
             var content = "huseyin";
-            var key = "E546C8DF278CD5931069B522E695D4F2";
+          
 
-            var encrypted = IdentityHelper.Encripty.EncryptString(content, key);
-            var decrypted = IdentityHelper.Encripty.DecryptString(encrypted, key);
+            var encrypted = IdentityHelper.Encripty.EncryptString(content);
+            var decrypted = IdentityHelper.Encripty.DecryptString(encrypted);
+
+            Assert.AreEqual(decrypted, content);
+
+        }
+
+        [TestMethod]
+        public void EncDenc1()
+        {
+            var content = "huseyin";
+
+
+            var encrypted = IdentityHelper.Encripty.EncryptString(content);
+            var decrypted = IdentityHelper.Encripty.DecryptString(encrypted);
 
             Assert.AreEqual(decrypted, content);
 

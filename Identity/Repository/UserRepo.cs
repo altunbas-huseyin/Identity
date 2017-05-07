@@ -6,22 +6,30 @@ using System.Text;
 
 namespace Repository
 {
-     public class UserRepo
+    public class UserRepo
     {
         private MongoDbRepository<User> userRepository = new MongoDbRepository<User>();
         private string key = "E546C8DF278CD5931069B522E695D4F2";
-        public bool Add(string Email, string Password, string ProjectName,string Name, string SurName, User.UserType Type)
+        public bool Add(string Email, string Password, string ProjectName, string Name, string SurName, User.UserType Type)
         {
             User user = new User();
             user.ProjectName = ProjectName;
             user.Email = Email;
-            user.Password = IdentityHelper.Encripty.EncryptString(Password,key);
+            user.Password = IdentityHelper.Encripty.EncryptString(Password);
             user.Name = Name;
             user.SurName = SurName;
             user.Type = Type;
             user.CreateDate = DateTime.Now;
 
             return userRepository.Insert(user);
+        }
+
+        public User LoginByEmail(string ProjectName, String Email, string Password)
+        {
+            Password = IdentityHelper.Encripty.EncryptString(Password);
+            User user = userRepository.SearchFor(p => p.ProjectName == ProjectName && p.Email == Email && p.Password == Password).FirstOrDefault();
+
+            return user;
         }
 
         public bool Update(User user)
