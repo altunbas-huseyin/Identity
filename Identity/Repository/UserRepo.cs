@@ -28,7 +28,7 @@ namespace Repository
         {
             Password = IdentityHelper.Encripty.EncryptString(Password);
             User user = userRepository.SearchFor(p => p.ProjectName == ProjectName && p.Email == Email && p.Password == Password).FirstOrDefault();
-
+            user.Password = "";
             return user;
         }
 
@@ -49,6 +49,15 @@ namespace Repository
             User user = userRepository.SearchFor(p => p.Id == new Guid(Id)).First();
 
             return user;
+        }
+
+        public bool AddUniqIndex()
+        {
+            List<string> list = new List<string>();
+            list.Add("ProjectName");
+            list.Add("Email");
+            bool result = userRepository.AddUniqIndex(list.ToArray());
+            return result;
         }
     }
 }

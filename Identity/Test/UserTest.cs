@@ -24,6 +24,14 @@ namespace Test
         public void LoginByEmail()
         {
             User user = userRepo.LoginByEmail("isicam", "ee@tt.com", "1111");
+            
+        }
+
+        [TestMethod]
+        public void AddUniqIndex()
+        {
+            bool result = userRepo.AddUniqIndex();
+            Assert.AreEqual(result, true);
         }
 
 

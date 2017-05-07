@@ -10,7 +10,7 @@ namespace Test
     {
 
         [TestMethod]
-        public void EncDenc()
+        public void EncriptyDencripty()
         {
             var content = "huseyin";
           
@@ -22,17 +22,6 @@ namespace Test
 
         }
 
-        [TestMethod]
-        public void EncDenc1()
-        {
-            var content = "huseyin";
-
-
-            var encrypted = IdentityHelper.Encripty.EncryptString(content);
-            var decrypted = IdentityHelper.Encripty.DecryptString(encrypted);
-
-            Assert.AreEqual(decrypted, content);
-
-        }
+        
     }
 }
