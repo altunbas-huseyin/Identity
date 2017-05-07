@@ -2700,7 +2700,7 @@
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "Microsoft.NETCore.App": "1.0.4",
-          "mongocsharpdriver": "2.4.0"
+          "mongocsharpdriver": "2.4.3"
         }
       },
       "MongoDbRepository/1.0.0": {

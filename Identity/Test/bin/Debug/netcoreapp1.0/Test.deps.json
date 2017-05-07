@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "b54708bcbcca92f2f2be470205a9dfac908b0152"
+    "signature": "563141a8255ce3c7c27bac0471d6df15b2df96cd"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,8 +9,8 @@
       "test/1.0.0": {
         "dependencies": {
           "IdentityHelper": "1.0.0",
-          "MSTest.TestAdapter": "1.1.11",
-          "MSTest.TestFramework": "1.1.11",
+          "MSTest.TestAdapter": "1.1.17",
+          "MSTest.TestFramework": "1.1.17",
           "Microsoft.NET.Test.Sdk": "15.0.0",
           "Models": "1.0.0",
           "Repository": "1.0.0"
@@ -209,8 +209,8 @@
           "NETStandard.Library": "1.6.1",
           "System.ComponentModel.EventBasedAsync": "4.0.11",
           "System.ComponentModel.TypeConverter": "4.1.0",
-          "System.Diagnostics.TextWriterTraceListener": "4.0.0",
-          "System.Diagnostics.TraceSource": "4.0.0",
+          "System.Diagnostics.TextWriterTraceListener": "4.3.0",
+          "System.Diagnostics.TraceSource": "4.3.0",
           "System.Diagnostics.Tracing": "4.3.0",
           "System.IO.FileSystem": "4.3.0",
           "System.Reflection.TypeExtensions": "4.3.0",
@@ -503,18 +503,23 @@
           "MongoDB.Bson": "2.4.3",
           "NETStandard.Library": "1.6.1",
           "System.Collections.Specialized": "4.0.1",
-          "System.Diagnostics.TraceSource": "4.0.0",
+          "System.Diagnostics.TraceSource": "4.3.0",
           "System.Security.SecureString": "4.0.0"
         },
         "runtime": {
           "lib/netstandard1.5/MongoDB.Driver.Core.dll": {}
         }
       },
-      "mstest.testadapter/1.1.11": {},
-      "mstest.testframework/1.1.11": {
+      "mstest.testadapter/1.1.17": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.Diagnostics.TextWriterTraceListener": "4.3.0"
+        }
+      },
+      "mstest.testframework/1.1.17": {
         "runtime": {
-          "lib/netcoreapp1.0/Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll": {},
-          "lib/netcoreapp1.0/Microsoft.VisualStudio.TestPlatform.TestFramework.dll": {}
+          "lib/netstandard1.0/Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll": {},
+          "lib/netstandard1.0/Microsoft.VisualStudio.TestPlatform.TestFramework.dll": {}
         }
       },
       "netstandard.library/1.6.1": {
@@ -867,9 +872,9 @@
           "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
         }
       },
-      "system.diagnostics.textwritertracelistener/4.0.0": {
+      "system.diagnostics.textwritertracelistener/4.3.0": {
         "dependencies": {
-          "System.Diagnostics.TraceSource": "4.0.0",
+          "System.Diagnostics.TraceSource": "4.3.0",
           "System.Globalization": "4.3.0",
           "System.IO": "4.3.0",
           "System.Resources.ResourceManager": "4.3.0",
@@ -887,7 +892,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "system.diagnostics.tracesource/4.0.0": {
+      "system.diagnostics.tracesource/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
           "System.Collections": "4.3.0",
@@ -1995,19 +2000,19 @@
       "path": "mongodb.driver.core/2.4.3",
       "hashPath": "mongodb.driver.core.2.4.3.nupkg.sha512"
     },
-    "mstest.testadapter/1.1.11": {
+    "mstest.testadapter/1.1.17": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wDO3wmvkMnPyHv7Gf5SqYvO9Zl15s+15pSizT12YAnh6oorjGWmKk1/h0hsOaJC1/u7Dsho0aA/umapYC1BeoQ==",
-      "path": "mstest.testadapter/1.1.11",
-      "hashPath": "mstest.testadapter.1.1.11.nupkg.sha512"
+      "sha512": "sha512-ouTNf2Hjp3jbGAUlWae9j4WRJBCIhnlT79BjIdeAhbBQXunl372kFRRGvFxbEFITAHXKiE8YteYXMTflLq/rYQ==",
+      "path": "mstest.testadapter/1.1.17",
+      "hashPath": "mstest.testadapter.1.1.17.nupkg.sha512"
     },
-    "mstest.testframework/1.1.11": {
+    "mstest.testframework/1.1.17": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-HBtCvEqN1TkaWH6Fvt4kZRqdmtcH1HhGWGBlITDshmjRnRYvo0LfJTyW9RWvcmC8TSrajI51EoZCmoBfF4iKog==",
-      "path": "mstest.testframework/1.1.11",
-      "hashPath": "mstest.testframework.1.1.11.nupkg.sha512"
+      "sha512": "sha512-qZQlOVXsCSgEXPQ9TRkIeJYxuprquUiWWoOGNw6emOhQrKcOCIh8++vwJv5xyksb/kt8ZnHQ8wDJuJVcJ7gKNw==",
+      "path": "mstest.testframework/1.1.17",
+      "hashPath": "mstest.testframework.1.1.17.nupkg.sha512"
     },
     "netstandard.library/1.6.1": {
       "type": "package",
@@ -2226,12 +2231,12 @@
       "path": "system.diagnostics.diagnosticsource/4.3.0",
       "hashPath": "system.diagnostics.diagnosticsource.4.3.0.nupkg.sha512"
     },
-    "system.diagnostics.textwritertracelistener/4.0.0": {
+    "system.diagnostics.textwritertracelistener/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-w36Dr8yKy8xP150qPANe7Td+/zOI3G62ImRcHDIEW+oUXUuTKZHd4DHmqRx5+x8RXd85v3tXd1uhNTfsr+yxjA==",
-      "path": "system.diagnostics.textwritertracelistener/4.0.0",
-      "hashPath": "system.diagnostics.textwritertracelistener.4.0.0.nupkg.sha512"
+      "sha512": "sha512-F11kHWeiwYjFWto+kr8tt9ULMH0k8MsT1XmdCGPTLYHhWgN+2g7JsIZiXDrxlFGccSNkbjfwQy4xIS38gzUiZA==",
+      "path": "system.diagnostics.textwritertracelistener/4.3.0",
+      "hashPath": "system.diagnostics.textwritertracelistener.4.3.0.nupkg.sha512"
     },
     "system.diagnostics.tools/4.3.0": {
       "type": "package",
@@ -2240,12 +2245,12 @@
       "path": "system.diagnostics.tools/4.3.0",
       "hashPath": "system.diagnostics.tools.4.3.0.nupkg.sha512"
     },
-    "system.diagnostics.tracesource/4.0.0": {
+    "system.diagnostics.tracesource/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6WVCczFZKXwpWpzd/iJkYnsmWTSFFiU24Xx/YdHXBcu+nFI/ehTgeqdJQFbtRPzbrO3KtRNjvkhtj4t5/WwWsA==",
-      "path": "system.diagnostics.tracesource/4.0.0",
-      "hashPath": "system.diagnostics.tracesource.4.0.0.nupkg.sha512"
+      "sha512": "sha512-VnYp1NxGx8Ww731y2LJ1vpfb/DKVNKEZ8Jsh5SgQTZREL/YpWRArgh9pI8CDLmgHspZmLL697CaLvH85qQpRiw==",
+      "path": "system.diagnostics.tracesource/4.3.0",
+      "hashPath": "system.diagnostics.tracesource.4.3.0.nupkg.sha512"
     },
     "system.diagnostics.tracing/4.3.0": {
       "type": "package",
