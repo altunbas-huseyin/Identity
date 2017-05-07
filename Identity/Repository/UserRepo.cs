@@ -9,7 +9,7 @@ namespace Repository
     public class UserRepo
     {
         private MongoDbRepository<User> userRepository = new MongoDbRepository<User>();
-        private string key = "E546C8DF278CD5931069B522E695D4F2";
+
         public bool Add(string Email, string Password, string ProjectName, string Name, string SurName, User.UserType Type)
         {
             User user = new User();
