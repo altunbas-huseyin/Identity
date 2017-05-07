@@ -1,0 +1,7 @@
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Helper\bin\Debug\netcoreapp1.1\Helper.deps.json
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Helper\bin\Debug\netcoreapp1.1\Helper.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Helper\bin\Debug\netcoreapp1.1\Helper.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Helper\obj\Debug\netcoreapp1.1\Helper.csprojResolveAssemblyReference.cache
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Helper\obj\Debug\netcoreapp1.1\Helper.AssemblyInfo.cs
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Helper\obj\Debug\netcoreapp1.1\Helper.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Helper\obj\Debug\netcoreapp1.1\Helper.pdb

@@ -1,0 +1,9 @@
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\bin\Debug\netcoreapp1.1\Identity.deps.json
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\bin\Debug\netcoreapp1.1\Identity.runtimeconfig.json
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\bin\Debug\netcoreapp1.1\Identity.runtimeconfig.dev.json
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\bin\Debug\netcoreapp1.1\Identity.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\bin\Debug\netcoreapp1.1\Identity.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\obj\Debug\netcoreapp1.1\Identity.csprojResolveAssemblyReference.cache
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\obj\Debug\netcoreapp1.1\Identity.AssemblyInfo.cs
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\obj\Debug\netcoreapp1.1\Identity.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\obj\Debug\netcoreapp1.1\Identity.pdb

@@ -1,0 +1,7 @@
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Models\bin\Debug\netcoreapp1.1\Models.deps.json
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Models\obj\Debug\netcoreapp1.1\Models.AssemblyInfo.cs
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Models\bin\Debug\netcoreapp1.1\Models.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Models\bin\Debug\netcoreapp1.1\Models.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Models\obj\Debug\netcoreapp1.1\Models.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Models\obj\Debug\netcoreapp1.1\Models.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Models\obj\Debug\netcoreapp1.1\Models.csprojResolveAssemblyReference.cache

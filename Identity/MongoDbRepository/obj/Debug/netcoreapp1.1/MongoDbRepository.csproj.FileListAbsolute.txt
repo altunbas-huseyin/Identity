@@ -1,0 +1,9 @@
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\MongoDbRepository\bin\Debug\netcoreapp1.1\MongoDbRepository.deps.json
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\MongoDbRepository\bin\Debug\netcoreapp1.1\MongoDbRepository.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\MongoDbRepository\obj\Debug\netcoreapp1.1\MongoDbRepository.AssemblyInfo.cs
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\MongoDbRepository\bin\Debug\netcoreapp1.1\MongoDbRepository.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\MongoDbRepository\obj\Debug\netcoreapp1.1\MongoDbRepository.csprojResolveAssemblyReference.cache
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\MongoDbRepository\obj\Debug\netcoreapp1.1\MongoDbRepository.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\MongoDbRepository\obj\Debug\netcoreapp1.1\MongoDbRepository.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\MongoDbRepository\bin\Debug\netcoreapp1.1\Models.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\MongoDbRepository\bin\Debug\netcoreapp1.1\Models.pdb
