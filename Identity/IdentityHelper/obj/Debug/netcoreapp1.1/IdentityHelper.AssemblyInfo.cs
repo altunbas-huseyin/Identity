@@ -11,13 +11,13 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Helper")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("IdentityHelper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Package Description")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("Helper")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Helper")]
+[assembly: System.Reflection.AssemblyProductAttribute("IdentityHelper")]
+[assembly: System.Reflection.AssemblyTitleAttribute("IdentityHelper")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // MSBuild WriteCodeFragment sınıfı tarafından oluşturuldu.

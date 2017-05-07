@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v1.1": {
       "repository/1.0.0": {
         "dependencies": {
+          "IdentityHelper": "1.0.0",
           "Models": "1.0.0",
           "MongoDbRepository": "1.0.0"
         },
@@ -90,6 +91,11 @@
           }
         }
       },
+      "identityhelper/1.0.0": {
+        "runtime": {
+          "IdentityHelper.dll": {}
+        }
+      },
       "models/1.0.0": {
         "dependencies": {
           "mongocsharpdriver": "2.4.3"
@@ -170,6 +176,11 @@
       "sha512": "sha512-sqzq9GD6/b0yqPuMpgIKBuoLf4VKAj8oAfh4kXSzPaN6eoKY3hRi9C5L27uip25qlU+BGPfb0xh2Rmbwc4jFVA==",
       "path": "system.security.securestring/4.0.0",
       "hashPath": "system.security.securestring.4.0.0.nupkg.sha512"
+    },
+    "identityhelper/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "models/1.0.0": {
       "type": "project",

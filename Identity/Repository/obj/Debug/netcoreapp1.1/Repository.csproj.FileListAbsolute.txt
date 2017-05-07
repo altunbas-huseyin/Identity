@@ -9,3 +9,5 @@ C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Repository\bin\Debug\netco
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Repository\bin\Debug\netcoreapp1.1\MongoDbRepository.dll
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Repository\bin\Debug\netcoreapp1.1\Models.pdb
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Repository\bin\Debug\netcoreapp1.1\MongoDbRepository.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Repository\bin\Debug\netcoreapp1.1\IdentityHelper.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Repository\bin\Debug\netcoreapp1.1\IdentityHelper.pdb

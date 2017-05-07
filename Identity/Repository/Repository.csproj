@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IdentityHelper\IdentityHelper.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\MongoDbRepository\MongoDbRepository.csproj" />
   </ItemGroup>

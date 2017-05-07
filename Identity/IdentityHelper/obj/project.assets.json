@@ -7080,10 +7080,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Helper\\Helper.csproj",
-      "projectName": "Helper",
-      "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Helper\\Helper.csproj",
-      "outputPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Helper\\obj\\",
+      "projectUniqueName": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityHelper\\IdentityHelper.csproj",
+      "projectName": "IdentityHelper",
+      "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityHelper\\IdentityHelper.csproj",
+      "outputPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityHelper\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"

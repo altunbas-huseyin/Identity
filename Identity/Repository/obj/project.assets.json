@@ -2417,6 +2417,13 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "IdentityHelper/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.1",
+        "dependencies": {
+          "Microsoft.NETCore.App": "1.1.1"
+        }
+      },
       "Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.1",
@@ -7445,6 +7452,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "IdentityHelper/1.0.0": {
+      "type": "project",
+      "path": "../IdentityHelper/IdentityHelper.csproj",
+      "msbuildProject": "../IdentityHelper/IdentityHelper.csproj"
+    },
     "Models/1.0.0": {
       "type": "project",
       "path": "../Models/Models.csproj",
@@ -7458,6 +7470,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v1.1": [
+      "IdentityHelper >= 1.0.0",
       "Microsoft.NETCore.App >= 1.1.1",
       "Models >= 1.0.0",
       "MongoDbRepository >= 1.0.0"
@@ -7482,6 +7495,9 @@
           "projectReferences": {
             "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Models\\Models.csproj": {
               "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Models\\Models.csproj"
+            },
+            "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityHelper\\IdentityHelper.csproj": {
+              "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityHelper\\IdentityHelper.csproj"
             },
             "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\MongoDbRepository\\MongoDbRepository.csproj": {
               "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\MongoDbRepository\\MongoDbRepository.csproj"

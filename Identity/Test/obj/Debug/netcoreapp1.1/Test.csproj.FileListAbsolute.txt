@@ -16,3 +16,5 @@ C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Test\bin\Debug\netcoreapp1
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Test\bin\Debug\netcoreapp1.1\Repository.dll
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Test\bin\Debug\netcoreapp1.1\Repository.pdb
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Test\bin\Debug\netcoreapp1.1\MongoDbRepository.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Test\bin\Debug\netcoreapp1.1\IdentityHelper.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Test\bin\Debug\netcoreapp1.1\IdentityHelper.pdb
