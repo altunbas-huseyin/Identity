@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OData;
+using Identity.Filters;
 
 namespace Identity.Controllers
 {
 
     [Route("api/v1/[controller]")]
+    [ValidateModel]
     public class ValuesController : Controller
     {
         // GET api/values
