@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Models
 {
-    public class Jwt
+    public class Jwt : EntityBase
     {
         [BsonRepresentation(BsonType.String)]
         [BsonIgnoreIfDefault]

@@ -27,8 +27,8 @@ public class MongoDbRepository<TEntity> :
         TEntity : EntityBase
 {
     private string MongoDbDatabaseName = "Identity";
-    //public string MongoDbConnectionString = "mongodb://84.51.52.183/{DB_NAME}?safe=true";
-    public string MongoDbConnectionString = "mongodb://192.168.1.80/{DB_NAME}?safe=true";
+    public string MongoDbConnectionString = "mongodb://84.51.52.183/{DB_NAME}?safe=true";
+    //public string MongoDbConnectionString = "mongodb://192.168.1.80/{DB_NAME}?safe=true";
     private MongoDatabase database;
     private MongoCollection<TEntity> collection;
 
@@ -68,7 +68,6 @@ public class MongoDbRepository<TEntity> :
 
     public bool Update(TEntity entity)
     {
-        entity.UpdateDate = DateTime.Now;
         if (entity.Id == null)
             return Insert(entity);
 
