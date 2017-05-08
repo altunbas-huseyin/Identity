@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "3d8bea515eed70e30c1efc75ad922e1b56f32bce"
+    "signature": "003b5c05a0b81790fc758932855586f77e5c791c"
   },
   "compilationOptions": {
     "defines": [
@@ -23,6 +23,7 @@
     ".NETCoreApp,Version=v1.0": {
       "identity/1.0.0": {
         "dependencies": {
+          "Kendo.DynamicLinqCore": "1.0.3",
           "Microsoft.ApplicationInsights.AspNetCore": "2.0.0",
           "Microsoft.AspNetCore": "1.1.1",
           "Microsoft.AspNetCore.Diagnostics": "1.1.1",
@@ -39,6 +40,8 @@
           "Microsoft.OData.Core": "7.2.0",
           "Microsoft.OData.Edm": "7.2.0",
           "Microsoft.Spatial": "7.2.0",
+          "Models": "1.0.0",
+          "MongoDbRepository": "1.0.0",
           "Newtonsoft.Json": "10.0.2",
           "System.Linq.Queryable": "4.3.0"
         },
@@ -47,6 +50,23 @@
         },
         "compile": {
           "Identity.dll": {}
+        }
+      },
+      "kendo.dynamiclinqcore/1.0.3": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.3.0",
+          "NETStandard.Library": "1.6.1",
+          "System.AppDomain": "2.0.11",
+          "System.Dynamic.Runtime": "4.3.0",
+          "System.Linq.Dynamic.Core": "1.0.6.9",
+          "System.Linq.Queryable": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.3.0"
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/Kendo.DynamicLinqCore.dll": {}
+        },
+        "compile": {
+          "lib/netcoreapp1.0/Kendo.DynamicLinqCore.dll": {}
         }
       },
       "microsoft.applicationinsights/2.2.0": {
@@ -1441,6 +1461,66 @@
           "ref/netstandard1.3/Microsoft.Win32.Registry.dll": {}
         }
       },
+      "mongocsharpdriver/2.4.3": {
+        "dependencies": {
+          "MongoDB.Bson": "2.4.3",
+          "MongoDB.Driver": "2.4.3",
+          "MongoDB.Driver.Core": "2.4.3",
+          "NETStandard.Library": "1.6.1"
+        },
+        "runtime": {
+          "lib/netstandard1.5/MongoDB.Driver.Legacy.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.5/MongoDB.Driver.Legacy.dll": {}
+        }
+      },
+      "mongodb.bson/2.4.3": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.Collections.NonGeneric": "4.3.0",
+          "System.Diagnostics.Process": "4.1.0",
+          "System.Dynamic.Runtime": "4.3.0",
+          "System.Reflection.Emit.Lightweight": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.5/MongoDB.Bson.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.5/MongoDB.Bson.dll": {}
+        }
+      },
+      "mongodb.driver/2.4.3": {
+        "dependencies": {
+          "MongoDB.Bson": "2.4.3",
+          "MongoDB.Driver.Core": "2.4.3",
+          "NETStandard.Library": "1.6.1",
+          "System.Linq.Queryable": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.5/MongoDB.Driver.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.5/MongoDB.Driver.dll": {}
+        }
+      },
+      "mongodb.driver.core/2.4.3": {
+        "dependencies": {
+          "MongoDB.Bson": "2.4.3",
+          "NETStandard.Library": "1.6.1",
+          "System.Collections.Specialized": "4.3.0",
+          "System.Diagnostics.TraceSource": "4.0.0",
+          "System.Net.NameResolution": "4.0.0",
+          "System.Net.Security": "4.3.0",
+          "System.Security.SecureString": "4.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.5/MongoDB.Driver.Core.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.5/MongoDB.Driver.Core.dll": {}
+        }
+      },
       "netstandard.library/1.6.1": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -1647,6 +1727,23 @@
           "ref/netstandard1.6/System.AppContext.dll": {}
         }
       },
+      "system.appdomain/2.0.11": {
+        "dependencies": {
+          "Microsoft.NETCore.App": "1.0.4",
+          "System.Linq": "4.3.0",
+          "System.Linq.Expressions": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0"
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/System.AppDomain.dll": {}
+        },
+        "compile": {
+          "lib/netcoreapp1.0/System.AppDomain.dll": {}
+        }
+      },
       "system.buffers/4.3.0": {
         "dependencies": {
           "System.Diagnostics.Debug": "4.3.0",
@@ -1738,6 +1835,9 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Collections.Specialized.dll": {}
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Collections.Specialized.dll": {}
         }
       },
       "system.componentmodel/4.3.0": {
@@ -1880,6 +1980,32 @@
         },
         "compile": {
           "ref/netstandard1.0/System.Diagnostics.Tools.dll": {}
+        }
+      },
+      "system.diagnostics.tracesource/4.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "runtime.native.System": "4.3.0"
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netstandard1.3/System.Diagnostics.TraceSource.dll": {
+            "rid": "unix",
+            "assetType": "runtime"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Diagnostics.TraceSource.dll": {
+            "rid": "win",
+            "assetType": "runtime"
+          }
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Diagnostics.TraceSource.dll": {}
         }
       },
       "system.diagnostics.tracing/4.3.0": {
@@ -2099,6 +2225,28 @@
         },
         "compile": {
           "ref/netstandard1.6/System.Linq.dll": {}
+        }
+      },
+      "system.linq.dynamic.core/1.0.6.9": {
+        "dependencies": {
+          "System.Collections.Concurrent": "4.3.0",
+          "System.ComponentModel.TypeConverter": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.TraceSource": "4.0.0",
+          "System.Dynamic.Runtime": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Linq.Expressions": "4.3.0",
+          "System.Linq.Queryable": "4.3.0",
+          "System.Reflection.Emit": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Linq.Dynamic.Core.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/System.Linq.Dynamic.Core.dll": {}
         }
       },
       "system.linq.expressions/4.3.0": {
@@ -2835,6 +2983,31 @@
           "ref/netstandard1.3/System.Security.Principal.Windows.dll": {}
         }
       },
+      "system.security.securestring/4.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Security.Cryptography.Primitives": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netstandard1.3/System.Security.SecureString.dll": {
+            "rid": "unix",
+            "assetType": "runtime"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Security.SecureString.dll": {
+            "rid": "win",
+            "assetType": "runtime"
+          }
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Security.SecureString.dll": {}
+        }
+      },
       "system.spatial/5.8.2": {
         "runtime": {
           "lib/netstandard1.1/System.Spatial.dll": {}
@@ -3077,6 +3250,31 @@
         },
         "compile": {
           "ref/netstandard1.3/System.Xml.XmlDocument.dll": {}
+        }
+      },
+      "models/1.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.App": "1.0.4",
+          "mongocsharpdriver": "2.4.3"
+        },
+        "runtime": {
+          "Models.dll": {}
+        },
+        "compile": {
+          "Models.dll": {}
+        }
+      },
+      "mongodbrepository/1.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.App": "1.0.4",
+          "Models": "1.0.0",
+          "mongocsharpdriver": "2.4.3"
+        },
+        "runtime": {
+          "MongoDbRepository.dll": {}
+        },
+        "compile": {
+          "MongoDbRepository.dll": {}
         }
       },
       "libuv/1.9.1": {
@@ -3507,6 +3705,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "kendo.dynamiclinqcore/1.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/rnHz7/pLz/JP4jqujym6XrfAsWtcPCv2gx3s4YNGJ6IQ45+8nVBzQOHtWZ7cUF4axuSDcK1RdUghNyq1O87rg==",
+      "path": "kendo.dynamiclinqcore/1.0.3",
+      "hashPath": "kendo.dynamiclinqcore.1.0.3.nupkg.sha512"
     },
     "microsoft.applicationinsights/2.2.0": {
       "type": "package",
@@ -4117,6 +4322,34 @@
       "path": "microsoft.win32.registry/4.3.0",
       "hashPath": "microsoft.win32.registry.4.3.0.nupkg.sha512"
     },
+    "mongocsharpdriver/2.4.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MtQKl3RJ2Kb4phl61vFSCQl48dtPJmkq+ggp2kRc0Mac03mOFrbIjot6tb2XLQipHSS/CZuhhnIg5DzeEUXM5g==",
+      "path": "mongocsharpdriver/2.4.3",
+      "hashPath": "mongocsharpdriver.2.4.3.nupkg.sha512"
+    },
+    "mongodb.bson/2.4.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-frj9UMKRW7EwYSqqD5x1uO61Rrm50dMdbjz19bKhNtG31iEZceoURcEBSsjvlrm2OotLwVKmEF4f64INwb+HzQ==",
+      "path": "mongodb.bson/2.4.3",
+      "hashPath": "mongodb.bson.2.4.3.nupkg.sha512"
+    },
+    "mongodb.driver/2.4.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jMqO2K/POx3xjFrWOc7U4nTXc0+F7/KuBXFt5+Rr0qnOMsiZy+1YDoZ+J0AASfNaNRZ6BZafXq93Q3rDWZ5KUQ==",
+      "path": "mongodb.driver/2.4.3",
+      "hashPath": "mongodb.driver.2.4.3.nupkg.sha512"
+    },
+    "mongodb.driver.core/2.4.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-h87ILAszZ1HoHZAqrdYi1eLfC9dlQJxDweWSu9gcIlgW6FtPGxf0pca+YjXSBmoYSvW1PnAkzygNw/z60lqyjg==",
+      "path": "mongodb.driver.core/2.4.3",
+      "hashPath": "mongodb.driver.core.2.4.3.nupkg.sha512"
+    },
     "netstandard.library/1.6.1": {
       "type": "package",
       "serviceable": true,
@@ -4257,6 +4490,13 @@
       "path": "system.appcontext/4.3.0",
       "hashPath": "system.appcontext.4.3.0.nupkg.sha512"
     },
+    "system.appdomain/2.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dbhGcPriLfnqo88KH9uoUzKxWV1INsbvpnc4ay7Rl+sX3LMiSAQ+A3rlfFPT+u7he9hO1wRJnSNGqnBBvcEKmw==",
+      "path": "system.appdomain/2.0.11",
+      "hashPath": "system.appdomain.2.0.11.nupkg.sha512"
+    },
     "system.buffers/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -4369,6 +4609,13 @@
       "path": "system.diagnostics.tools/4.3.0",
       "hashPath": "system.diagnostics.tools.4.3.0.nupkg.sha512"
     },
+    "system.diagnostics.tracesource/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6WVCczFZKXwpWpzd/iJkYnsmWTSFFiU24Xx/YdHXBcu+nFI/ehTgeqdJQFbtRPzbrO3KtRNjvkhtj4t5/WwWsA==",
+      "path": "system.diagnostics.tracesource/4.0.0",
+      "hashPath": "system.diagnostics.tracesource.4.0.0.nupkg.sha512"
+    },
     "system.diagnostics.tracing/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -4452,6 +4699,13 @@
       "sha512": "sha512-5DbqIUpsDp0dFftytzuMmc0oeMdQwjcP/EWxsksIz/w1TcFRkZ3yKKz0PqiYFMmEwPSWw+qNVqD7PJ889JzHbw==",
       "path": "system.linq/4.3.0",
       "hashPath": "system.linq.4.3.0.nupkg.sha512"
+    },
+    "system.linq.dynamic.core/1.0.6.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/5UllMW/kLLw5vaYVN8YiQklcIjqATrZ6gXfbvajQYjR7NfJzEvlif6HWl3Z2JBKzRvCHprNjvm7gZIhEid/yA==",
+      "path": "system.linq.dynamic.core/1.0.6.9",
+      "hashPath": "system.linq.dynamic.core.1.0.6.9.nupkg.sha512"
     },
     "system.linq.expressions/4.3.0": {
       "type": "package",
@@ -4726,6 +4980,13 @@
       "path": "system.security.principal.windows/4.3.0",
       "hashPath": "system.security.principal.windows.4.3.0.nupkg.sha512"
     },
+    "system.security.securestring/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sqzq9GD6/b0yqPuMpgIKBuoLf4VKAj8oAfh4kXSzPaN6eoKY3hRi9C5L27uip25qlU+BGPfb0xh2Rmbwc4jFVA==",
+      "path": "system.security.securestring/4.0.0",
+      "hashPath": "system.security.securestring.4.0.0.nupkg.sha512"
+    },
     "system.spatial/5.8.2": {
       "type": "package",
       "serviceable": true,
@@ -4830,6 +5091,16 @@
       "sha512": "sha512-lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
+    },
+    "models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "mongodbrepository/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "libuv/1.9.1": {
       "type": "package",

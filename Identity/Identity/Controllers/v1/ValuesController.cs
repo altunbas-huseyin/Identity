@@ -8,7 +8,7 @@ using Microsoft.OData;
 namespace Identity.Controllers
 {
 
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class ValuesController : Controller
     {
         // GET api/values
