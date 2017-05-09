@@ -13,9 +13,17 @@ namespace Identity.Filters
     public class ValidateModelAttribute : ActionFilterAttribute
     {
         Microsoft.Extensions.Primitives.StringValues _Token = "";
+        JwtRepo jwtRepo = new JwtRepo();
+        UserRepo userRepo = new UserRepo();
+        string Role = "";
+        public ValidateModelAttribute(string _role)
+        {
+            Role = _role;
+        }
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            
+            Role = Role;
+
             if (!context.ModelState.IsValid)
             {
                 context.Result = new BadRequestObjectResult(context.ModelState);
@@ -26,7 +34,7 @@ namespace Identity.Filters
             if (_Token.Count > 0)
             {
                 string Token = _Token.FirstOrDefault();
-                JwtRepo jwtRepo = new JwtRepo();
+
                 Jwt jwt = jwtRepo.Get(Token);
                 if (jwt == null)
                 {
@@ -36,8 +44,11 @@ namespace Identity.Filters
                 }
 
                 var controller = context.Controller as Controller;
-                controller.ViewBag.Jwt = jwt;
 
+
+                User user = userRepo.GetById(jwt.UserId);
+                controller.ViewBag.Jwt = jwt;
+                controller.ViewBag.User = user;
             }
             else
             {

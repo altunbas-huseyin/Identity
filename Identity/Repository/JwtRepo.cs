@@ -44,8 +44,13 @@ namespace Repository
             if (_token.Count > 0)
             {
                 jwt = _token[0];
-            }
 
+                if (jwt.DeadLine < DateTime.Now)
+                {
+                    jwt = null;
+                }
+            }
+            
             return jwt;
         }
 
