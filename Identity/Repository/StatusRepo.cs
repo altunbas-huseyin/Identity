@@ -14,10 +14,12 @@ namespace Repository
 
         public bool InsertStatusCodeList()
         {
+            statusRepository.Insert(new Models.Status { Name = "Waiting for approval" });
             statusRepository.Insert(new Models.Status { Name = "Active" });
             statusRepository.Insert(new Models.Status { Name = "Passive" });
             statusRepository.Insert(new Models.Status { Name = "Waiting" });
             statusRepository.Insert(new Models.Status { Name = "Deleted" });
+            
             return true;
         }
 
