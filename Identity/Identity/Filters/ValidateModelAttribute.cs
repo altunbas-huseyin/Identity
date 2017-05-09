@@ -15,10 +15,11 @@ namespace Identity.Filters
         Microsoft.Extensions.Primitives.StringValues _Token = "";
         JwtRepo jwtRepo = new JwtRepo();
         UserRepo userRepo = new UserRepo();
-        string Role = "";
+        RoleRepo roleRepo = new RoleRepo();
+        List<string> Role = new List<string>();
         public ValidateModelAttribute(string _role)
         {
-            Role = _role;
+        Role = _role.Split(new char[] { ',' }).ToList();
         }
         public override void OnActionExecuting(ActionExecutingContext context)
         {
@@ -45,8 +46,8 @@ namespace Identity.Filters
 
                 var controller = context.Controller as Controller;
 
-
                 User user = userRepo.GetById(jwt.UserId);
+
                 controller.ViewBag.Jwt = jwt;
                 controller.ViewBag.User = user;
             }

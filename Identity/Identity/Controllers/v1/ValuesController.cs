@@ -11,15 +11,15 @@ namespace Identity.Controllers
 {
 
     [Route("api/v1/[controller]")]
-    [ValidateModel ("Admin")]
+    [ValidateModel("User,Firm")]
     public class ValuesController : Controller
     {
         // GET api/values
         [HttpGet]
         public CommonApiResponse Get()
         {
-           var r = this.ViewBag.Jwt;
-           var t = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, new string[] { "value1", "value2" });
+            var r = this.ViewBag.Jwt;
+            var t = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, new string[] { "value1", "value2" });
             //  return new string[] { "value1", "value2" };
             return t;
         }
