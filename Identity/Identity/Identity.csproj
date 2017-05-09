@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="ApiResponse\" />
     <Folder Include="Extensions\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

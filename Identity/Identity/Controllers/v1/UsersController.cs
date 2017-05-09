@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.OData;
 using Kendo.DynamicLinqCore;
 using Models;
+using Identity.Middleware;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System.Net;
 
 namespace Identity.Controllers
 {
@@ -14,10 +17,22 @@ namespace Identity.Controllers
     public class UsersController : Controller
     {
         private MongoDbRepository<User> userMongoRepo = new MongoDbRepository<Models.User>();
+
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            // 
+            // add code to update the context.Result as needed.
+            //
+
+            base.OnActionExecuted(context);
+        }
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            HttpStatusCode s = new HttpStatusCode();
+            //CommonApiResponse c = new CommonApiResponse(s);
             return new string[] { "value1", "value2" };
         }
 

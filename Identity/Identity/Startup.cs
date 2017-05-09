@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Identity.Filters;
+using Identity.Middleware;
 
 namespace Identity
 {
@@ -41,6 +42,8 @@ namespace Identity
             loggerFactory.AddDebug();
 
             app.UseMvc();
+            app.UseResponseWrapper();
+
         }
     }
 }

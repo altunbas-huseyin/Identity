@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OData;
 using Identity.Filters;
+using Identity.Middleware;
 
 namespace Identity.Controllers
 {
@@ -15,9 +16,11 @@ namespace Identity.Controllers
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public CommonApiResponse Get()
         {
-            return new string[] { "value1", "value2" };
+           var t = CommonApiResponse.Create(System.Net.HttpStatusCode.Accepted, new string[] { "value1", "value2" });
+            //  return new string[] { "value1", "value2" };
+            return t;
         }
 
         // GET api/values/5
