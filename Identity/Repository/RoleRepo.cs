@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Repository
@@ -41,6 +42,12 @@ namespace Repository
         {
             bool result = roleRepository.AddUniqIndex("Name");
             return true;
+        }
+
+        public Role Get(string Name)
+        {
+            Role role =  roleRepository.SearchFor(p => p.Name == Name).FirstOrDefault();
+            return role;
         }
     }
 }

@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ApiResponse\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>

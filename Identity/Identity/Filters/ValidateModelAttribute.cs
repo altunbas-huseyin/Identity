@@ -12,44 +12,84 @@ namespace Identity.Filters
 {
     public class ValidateModelAttribute : ActionFilterAttribute
     {
-        Microsoft.Extensions.Primitives.StringValues _Token = "";
         JwtRepo jwtRepo = new JwtRepo();
         UserRepo userRepo = new UserRepo();
         RoleRepo roleRepo = new RoleRepo();
         List<string> Role = new List<string>();
+
+        Microsoft.Extensions.Primitives.StringValues _Token = "";
+        bool IsAcces = false;
+        public ValidateModelAttribute()
+        {
+
+        }
         public ValidateModelAttribute(string _role)
         {
-        Role = _role.Split(new char[] { ',' }).ToList();
+            Role = _role.Split(new char[] { ',' }).ToList();
         }
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            Role = Role;
+
 
             if (!context.ModelState.IsValid)
             {
                 context.Result = new BadRequestObjectResult(context.ModelState);
             }
-            //context.Result = new BadRequestObjectResult(new User());
+
 
             context.HttpContext.Request.Headers.TryGetValue("Token", out _Token);
             if (_Token.Count > 0)
             {
                 string Token = _Token.FirstOrDefault();
 
-                Jwt jwt = jwtRepo.Get(Token);
+                Jwt jwt = jwtRepo.CheckToken(Token);
                 if (jwt == null)
                 {
                     CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.BadRequest, null, "Token geçersiz.");
                     BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                     context.Result = badReq;
+                    return;
                 }
 
-                var controller = context.Controller as Controller;
+                try
+                {
+                    var controller = context.Controller as Controller;
+                    User user = userRepo.GetById(jwt.UserId);
+                    if (user == null)
+                    {
+                        CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.BadRequest, null, "Kullanıcı bulunamadı.");
+                        BadRequestObjectResult badReq = new BadRequestObjectResult(response);
+                        context.Result = badReq;
+                        return;
+                    }
+                    if (Role.Count > 0)
+                    {
+                        foreach (string item in Role)
+                        {
+                            if (user.Role.Where(p => p.Name == item).Count() > 0)
+                            {
+                                IsAcces = true;
+                            }
+                        }
+                        if (!IsAcces)
+                        {
+                            CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.BadRequest, null, "Yetkiniz yok.");
+                            BadRequestObjectResult badReq = new BadRequestObjectResult(response);
+                            context.Result = badReq;
+                            return;
+                        }
+                    }
 
-                User user = userRepo.GetById(jwt.UserId);
-
-                controller.ViewBag.Jwt = jwt;
-                controller.ViewBag.User = user;
+                    controller.ViewBag.Jwt = jwt;
+                    controller.ViewBag.User = user;
+                }
+                catch (Exception ex)
+                {
+                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.BadRequest, null, "Hata oluştu");
+                    BadRequestObjectResult badReq = new BadRequestObjectResult(response);
+                    context.Result = badReq;
+                    return;
+                }
             }
             else
             {

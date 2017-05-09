@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Repository
 {
@@ -37,7 +38,7 @@ namespace Repository
             return result;
         }
 
-        public Jwt Get(string Token)
+        public Jwt CheckToken(string Token)
         {
             Jwt jwt = null;
             var _token = jwtRepository.SearchFor(p => p.Token == Token);
@@ -51,6 +52,13 @@ namespace Repository
                 }
             }
             
+            return jwt;
+        }
+
+
+        public Jwt GetByUserId(string UserId)
+        {
+            Jwt jwt = jwtRepository.SearchFor(p => p.UserId == UserId).FirstOrDefault();
             return jwt;
         }
 

@@ -29,7 +29,7 @@ namespace Test
         [TestMethod]
         public void GetToken()
         {
-            Jwt result = jwtRepo.Get("fcbe54b8-8798-4d30-b695-8ffb6539911c");
+            Jwt result = jwtRepo.CheckToken("fcbe54b8-8798-4d30-b695-8ffb6539911c");
             Assert.AreNotSame(result, null);
         }
     }

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Repository
 {
@@ -23,6 +25,11 @@ namespace Repository
             return true;
         }
 
+        public Status GetByName(string Name)
+        {
+            Status status = statusRepository.SearchFor(p => p.Name == Name).FirstOrDefault();
+            return status;
+        }
 
         public bool AddUniqIndex()
         {

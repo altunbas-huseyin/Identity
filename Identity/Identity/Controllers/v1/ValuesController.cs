@@ -11,7 +11,7 @@ namespace Identity.Controllers
 {
 
     [Route("api/v1/[controller]")]
-    [ValidateModel("User,Firm")]
+    [ValidateModel]
     public class ValuesController : Controller
     {
         // GET api/values

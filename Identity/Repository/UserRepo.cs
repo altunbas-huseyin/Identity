@@ -10,7 +10,7 @@ namespace Repository
     {
         private MongoDbRepository<User> userRepository = new MongoDbRepository<User>();
 
-        public bool Add(string Email, string Password, string ProjectName, string Name, string SurName, User.UserType Type)
+        public bool Add(string Email, string Password, string ProjectName, string Name, string SurName, Guid StatusId,  List<Role> Role)
         {
             User user = new User();
             user.ProjectName = ProjectName;
@@ -18,9 +18,10 @@ namespace Repository
             user.Password = IdentityHelper.Encripty.EncryptString(Password);
             user.Name = Name;
             user.SurName = SurName;
-            user.Type = Type;
             user.CreateDate = DateTime.Now;
-
+            user.Role = new List<Models.Role>();
+            user.Role = Role;
+            user.StatusId = StatusId;
             return userRepository.Insert(user);
         }
 
@@ -46,8 +47,14 @@ namespace Repository
 
         public User GetById(String Id)
         {
-            User user = userRepository.SearchFor(p => p.Id == new Guid(Id)).First();
+            User user = userRepository.SearchFor(p => p.Id == new Guid(Id)).FirstOrDefault();
 
+            return user;
+        }
+
+        public User GetByEmail(String Email)
+        {
+            User user = userRepository.SearchFor(p => p.Email == Email).FirstOrDefault();
             return user;
         }
 
