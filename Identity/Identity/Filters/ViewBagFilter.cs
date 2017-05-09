@@ -14,6 +14,7 @@ namespace Identity.Filters
             // do something before the action executes
             var controller = context.Controller as Controller;
             controller.ViewBag.Title = "MyPage";
+
         }
 
         public void OnActionExecuted(ActionExecutedContext context)

@@ -18,7 +18,7 @@ namespace Identity.Controllers
         [HttpGet]
         public CommonApiResponse Get()
         {
-           var t = CommonApiResponse.Create(System.Net.HttpStatusCode.Accepted, new string[] { "value1", "value2" });
+           var t = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, new string[] { "value1", "value2" });
             //  return new string[] { "value1", "value2" };
             return t;
         }
