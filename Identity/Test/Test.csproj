@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IdentityHelper\IdentityHelper.csproj" />
+    <ProjectReference Include="..\Identity\Identity.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>

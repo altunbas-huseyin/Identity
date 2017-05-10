@@ -25,11 +25,13 @@ namespace Repository
             return userRepository.Insert(user);
         }
 
-        public User LoginByEmail(string ProjectName, String Email, string Password)
+        public User LoginByEmail(String Email, string Password)
         {
             Password = IdentityHelper.Encripty.EncryptString(Password);
-            User user = userRepository.SearchFor(p => p.ProjectName == ProjectName && p.Email == Email && p.Password == Password).FirstOrDefault();
-            user.Password = "";
+            User user = userRepository.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
+            if (user != null)
+            { user.Password = "";}
+            
             return user;
         }
 

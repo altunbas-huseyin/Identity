@@ -29,11 +29,10 @@ namespace Repository
 
         public bool InsertRoleList()
         {
-            roleRepository.Insert(new Role { Name = "Admin" });
-            roleRepository.Insert(new Role { Name = "Firm" });
-            roleRepository.Insert(new Role { Name = "User" });
-
-
+            roleRepository.Insert(new Role { Name = "SystemAdmin", Description = "Tüm sistemi kullanıcıları yönetebilen kullanıcı." });
+            roleRepository.Insert(new Role { Name = "AppAdmin", Description="X isimli bir proje üyelerinin yönetilebileceği bir hesap." });
+            roleRepository.Insert(new Role { Name = "AppUser", Description= "Herhangi bir AppAdmin kullanıcısının oluşturduğu kullanıcılar." });
+            
             return true;
         }
 

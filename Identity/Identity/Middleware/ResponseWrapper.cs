@@ -34,7 +34,7 @@ namespace Identity.Middleware
 
                 var readToEnd = new StreamReader(memoryStream).ReadToEnd();
                 var objResult = JsonConvert.DeserializeObject(readToEnd);
-                var result = CommonApiResponse.Create((HttpStatusCode)context.Response.StatusCode, objResult, null);
+                var result = CommonApiResponse.Create((HttpStatusCode)context.Response.StatusCode, false, objResult, null);
                 await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
             }
         }
@@ -52,11 +52,12 @@ namespace Identity.Middleware
 
     public class CommonApiResponse
     {
-        public static CommonApiResponse Create(HttpStatusCode statusCode, object result = null, string errorMessage = null)
+        public static CommonApiResponse Create(HttpStatusCode statusCode, bool Status, object result = null, string errorMessage = null)
         {
-            return new CommonApiResponse(statusCode, result, errorMessage);
-        }
 
+            return new CommonApiResponse(statusCode, Status, result, errorMessage);
+        }
+        public bool Status = false;
         public string Version => "1.2.3";
 
         public int StatusCode { get; set; }
@@ -66,12 +67,13 @@ namespace Identity.Middleware
 
         public object Result { get; set; }
 
-        protected CommonApiResponse(HttpStatusCode statusCode, object result = null, string errorMessage = null)
+        protected CommonApiResponse(HttpStatusCode statusCode, bool status, object result = null, string errorMessage = null)
         {
             RequestId = Guid.NewGuid().ToString();
             StatusCode = (int)statusCode;
             Result = result;
             ErrorMessage = errorMessage;
+            Status = status;
         }
     }
 }

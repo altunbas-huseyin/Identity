@@ -45,7 +45,7 @@ namespace Identity.Filters
                 Jwt jwt = jwtRepo.CheckToken(Token);
                 if (jwt == null)
                 {
-                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.BadRequest, null, "Token geçersiz.");
+                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Token geçersiz.");
                     BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                     context.Result = badReq;
                     return;
@@ -57,7 +57,7 @@ namespace Identity.Filters
                     User user = userRepo.GetById(jwt.UserId);
                     if (user == null)
                     {
-                        CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.BadRequest, null, "Kullanıcı bulunamadı.");
+                        CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Kullanıcı bulunamadı.");
                         BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                         context.Result = badReq;
                         return;
@@ -73,7 +73,7 @@ namespace Identity.Filters
                         }
                         if (!IsAcces)
                         {
-                            CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.BadRequest, null, "Yetkiniz yok.");
+                            CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null,  "Yetkiniz yok.");
                             BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                             context.Result = badReq;
                             return;
@@ -85,7 +85,7 @@ namespace Identity.Filters
                 }
                 catch (Exception ex)
                 {
-                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.BadRequest, null, "Hata oluştu");
+                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Hata oluştu");
                     BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                     context.Result = badReq;
                     return;
@@ -93,7 +93,7 @@ namespace Identity.Filters
             }
             else
             {
-                CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.BadRequest, null, "Header Token bulunamadı.");
+                CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Header Token bulunamadı.");
                 BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                 context.Result = badReq;
             }

@@ -9,6 +9,7 @@ using Models;
 using Identity.Middleware;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Net;
+using Repository;
 
 namespace Identity.Controllers
 {
@@ -16,15 +17,23 @@ namespace Identity.Controllers
     [Route("api/v1/[controller]")]
     public class UsersController : Controller
     {
-        private MongoDbRepository<User> userMongoRepo = new MongoDbRepository<Models.User>();
-
-        public override void OnActionExecuted(ActionExecutedContext context)
+        private UserRepo userRepo = new UserRepo();
+        private string Error = "";
+        private bool Status = false;
+        [HttpPost]
+        public CommonApiResponse Index(string Email, string Password)
         {
-            // 
-            // add code to update the context.Result as needed.
-            //
-
-            base.OnActionExecuted(context);
+            User _user = userRepo.LoginByEmail(Email, Password);
+            if (_user == null)
+            {
+                Error = "Kullanıcı bilgileri geçersiz.";
+                Status = false;
+            }
+            else
+            {
+                Status = true;
+            }
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, Status, _user, Error);
         }
 
         // GET api/values

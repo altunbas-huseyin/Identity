@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Identity.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using Repository;
 using System;
@@ -26,7 +27,7 @@ namespace Test
         [TestMethod]
         public void LoginByEmail()
         {
-            User user = userRepo.LoginByEmail("isicam", "ee@tt.com", "1111");
+            User user = userRepo.LoginByEmail("ee@tt.com", "1111");
 
         }
 
@@ -34,8 +35,8 @@ namespace Test
         public void UserLifeCycle()
         {
             List<Role> roles = new List<Role>();
-            roles.Add(roleRepo.Get("User"));
-            roles.Add(roleRepo.Get("Admin"));
+            roles.Add(roleRepo.Get("AppUser"));
+            roles.Add(roleRepo.Get("AppAdmin"));
 
             Status status = statusRepo.GetByName("Active");
 
@@ -48,14 +49,32 @@ namespace Test
         }
 
         [TestMethod]
+        public void AddSystemUser()
+        {
+            List<Role> roles = new List<Role>();
+            roles.Add(roleRepo.Get("SystemAdmin"));
+
+            Status status = statusRepo.GetByName("Active");
+
+            string email = "altunbas.huseyin@gmail.com";
+            bool result = userRepo.Add(email, "Web+webmercek", "System", "huseyin", "altunbas", status.Id, roles);
+           
+        }
+
+        [TestMethod]
         public void AddUniqIndex()
         {
             bool result = userRepo.AddUniqIndex();
             Assert.AreEqual(result, true);
         }
 
-
-
+        [TestMethod]
+        public void ff()
+        {
+            UsersController controllerUnderTest = new UsersController();
+            var result = controllerUnderTest.Index("altunbas.huseyin@gmail.com", "Web+webmercek");
+            //Assert.AreEqual("fooview", result.ViewName);
+        }
 
 
     }
