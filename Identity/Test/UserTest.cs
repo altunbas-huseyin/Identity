@@ -69,10 +69,10 @@ namespace Test
         }
 
         [TestMethod]
-        public void ff()
+        public void Login()
         {
             UsersController controllerUnderTest = new UsersController();
-            var result = controllerUnderTest.Index("altunbas.huseyin@gmail.com", "Web+webmercek");
+            var result = controllerUnderTest.Login("altunbas.huseyin@gmail.com", "Web+webmercek");
             //Assert.AreEqual("fooview", result.ViewName);
         }
 

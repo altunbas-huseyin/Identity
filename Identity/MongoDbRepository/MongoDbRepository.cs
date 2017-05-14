@@ -27,8 +27,10 @@ public class MongoDbRepository<TEntity> :
         TEntity : EntityBase
 {
     private string MongoDbDatabaseName = "Identity";
-    public string MongoDbConnectionString = "mongodb://84.51.52.183/{DB_NAME}?safe=true";
+    //public string MongoDbConnectionString = "mongodb://138.68.80.239:31017/{DB_NAME}?safe=true";
     //public string MongoDbConnectionString = "mongodb://192.168.1.80/{DB_NAME}?safe=true";
+    private string MongoDbConnectionString = "mongodb://u1:Huso7474@138.68.80.239:27017/{DB_NAME}?safe=true";
+    //mongodb://admin:abc123!@localhost
     private MongoDatabase database;
     private MongoCollection<TEntity> collection;
 

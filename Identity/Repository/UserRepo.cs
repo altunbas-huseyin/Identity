@@ -25,6 +25,21 @@ namespace Repository
             return userRepository.Insert(user);
         }
 
+        public bool AddByParentId(string ParentId, string Email, string Password,  string Name, string SurName, Guid StatusId, List<Role> Role)
+        {
+            User user = new User();
+            user.ParentId = ParentId;
+            user.Email = Email;
+            user.Password = IdentityHelper.Encripty.EncryptString(Password);
+            user.Name = Name;
+            user.SurName = SurName;
+            user.CreateDate = DateTime.Now;
+            user.Role = new List<Models.Role>();
+            user.Role = Role;
+            user.StatusId = StatusId;
+            return userRepository.Insert(user);
+        }
+
         public User LoginByEmail(String Email, string Password)
         {
             Password = IdentityHelper.Encripty.EncryptString(Password);

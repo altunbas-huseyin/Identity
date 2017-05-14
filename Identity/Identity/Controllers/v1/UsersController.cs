@@ -10,6 +10,7 @@ using Identity.Middleware;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Net;
 using Repository;
+using Identity.Filters;
 
 namespace Identity.Controllers
 {
@@ -21,7 +22,7 @@ namespace Identity.Controllers
         private string Error = "";
         private bool Status = false;
         [HttpPost]
-        public CommonApiResponse Index(string Email, string Password)
+        public CommonApiResponse Login(string Email, string Password)
         {
             User _user = userRepo.LoginByEmail(Email, Password);
             if (_user == null)
@@ -35,6 +36,17 @@ namespace Identity.Controllers
             }
             return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, Status, _user, Error);
         }
+
+
+        [ValidateModel ("SystemAdmin")]
+        [HttpPost]
+        public CommonApiResponse Add(User user)
+        {
+            //bool result = userRepo.AddByParentId(user.Email, user.Password, "huseyin", "altunbas", status.Id, roles);
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, Status, null, Error);
+        }
+
+
 
         // GET api/values
         [HttpGet]
