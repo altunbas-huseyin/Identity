@@ -1,10 +1,10 @@
-1. Mongo DB docker da oluşturulur
+1. Mongo DB docker da oluÃ¾turulur <br />
 docker run --name mongo-server -p 27017:27017 -d mongo:2.4 --auth
 
-2. oluşturulan mongo-server içine admin olarak bağlanılır
+2. oluÃ¾turulan mongo-server iÃ§ine admin olarak baÄŸlanÄ±lÄ±r <br />
 docker exec -it mongo-server mongo admin
 
-3. Database admin user oluşturulur.
+3. Database admin user oluÅŸturulur. <br />
 db.createUser( { user: "Huso",
           pwd: "Huso7474",
           roles: [ "userAdminAnyDatabase",
@@ -13,6 +13,5 @@ db.createUser( { user: "Huso",
 
 ] } )
 
-4. Bir database oluşturulut örn. Identity ve buna bir user tanımlanır.
-örnek user oluşturma resmi : 
+4. Bir database oluÅŸturulur Ã¶rn. Identity ve buna bir user tanÄ±mlanÄ±r. Ã¶rnek user oluÃ¾turma resmi : <br /> 
 ![alt text](readme/mongo-user.PNG)
