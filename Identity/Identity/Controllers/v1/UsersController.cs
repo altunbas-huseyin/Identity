@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System.Net;
 using IdentityRepository;
 using Identity.Filters;
-
+using IdentityModels.Users;
 
 namespace Identity.Controllers
 {

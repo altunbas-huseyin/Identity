@@ -5,6 +5,7 @@ using IdentityRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using IdentityModels.Users;
 
 namespace IdentityTest
 {

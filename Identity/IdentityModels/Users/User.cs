@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IdentityModels
+namespace IdentityModels.Users
 {
     public class User : EntityBase
     {
