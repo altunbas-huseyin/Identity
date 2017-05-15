@@ -30,7 +30,8 @@ namespace Identity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(options => options.MaxModelValidationErrors = 50);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
