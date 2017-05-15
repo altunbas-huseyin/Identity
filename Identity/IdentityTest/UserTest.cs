@@ -116,9 +116,22 @@ namespace IdentityTest
         [TestMethod]
         public void Login()
         {
-            UsersController controllerUnderTest = new UsersController();
-            var result = controllerUnderTest.Login("altunbas.huseyin@gmail.com", "Web+webmercek");
+            UsersController userController = new UsersController();
+            var result = userController.Login("altunbas.huseyin@gmail.com", "Web+webmercek");
             //Assert.AreEqual("fooview", result.ViewName);
+        }
+
+        [TestMethod]
+        public void Register()
+        {
+            UsersController userController = new UsersController();
+            UserRegisterView _user = new UserRegisterView();
+            _user.Email = "Huseyin";
+            _user.Password = Encripty.EncryptString("1111");
+            _user.Name = "Hüseyin";
+            _user.SurName = "Altunbaş";
+
+            var result = userController.Add(_user);
         }
 
 

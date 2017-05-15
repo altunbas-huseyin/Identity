@@ -21,8 +21,11 @@ namespace Identity.Controllers
     public class UsersController : Controller
     {
         private UserRepo userRepo = new UserRepo();
+        private StatusRepo statusRepo = new StatusRepo();
+        private RoleRepo roleRepo = new RoleRepo();
         private string error = "";
         private bool status = false;
+
         [HttpPost]
         public CommonApiResponse Login(string Email, string Password)
         {
@@ -51,8 +54,13 @@ namespace Identity.Controllers
             user.SurName = userView.SurName;
             user.FirmCode = userView.FirmCode;
             user.FirmLogo = userView.FirmLogo;
-            Guid result = userRepo.Add(user);
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, result, error);
+            user.Status = statusRepo.GetByName("WaitingForApproval");
+            user.Role = new List<Role>();
+            user.Role.Add(roleRepo.GetByName("AppUser"));
+
+            userRepo.Add(user);
+            status = true;
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, user, error);
         }
 
 
