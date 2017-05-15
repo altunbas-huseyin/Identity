@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IdentityConfig\IdentityConfig.csproj" />
     <ProjectReference Include="..\IdentityModels\IdentityModels.csproj" />
   </ItemGroup>
 

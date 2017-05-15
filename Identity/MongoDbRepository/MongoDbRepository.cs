@@ -26,16 +26,18 @@ public class MongoDbRepository<TEntity> :
     IRepository<TEntity> where
         TEntity : EntityBase
 {
-    private string MongoDbDatabaseName = "Identity";
-    //public string MongoDbConnectionString = "mongodb://138.68.80.239:31017/{DB_NAME}?safe=true";
-    //public string MongoDbConnectionString = "mongodb://192.168.1.80/{DB_NAME}?safe=true";
-    private string MongoDbConnectionString = "mongodb://u1:Huso7474@138.68.80.239:27017/{DB_NAME}?safe=true";
-    //mongodb://admin:abc123!@localhost
+    private string MongoDbDatabaseName;
+    private string MongoDbConnectionString;
     private MongoDatabase database;
     private MongoCollection<TEntity> collection;
-
+    private IdentityConfig.DatabaseSettings config = new IdentityConfig.DatabaseSettings();
     public MongoDbRepository()
     {
+        
+        string ConnectionString = config.ConnectionString;
+        MongoDbDatabaseName = config.MongoDbDatabaseName;
+        MongoDbConnectionString = config.MongoDbConnectionString;
+
         GetDatabase();
         GetCollection();
     }

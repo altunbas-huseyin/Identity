@@ -20,3 +20,5 @@ C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityTest\obj\Debug\net
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityTest\obj\Debug\netcoreapp1.0\IdentityTest.AssemblyInfo.cs
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityTest\obj\Debug\netcoreapp1.0\IdentityTest.dll
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityTest\obj\Debug\netcoreapp1.0\IdentityTest.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityTest\bin\Debug\netcoreapp1.0\IdentityConfig.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityTest\bin\Debug\netcoreapp1.0\IdentityConfig.pdb

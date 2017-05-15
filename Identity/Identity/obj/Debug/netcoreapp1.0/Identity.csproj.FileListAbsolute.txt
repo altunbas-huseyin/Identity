@@ -15,3 +15,5 @@ C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\obj\Debug\netcore
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\obj\Debug\netcoreapp1.0\Identity.AssemblyInfo.cs
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\obj\Debug\netcoreapp1.0\Identity.dll
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\obj\Debug\netcoreapp1.0\Identity.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\bin\Debug\netcoreapp1.0\IdentityConfig.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\Identity\bin\Debug\netcoreapp1.0\IdentityConfig.pdb
