@@ -12,7 +12,7 @@ namespace IdentityRepository
     {
         private MongoDbRepository<Jwt> jwtRepository = new MongoDbRepository<Jwt>();
 
-        public bool Add(String UserId, string Token, DateTime DeadLine)
+        public Guid Add(String UserId, string Token, DateTime DeadLine)
         {
             bool result = false;
             Jwt jwt = new Jwt();
@@ -36,7 +36,7 @@ namespace IdentityRepository
                 result = jwtRepository.Insert(jwt);
             }
 
-            return result;
+            return jwt.Id;
         }
 
         public Jwt CheckToken(string Token)

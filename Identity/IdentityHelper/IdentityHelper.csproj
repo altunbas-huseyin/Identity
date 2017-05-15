@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="ChilkatDnCore" Version="9.5.0.66" />
+    <PackageReference Include="MailKit" Version="1.16.1" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection" Version="1.1.1" />
   </ItemGroup>
 

@@ -22,20 +22,25 @@ namespace IdentityTest
         public void AddUser()
         {
             Status status = statusRepo.GetByName("Active");
-            Role role = roleRepo.Get("AppUser");
+            Role role = roleRepo.GetByName("AppUser");
             Assert.AreNotEqual(role, null);
 
-            User user = new User();
-            user.Email = "ee@tt.com";
-            user.Password = "1111";
-            user.Name = "Hüseyin";
-            user.SurName = "Altunbaş";
-            user.StatusId = status.Id;
-            user.Role = new List<Role>();
-            user.Role.Add(role);
+            if (userRepo.GetByEmail("ee@tt.com") == null)
+            {
+                User user = new User();
+                user.Email = "ee@tt.com";
+                user.Password = "1111";
+                user.Name = "Hüseyin";
+                user.SurName = "Altunbaş";
+                user.StatusId = status.Id;
+                user.Role = new List<Role>();
+                user.Role.Add(role);
 
-            bool result = userRepo.Add(user);
-            Assert.AreEqual(result, true);
+                userRepo.Add(user);
+            }
+
+
+
         }
 
         [TestMethod]
@@ -49,7 +54,7 @@ namespace IdentityTest
         public void UserLifeCycle()
         {
             Status status = statusRepo.GetByName("Active");
-            Role role = roleRepo.Get("AppUser");
+            Role role = roleRepo.GetByName("AppUser");
 
             Assert.AreNotEqual(status, null);
             Assert.AreNotEqual(role, null);
@@ -66,10 +71,10 @@ namespace IdentityTest
             _user.Role = new List<Role>();
             _user.Role.Add(role);
 
-            bool result = userRepo.Add(_user);
+            userRepo.Add(_user);
 
             User user = userRepo.GetByEmail(email);
-            bool jwtResult = jwtRepo.Add(user.Id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(3));
+            jwtRepo.Add(user.Id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(3));
             Jwt jwt = jwtRepo.GetByUserId(user.Id.ToString());
             Jwt jwtCheckToken = jwtRepo.CheckToken(jwt.Token);
         }
@@ -78,22 +83,25 @@ namespace IdentityTest
         public void AddSystemUser()
         {
 
-            Role role = roleRepo.Get("SystemAdmin");
+            Role role = roleRepo.GetByName("SystemAdmin");
             Assert.AreNotEqual(role, null);
 
             Status status = statusRepo.GetByName("Active");
+            if (userRepo.GetByEmail("altunbas.huseyin@gmail.com") == null)
+            {
+                User user = new User();
+                user.Email = "altunbas.huseyin@gmail.com";
+                user.Password = "1111";
+                user.Name = "Hüseyin";
+                user.SurName = "Altunbaş";
+                user.StatusId = status.Id;
+                user.Role = new List<Role>();
+                user.Role.Add(role);
 
-            User user = new User();
-            user.Email = "altunbas.huseyin@gmail.com";
-            user.Password = "1111";
-            user.Name = "Hüseyin";
-            user.SurName = "Altunbaş";
-            user.StatusId = status.Id;
-            user.Role = new List<Role>();
-            user.Role.Add(role);
+                userRepo.Add(user);
+            }
 
-            bool result = userRepo.Add(user);
-            Assert.AreEqual(result, true);
+
         }
 
         [TestMethod]

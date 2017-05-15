@@ -26,14 +26,15 @@ namespace IdentityTest
             Role roleAppAdmin = new Role { Id = Guid.Parse("57daa98a-3c56-4f0e-9247-3a07ac1b4c08"), Name = "AppAdmin", Description = "X isimli bir proje üyelerinin yönetilebileceği bir hesap." };
             Role roleAppUser = new Role { Id = Guid.Parse("44211fbb-ed8a-405d-a639-9919f5fbbb3e"), Name = "AppUser", Description = "Herhangi bir AppAdmin kullanıcısının oluşturduğu kullanıcılar." };
 
-            bool result = roleRepo.InsertRoleList(roleSystemAdmin);
-            Assert.AreEqual(result, true);
+            if (roleRepo.GetByName("SystemAdmin") == null)
+                roleRepo.Insert(roleSystemAdmin);
 
-            result = roleRepo.InsertRoleList(roleAppAdmin);
-            Assert.AreEqual(result, true);
+            if (roleRepo.GetByName("AppAdmin") == null)
+                roleRepo.Insert(roleAppAdmin);
 
-            result = roleRepo.InsertRoleList(roleAppUser);
-            Assert.AreEqual(result, true);
+            if (roleRepo.GetByName("AppUser") == null)
+                roleRepo.Insert(roleAppUser);
+
         }
     }
 }

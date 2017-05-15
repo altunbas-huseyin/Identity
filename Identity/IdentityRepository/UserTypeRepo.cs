@@ -16,17 +16,12 @@ namespace IdentityRepository
             return result;
         }
 
-        public bool Add(string Name)
+        public Guid Add(string Name)
         {
-            UserType _userType = this.GetByName(Name);
-            if (_userType == null)
-            {
-                UserType userType = new UserType();
-                userType.Name = Name;
-                return userTypeRepository.Insert(userType);
-            }
-
-            return true;
+            UserType userType = new UserType();
+            userType.Name = Name;
+            userTypeRepository.Insert(userType);
+            return userType.Id;
         }
 
         public UserType GetByName(String Name)

@@ -16,8 +16,11 @@ namespace IdentityTest
         [TestMethod]
         public void InsertTypeList()
         {
-            userTypeRepo.Add("Firm");
-            userTypeRepo.Add("StandartUser");
+            if (userTypeRepo.GetByName("Firm") == null)
+                userTypeRepo.Add("Firm");
+
+            if (userTypeRepo.GetByName("StandartUser") == null)
+                userTypeRepo.Add("StandartUser");
         }
 
 

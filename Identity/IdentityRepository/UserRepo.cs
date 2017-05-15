@@ -11,16 +11,10 @@ namespace IdentityRepository
     {
         private MongoDbRepository<User> userRepository = new MongoDbRepository<User>();
 
-        public bool Add(User user)
+        public Guid Add(User user)
         {
-            User _user = this.GetByEmailAndParentId(user.Email, user.ParentId);
-            if (_user == null)
-            {
-                user.Password = IdentityHelper.Encripty.EncryptString(user.Password);
-                user.CreateDate = DateTime.Now;
-                return userRepository.Insert(user);
-            }
-            return true;
+            userRepository.Insert(user);
+            return user.Id;
         }
 
         public User LoginByEmail(String Email, string Password)
@@ -67,7 +61,7 @@ namespace IdentityRepository
         public bool AddUniqIndex()
         {
             List<string> list = new List<string>();
-            list.Add("ProjectName");
+            list.Add("PatrentId");
             list.Add("Email");
             bool result = userRepository.AddUniqIndex(list.ToArray());
             return result;

@@ -9,11 +9,6 @@ namespace IdentityRepository
     public class RoleRepo
     {
         private MongoDbRepository<Role> roleRepository = new MongoDbRepository<Role>();
-        public bool Add(Role role)
-        {
-            return roleRepository.Insert(role);
-        }
-
         public bool Update(Role role)
         {
             return roleRepository.Update(role);
@@ -27,9 +22,9 @@ namespace IdentityRepository
         }
 
 
-        public bool InsertRoleList(Role role)
+        public bool Insert(Role role)
         {
-            Role _role = this.Get(role.Name);
+            Role _role = this.GetByName(role.Name);
             if (_role == null)
             {
                 roleRepository.Insert(role);
@@ -44,7 +39,7 @@ namespace IdentityRepository
             return true;
         }
 
-        public Role Get(string Name)
+        public Role GetByName(string Name)
         {
             Role role = roleRepository.SearchFor(p => p.Name == Name).FirstOrDefault();
             return role;

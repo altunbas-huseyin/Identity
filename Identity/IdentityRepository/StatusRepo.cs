@@ -9,20 +9,10 @@ namespace IdentityRepository
     public class StatusRepo
     {
         private MongoDbRepository<Status> statusRepository = new MongoDbRepository<Status>();
-        public bool Add(Status status)
+        public Guid Insert(Status status)
         {
-            return statusRepository.Insert(status);
-        }
-
-        public bool InsertStatusCodeList(Status status)
-        {
-
-            Status _status = this.GetByName(status.Name);
-            if (_status == null)
-            {
-                statusRepository.Insert(status);
-            }
-            return true;
+            statusRepository.Insert(status);
+            return status.Id;
         }
 
         public Status GetByName(string Name)
