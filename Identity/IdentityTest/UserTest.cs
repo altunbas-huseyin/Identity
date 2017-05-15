@@ -46,7 +46,7 @@ namespace IdentityTest
         [TestMethod]
         public void LoginByEmail()
         {
-            User user = userRepo.LoginByEmail("ee@tt.com", "1111");
+            UserView user = userRepo.LoginByEmail("ee@tt.com", "1111");
 
         }
 

@@ -12,9 +12,9 @@ namespace IdentityRepository
     {
         private MongoDbRepository<Jwt> jwtRepository = new MongoDbRepository<Jwt>();
 
-        public Guid Add(String UserId, string Token, DateTime DeadLine)
+        public Jwt Add(String UserId, string Token, DateTime DeadLine)
         {
-            bool result = false;
+           
             Jwt jwt = new Jwt();
             var jwtOld = jwtRepository.SearchFor(p => p.UserId == UserId);
             if (jwtOld.Count > 0)
@@ -23,7 +23,7 @@ namespace IdentityRepository
                 jwt.Token = Token;
                 jwt.DeadLine = DeadLine;
 
-                result = jwtRepository.Update(jwt);
+                 jwtRepository.Update(jwt);
             }
             else
             {
@@ -33,10 +33,10 @@ namespace IdentityRepository
                 jwt.DeadLine = DeadLine;
                 jwt.StatusId = new Guid("1d9791fe-7a39-432f-8702-e08045e27adc");
 
-                result = jwtRepository.Insert(jwt);
+                 jwtRepository.Insert(jwt);
             }
 
-            return jwt.Id;
+            return jwt;
         }
 
         public Jwt CheckToken(string Token)

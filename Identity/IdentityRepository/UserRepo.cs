@@ -10,21 +10,33 @@ namespace IdentityRepository
     public class UserRepo
     {
         private MongoDbRepository<User> userRepository = new MongoDbRepository<User>();
-
+        private JwtRepo jwtRepo = new JwtRepo();
         public Guid Add(User user)
         {
             userRepository.Insert(user);
             return user.Id;
         }
 
-        public User LoginByEmail(String Email, string Password)
+        public UserView LoginByEmail(String Email, string Password)
         {
+            UserView userView = new UserView();
             Password = IdentityHelper.Encripty.EncryptString(Password);
             User user = userRepository.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
-            if (user != null)
-            { user.Password = ""; }
+            if (user == null)
+            {
+                userView = this.UserToUserView(user);
+                userView.Jwt = jwtRepo.Add(user.Id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(1));
+            }
 
-            return user;
+
+            return userView;
+        }
+
+        public UserView UserToUserView(User user)
+        {
+            UserView userView = new UserView();
+
+            return userView;
         }
 
         public bool Update(User user)

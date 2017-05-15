@@ -12,6 +12,7 @@ using System.Net;
 using IdentityRepository;
 using Identity.Filters;
 using IdentityModels.Users;
+using IdentityHelper;
 
 namespace Identity.Controllers
 {
@@ -20,31 +21,38 @@ namespace Identity.Controllers
     public class UsersController : Controller
     {
         private UserRepo userRepo = new UserRepo();
-        private string Error = "";
-        private bool Status = false;
+        private string error = "";
+        private bool status = false;
         [HttpPost]
         public CommonApiResponse Login(string Email, string Password)
         {
-            User _user = userRepo.LoginByEmail(Email, Password);
+            UserView _user = userRepo.LoginByEmail(Email, Password);
             if (_user == null)
             {
-                Error = "Kullanıcı bilgileri geçersiz.";
-                Status = false;
+                error = "Kullanıcı bilgileri geçersiz.";
+                status = false;
             }
             else
             {
-                Status = true;
+                status = true;
             }
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, Status, _user, Error);
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, _user, error);
         }
 
 
-        [ValidateModel ("SystemAdmin")]
+        [ValidateModel("AppAdmin, AppUser")]
         [HttpPost]
-        public CommonApiResponse Add(User user)
+        public CommonApiResponse Add(UserRegisterView userView)
         {
-            //bool result = userRepo.AddByParentId(user.Email, user.Password, "huseyin", "altunbas", status.Id, roles);
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, Status, null, Error);
+            User user = new User();
+            user.Email = userView.Email;
+            user.Password = Encripty.EncryptString(userView.Password);
+            user.Name = userView.Name;
+            user.SurName = userView.SurName;
+            user.FirmCode = userView.FirmCode;
+            user.FirmLogo = userView.FirmLogo;
+            Guid result = userRepo.Add(user);
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, result, error);
         }
 
 
