@@ -21,7 +21,20 @@ namespace Test
         public void AddUser()
         {
             Status status = statusRepo.GetByName("Active");
-            bool result = userRepo.Add("ee@tt.com", "1111", "isicam", "huseyin", "altunbas", status.Id, new List<Role>());
+            Role role = roleRepo.Get("AppUser");
+            Assert.AreNotEqual(role, null);
+
+            User user = new User();
+            user.Email = "ee@tt.com";
+            user.Password = "1111";
+            user.Name = "Hüseyin";
+            user.SurName = "Altunbaş";
+            user.StatusId = status.Id;
+            user.Role = new List<Role>();
+            user.Role.Add(role);
+
+            bool result = userRepo.Add(user);
+            Assert.AreEqual(result, true);
         }
 
         [TestMethod]
@@ -34,14 +47,26 @@ namespace Test
         [TestMethod]
         public void UserLifeCycle()
         {
-            List<Role> roles = new List<Role>();
-            roles.Add(roleRepo.Get("AppUser"));
-            roles.Add(roleRepo.Get("AppAdmin"));
-
             Status status = statusRepo.GetByName("Active");
+            Role role = roleRepo.Get("AppUser");
+
+            Assert.AreNotEqual(status, null);
+            Assert.AreNotEqual(role, null);
+
 
             string email = "test@" + Guid.NewGuid() + ".com";
-            bool result = userRepo.Add(email, "1111", "isicam", "huseyin", "altunbas", status.Id, roles);
+
+            User _user = new User();
+            _user.Email = email;
+            _user.Password = "1111";
+            _user.Name = "Hüseyin";
+            _user.SurName = "Altunbaş";
+            _user.StatusId = status.Id;
+            _user.Role = new List<Role>();
+            _user.Role.Add(role);
+
+            bool result = userRepo.Add(_user);
+
             User user = userRepo.GetByEmail(email);
             bool jwtResult = jwtRepo.Add(user.Id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(3));
             Jwt jwt = jwtRepo.GetByUserId(user.Id.ToString());
@@ -51,14 +76,23 @@ namespace Test
         [TestMethod]
         public void AddSystemUser()
         {
-            List<Role> roles = new List<Role>();
-            roles.Add(roleRepo.Get("SystemAdmin"));
+
+            Role role = roleRepo.Get("SystemAdmin");
+            Assert.AreNotEqual(role, null);
 
             Status status = statusRepo.GetByName("Active");
 
-            string email = "altunbas.huseyin@gmail.com";
-            bool result = userRepo.Add(email, "Web+webmercek", "System", "huseyin", "altunbas", status.Id, roles);
-           
+            User user = new User();
+            user.Email = "altunbas.huseyin@gmail.com";
+            user.Password = "1111";
+            user.Name = "Hüseyin";
+            user.SurName = "Altunbaş";
+            user.StatusId = status.Id;
+            user.Role = new List<Role>();
+            user.Role.Add(role);
+
+            bool result = userRepo.Add(user);
+            Assert.AreEqual(result, true);
         }
 
         [TestMethod]

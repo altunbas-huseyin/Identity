@@ -10,34 +10,16 @@ namespace Repository
     {
         private MongoDbRepository<User> userRepository = new MongoDbRepository<User>();
 
-        public bool Add(string Email, string Password, string ProjectName, string Name, string SurName, Guid StatusId,  List<Role> Role)
+        public bool Add(User user)
         {
-            User user = new User();
-            user.ProjectName = ProjectName;
-            user.Email = Email;
-            user.Password = IdentityHelper.Encripty.EncryptString(Password);
-            user.Name = Name;
-            user.SurName = SurName;
-            user.CreateDate = DateTime.Now;
-            user.Role = new List<Models.Role>();
-            user.Role = Role;
-            user.StatusId = StatusId;
-            return userRepository.Insert(user);
-        }
-
-        public bool AddByParentId(string ParentId, string Email, string Password,  string Name, string SurName, Guid StatusId, List<Role> Role)
-        {
-            User user = new User();
-            user.ParentId = ParentId;
-            user.Email = Email;
-            user.Password = IdentityHelper.Encripty.EncryptString(Password);
-            user.Name = Name;
-            user.SurName = SurName;
-            user.CreateDate = DateTime.Now;
-            user.Role = new List<Models.Role>();
-            user.Role = Role;
-            user.StatusId = StatusId;
-            return userRepository.Insert(user);
+            User _user = this.GetByEmailAndParentId(user.Email, user.ParentId);
+            if (_user == null)
+            {
+                user.Password = IdentityHelper.Encripty.EncryptString(user.Password);
+                user.CreateDate = DateTime.Now;
+                return userRepository.Insert(user);
+            }
+            return true;
         }
 
         public User LoginByEmail(String Email, string Password)
@@ -45,8 +27,8 @@ namespace Repository
             Password = IdentityHelper.Encripty.EncryptString(Password);
             User user = userRepository.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
             if (user != null)
-            { user.Password = "";}
-            
+            { user.Password = ""; }
+
             return user;
         }
 
@@ -66,6 +48,12 @@ namespace Repository
         {
             User user = userRepository.SearchFor(p => p.Id == new Guid(Id)).FirstOrDefault();
 
+            return user;
+        }
+
+        public User GetByEmailAndParentId(String Email, string ParentId)
+        {
+            User user = userRepository.SearchFor(p => p.Email == Email && p.ParentId == ParentId).FirstOrDefault();
             return user;
         }
 

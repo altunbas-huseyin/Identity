@@ -27,12 +27,13 @@ namespace Repository
         }
 
 
-        public bool InsertRoleList()
+        public bool InsertRoleList(Role role)
         {
-            roleRepository.Insert(new Role { Name = "SystemAdmin", Description = "Tüm sistemi kullanıcıları yönetebilen kullanıcı." });
-            roleRepository.Insert(new Role { Name = "AppAdmin", Description="X isimli bir proje üyelerinin yönetilebileceği bir hesap." });
-            roleRepository.Insert(new Role { Name = "AppUser", Description= "Herhangi bir AppAdmin kullanıcısının oluşturduğu kullanıcılar." });
-            
+            Role _role = this.Get(role.Name);
+            if (_role == null)
+            {
+                roleRepository.Insert(role);
+            }
             return true;
         }
 
@@ -45,7 +46,7 @@ namespace Repository
 
         public Role Get(string Name)
         {
-            Role role =  roleRepository.SearchFor(p => p.Name == Name).FirstOrDefault();
+            Role role = roleRepository.SearchFor(p => p.Name == Name).FirstOrDefault();
             return role;
         }
     }

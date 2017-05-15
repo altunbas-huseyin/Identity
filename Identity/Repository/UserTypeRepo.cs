@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Repository
@@ -16,9 +17,22 @@ namespace Repository
 
         public bool Add(string Name)
         {
-            UserType userType = new UserType();
-            userType.Name = Name;
-            return userTypeRepository.Insert(userType);
+            UserType _userType = this.GetByName(Name);
+            if (_userType == null)
+            {
+                UserType userType = new UserType();
+                userType.Name = Name;
+                return userTypeRepository.Insert(userType);
+            }
+
+            return true;
+        }
+
+        public UserType GetByName(String Name)
+        {
+            UserType userType = userTypeRepository.SearchFor(p => p.Name == Name).FirstOrDefault();
+
+            return userType;
         }
     }
 }

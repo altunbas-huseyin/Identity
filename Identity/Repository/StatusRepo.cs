@@ -14,14 +14,14 @@ namespace Repository
             return statusRepository.Insert(status);
         }
 
-        public bool InsertStatusCodeList()
+        public bool InsertStatusCodeList(Status status)
         {
-            statusRepository.Insert(new Models.Status { Name = "Waiting for approval" });
-            statusRepository.Insert(new Models.Status { Name = "Active" });
-            statusRepository.Insert(new Models.Status { Name = "Passive" });
-            statusRepository.Insert(new Models.Status { Name = "Waiting" });
-            statusRepository.Insert(new Models.Status { Name = "Deleted" });
-            
+
+            Status _status = this.GetByName(status.Name);
+            if (_status == null)
+            {
+                statusRepository.Insert(status);
+            }
             return true;
         }
 
