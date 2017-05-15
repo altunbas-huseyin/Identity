@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using IdentityModels.Users;
+using IdentityHelper;
 
 namespace IdentityTest
 {
@@ -32,7 +33,7 @@ namespace IdentityTest
                 user.Password = "1111";
                 user.Name = "Hüseyin";
                 user.SurName = "Altunbaş";
-                user.StatusId = status.Id;
+                user.Status = status.Status;
                 user.Role = new List<Role>();
                 user.Role.Add(role);
 
@@ -64,18 +65,19 @@ namespace IdentityTest
 
             User _user = new User();
             _user.Email = email;
-            _user.Password = "1111";
+            _user.Password = Encripty.EncryptString("1111");
             _user.Name = "Hüseyin";
             _user.SurName = "Altunbaş";
-            _user.StatusId = status.Id;
+            _user.Status = status;
             _user.Role = new List<Role>();
             _user.Role.Add(role);
 
             userRepo.Add(_user);
 
-            User user = userRepo.GetByEmail(email);
-            jwtRepo.Add(user.Id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(3));
-            Jwt jwt = jwtRepo.GetByUserId(user.Id.ToString());
+            UserView user = userRepo.LoginByEmail(email,"1111");
+            Assert.AreNotEqual(user, null);
+
+            Jwt jwt = jwtRepo.GetByUserId(_user.Id.ToString());
             Jwt jwtCheckToken = jwtRepo.CheckToken(jwt.Token);
         }
 
@@ -94,7 +96,7 @@ namespace IdentityTest
                 user.Password = "1111";
                 user.Name = "Hüseyin";
                 user.SurName = "Altunbaş";
-                user.StatusId = status.Id;
+                user.Status = status.Status;
                 user.Role = new List<Role>();
                 user.Role.Add(role);
 

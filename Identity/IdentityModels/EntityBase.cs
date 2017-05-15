@@ -16,10 +16,7 @@ namespace IdentityModels
 
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
-
-        [BsonRepresentation(BsonType.String)]
-        [BsonIgnoreIfDefault]
-        public Guid StatusId { get; set; }
+        public Status Status { get; set; }
 
         public EntityBase()
         {

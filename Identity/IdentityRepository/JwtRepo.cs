@@ -11,10 +11,11 @@ namespace IdentityRepository
     public class JwtRepo
     {
         private MongoDbRepository<Jwt> jwtRepository = new MongoDbRepository<Jwt>();
-
+        private StatusRepo statusRepo = new StatusRepo();
         public Jwt Add(String UserId, string Token, DateTime DeadLine)
         {
-           
+            Status status = statusRepo.GetByName("Active");
+
             Jwt jwt = new Jwt();
             var jwtOld = jwtRepository.SearchFor(p => p.UserId == UserId);
             if (jwtOld.Count > 0)
@@ -31,7 +32,7 @@ namespace IdentityRepository
                 jwt.UserId = UserId;
                 jwt.Token = Token;
                 jwt.DeadLine = DeadLine;
-                jwt.StatusId = new Guid("1d9791fe-7a39-432f-8702-e08045e27adc");
+                jwt.Status = status;
 
                  jwtRepository.Insert(jwt);
             }

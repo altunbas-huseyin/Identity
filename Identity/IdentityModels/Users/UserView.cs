@@ -6,7 +6,7 @@ using System.Text;
 
 namespace IdentityModels.Users
 {
-    public class UserView
+    public class UserView : EntityBase
     {
         public string ProjectName { get; set; }
         [BsonRepresentation(BsonType.String)]

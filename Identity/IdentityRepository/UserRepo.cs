@@ -22,7 +22,7 @@ namespace IdentityRepository
             UserView userView = new UserView();
             Password = IdentityHelper.Encripty.EncryptString(Password);
             User user = userRepository.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
-            if (user == null)
+            if (user != null)
             {
                 userView = this.UserToUserView(user);
                 userView.Jwt = jwtRepo.Add(user.Id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(1));
@@ -34,7 +34,21 @@ namespace IdentityRepository
 
         public UserView UserToUserView(User user)
         {
+
             UserView userView = new UserView();
+            userView.Email = user.Email;
+            userView.Extra1 = user.Extra1;
+            userView.Extra2 = user.Extra2;
+            userView.FirmCode = user.FirmCode;
+            userView.FirmLogo = user.FirmLogo;
+            userView.Id = user.Id;
+            userView.ProjectName = user.ProjectName;
+            userView.Role = user.Role;
+            userView.Name = user.Name;
+            userView.SurName = user.SurName;
+            userView.UpdateDate = user.UpdateDate;
+            userView.ParentId = user.ParentId;
+            userView.Status = user.Status;
 
             return userView;
         }
