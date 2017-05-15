@@ -2261,7 +2261,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
-      "Models/1.0.0": {
+      "IdentityModels/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
@@ -7071,16 +7071,16 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
-    "Models/1.0.0": {
+    "IdentityModels/1.0.0": {
       "type": "project",
-      "path": "../Models/Models.csproj",
-      "msbuildProject": "../Models/Models.csproj"
+      "path": "../IdentityModels/IdentityModels.csproj",
+      "msbuildProject": "../IdentityModels/IdentityModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v1.0": [
+      "IdentityModels >= 1.0.0",
       "Microsoft.NETCore.App >= 1.0.4",
-      "Models >= 1.0.0",
       "mongocsharpdriver >= 2.4.3"
     ]
   },
@@ -7101,8 +7101,8 @@
       "frameworks": {
         "netcoreapp1.0": {
           "projectReferences": {
-            "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Models\\Models.csproj"
+            "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityModels\\IdentityModels.csproj": {
+              "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityModels\\IdentityModels.csproj"
             }
           }
         }

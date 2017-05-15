@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OData;
 using Kendo.DynamicLinqCore;
-using Models;
+using IdentityModels;
 using Identity.Middleware;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Net;
-using Repository;
+using IdentityRepository;
 using Identity.Filters;
+
 
 namespace Identity.Controllers
 {

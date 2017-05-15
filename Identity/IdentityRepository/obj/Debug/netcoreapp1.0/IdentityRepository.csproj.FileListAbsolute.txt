@@ -1,0 +1,13 @@
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\bin\Debug\netcoreapp1.0\IdentityRepository.deps.json
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\bin\Debug\netcoreapp1.0\IdentityRepository.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\bin\Debug\netcoreapp1.0\IdentityRepository.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\bin\Debug\netcoreapp1.0\IdentityHelper.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\bin\Debug\netcoreapp1.0\IdentityModels.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\bin\Debug\netcoreapp1.0\MongoDbRepository.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\bin\Debug\netcoreapp1.0\IdentityHelper.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\bin\Debug\netcoreapp1.0\MongoDbRepository.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\bin\Debug\netcoreapp1.0\IdentityModels.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\obj\Debug\netcoreapp1.0\IdentityRepository.csprojResolveAssemblyReference.cache
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\obj\Debug\netcoreapp1.0\IdentityRepository.AssemblyInfo.cs
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\obj\Debug\netcoreapp1.0\IdentityRepository.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityRepository\obj\Debug\netcoreapp1.0\IdentityRepository.pdb

@@ -4223,31 +4223,30 @@
           "Microsoft.NETCore.App": "1.0.4"
         }
       },
-      "Models/1.0.0": {
+      "IdentityModels/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "Microsoft.NETCore.App": "1.0.4",
           "mongocsharpdriver": "2.4.3"
+        }
+      },
+      "IdentityRepository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.0",
+        "dependencies": {
+          "IdentityHelper": "1.0.0",
+          "Microsoft.NETCore.App": "1.0.4",
+          "MongoDbRepository": "1.0.0"
         }
       },
       "MongoDbRepository/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
+          "IdentityModels": "1.0.0",
           "Microsoft.NETCore.App": "1.0.4",
-          "Models": "1.0.0",
           "mongocsharpdriver": "2.4.3"
-        }
-      },
-      "Repository/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v1.0",
-        "dependencies": {
-          "IdentityHelper": "1.0.0",
-          "Microsoft.NETCore.App": "1.0.4",
-          "Models": "1.0.0",
-          "MongoDbRepository": "1.0.0"
         }
       }
     }
@@ -11030,24 +11029,27 @@
       "path": "../IdentityHelper/IdentityHelper.csproj",
       "msbuildProject": "../IdentityHelper/IdentityHelper.csproj"
     },
-    "Models/1.0.0": {
+    "IdentityModels/1.0.0": {
       "type": "project",
-      "path": "../Models/Models.csproj",
-      "msbuildProject": "../Models/Models.csproj"
+      "path": "../IdentityModels/IdentityModels.csproj",
+      "msbuildProject": "../IdentityModels/IdentityModels.csproj"
+    },
+    "IdentityRepository/1.0.0": {
+      "type": "project",
+      "path": "../IdentityRepository/IdentityRepository.csproj",
+      "msbuildProject": "../IdentityRepository/IdentityRepository.csproj"
     },
     "MongoDbRepository/1.0.0": {
       "type": "project",
       "path": "../MongoDbRepository/MongoDbRepository.csproj",
       "msbuildProject": "../MongoDbRepository/MongoDbRepository.csproj"
-    },
-    "Repository/1.0.0": {
-      "type": "project",
-      "path": "../Repository/Repository.csproj",
-      "msbuildProject": "../Repository/Repository.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v1.0": [
+      "IdentityHelper >= 1.0.0",
+      "IdentityModels >= 1.0.0",
+      "IdentityRepository >= 1.0.0",
       "Kendo.DynamicLinqCore >= 1.0.3",
       "Microsoft.ApplicationInsights.AspNetCore >= 2.0.0",
       "Microsoft.AspNetCore >= 1.1.1",
@@ -11067,10 +11069,8 @@
       "Microsoft.OData.Core >= 7.2.0",
       "Microsoft.OData.Edm >= 7.2.0",
       "Microsoft.Spatial >= 7.2.0",
-      "Models >= 1.0.0",
       "MongoDbRepository >= 1.0.0",
       "Newtonsoft.Json >= 10.0.2",
-      "Repository >= 1.0.0",
       "System.Linq.Queryable >= 4.3.0"
     ]
   },
@@ -11091,14 +11091,17 @@
       "frameworks": {
         "netcoreapp1.0": {
           "projectReferences": {
-            "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Models\\Models.csproj"
+            "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityModels\\IdentityModels.csproj": {
+              "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityModels\\IdentityModels.csproj"
             },
-            "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Repository\\Repository.csproj": {
-              "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Repository\\Repository.csproj"
+            "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityHelper\\IdentityHelper.csproj": {
+              "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityHelper\\IdentityHelper.csproj"
             },
             "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\MongoDbRepository\\MongoDbRepository.csproj": {
               "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\MongoDbRepository\\MongoDbRepository.csproj"
+            },
+            "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityRepository\\IdentityRepository.csproj": {
+              "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityRepository\\IdentityRepository.csproj"
             }
           }
         }

@@ -33,9 +33,10 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\IdentityHelper\IdentityHelper.csproj" />
+    <ProjectReference Include="..\IdentityModels\IdentityModels.csproj" />
+    <ProjectReference Include="..\IdentityRepository\IdentityRepository.csproj" />
     <ProjectReference Include="..\MongoDbRepository\MongoDbRepository.csproj" />
-    <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
 
 </Project>

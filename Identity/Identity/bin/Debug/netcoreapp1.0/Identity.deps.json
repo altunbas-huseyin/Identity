@@ -23,6 +23,9 @@
     ".NETCoreApp,Version=v1.0": {
       "identity/1.0.0": {
         "dependencies": {
+          "IdentityHelper": "1.0.0",
+          "IdentityModels": "1.0.0",
+          "IdentityRepository": "1.0.0",
           "Kendo.DynamicLinqCore": "1.0.3",
           "Microsoft.ApplicationInsights.AspNetCore": "2.0.0",
           "Microsoft.AspNetCore": "1.1.1",
@@ -42,10 +45,8 @@
           "Microsoft.OData.Core": "7.2.0",
           "Microsoft.OData.Edm": "7.2.0",
           "Microsoft.Spatial": "7.2.0",
-          "Models": "1.0.0",
           "MongoDbRepository": "1.0.0",
           "Newtonsoft.Json": "10.0.2",
-          "Repository": "1.0.0",
           "System.Linq.Queryable": "4.3.0"
         },
         "runtime": {
@@ -3434,22 +3435,35 @@
           "IdentityHelper.dll": {}
         }
       },
-      "models/1.0.0": {
+      "identitymodels/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.App": "1.0.4",
           "mongocsharpdriver": "2.4.3"
         },
         "runtime": {
-          "Models.dll": {}
+          "IdentityModels.dll": {}
         },
         "compile": {
-          "Models.dll": {}
+          "IdentityModels.dll": {}
+        }
+      },
+      "identityrepository/1.0.0": {
+        "dependencies": {
+          "IdentityHelper": "1.0.0",
+          "Microsoft.NETCore.App": "1.0.4",
+          "MongoDbRepository": "1.0.0"
+        },
+        "runtime": {
+          "IdentityRepository.dll": {}
+        },
+        "compile": {
+          "IdentityRepository.dll": {}
         }
       },
       "mongodbrepository/1.0.0": {
         "dependencies": {
+          "IdentityModels": "1.0.0",
           "Microsoft.NETCore.App": "1.0.4",
-          "Models": "1.0.0",
           "mongocsharpdriver": "2.4.3"
         },
         "runtime": {
@@ -3457,20 +3471,6 @@
         },
         "compile": {
           "MongoDbRepository.dll": {}
-        }
-      },
-      "repository/1.0.0": {
-        "dependencies": {
-          "IdentityHelper": "1.0.0",
-          "Microsoft.NETCore.App": "1.0.4",
-          "Models": "1.0.0",
-          "MongoDbRepository": "1.0.0"
-        },
-        "runtime": {
-          "Repository.dll": {}
-        },
-        "compile": {
-          "Repository.dll": {}
         }
       },
       "libuv/1.9.1": {
@@ -5377,17 +5377,17 @@
       "serviceable": false,
       "sha512": ""
     },
-    "models/1.0.0": {
+    "identitymodels/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "identityrepository/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "mongodbrepository/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "repository/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

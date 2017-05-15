@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v1.0": {
       "mongodbrepository/1.0.0": {
         "dependencies": {
-          "Models": "1.0.0",
+          "IdentityModels": "1.0.0",
           "mongocsharpdriver": "2.4.3"
         },
         "runtime": {
@@ -90,12 +90,12 @@
           }
         }
       },
-      "models/1.0.0": {
+      "identitymodels/1.0.0": {
         "dependencies": {
           "mongocsharpdriver": "2.4.3"
         },
         "runtime": {
-          "Models.dll": {}
+          "IdentityModels.dll": {}
         }
       }
     }
@@ -162,7 +162,7 @@
       "path": "system.security.securestring/4.0.0",
       "hashPath": "system.security.securestring.4.0.0.nupkg.sha512"
     },
-    "models/1.0.0": {
+    "identitymodels/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

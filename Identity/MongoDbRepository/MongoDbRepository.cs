@@ -11,7 +11,7 @@ using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 using MongoDB.Bson;
 using System.Reflection;
-using Models;
+using IdentityModels;
 
 
 //https://github.com/rsingh85/MongoDbRepository
