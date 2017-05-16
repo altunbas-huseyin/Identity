@@ -47,6 +47,13 @@ namespace Identity.Controllers
         [HttpPost]
         public CommonApiResponse Add(UserRegisterView userView)
         {
+            if (userRepo.GetByEmail(userView.Email) != null)
+            {
+                status = false;
+                error = "Bu mail adresi sistemimize kayıtlıdır.";
+                return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, "", error);
+            }
+
             User user = new User();
             user.Email = userView.Email;
             user.Password = Encripty.EncryptString(userView.Password);

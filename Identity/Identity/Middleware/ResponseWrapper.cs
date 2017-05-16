@@ -58,7 +58,7 @@ namespace Identity.Middleware
             return new CommonApiResponse(statusCode, Status, result, errorMessage);
         }
         public bool Status = false;
-        public string Version => "1.2.3";
+        public string Version => "1.0";
 
         public int StatusCode { get; set; }
         public string RequestId { get; }
