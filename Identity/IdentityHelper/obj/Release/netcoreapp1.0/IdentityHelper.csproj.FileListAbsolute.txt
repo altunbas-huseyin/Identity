@@ -1,0 +1,7 @@
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityHelper\bin\Release\netcoreapp1.0\IdentityHelper.deps.json
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityHelper\bin\Release\netcoreapp1.0\IdentityHelper.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityHelper\bin\Release\netcoreapp1.0\IdentityHelper.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityHelper\obj\Release\netcoreapp1.0\IdentityHelper.csprojResolveAssemblyReference.cache
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityHelper\obj\Release\netcoreapp1.0\IdentityHelper.AssemblyInfo.cs
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityHelper\obj\Release\netcoreapp1.0\IdentityHelper.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityHelper\obj\Release\netcoreapp1.0\IdentityHelper.pdb
