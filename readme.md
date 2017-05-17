@@ -17,10 +17,14 @@ db.createUser( { user: "Huso",
 ![alt text](readme/mongo-user.PNG)
 <br>
 <br>
-5. Docker işlemleri
+5. Docker işlemleri <br>
 <a href="/Identity/Identity/Dockerfile"> Örnek Dockerfile'a /Identity/Identity/Dockerfile yolundan ulaşabilirsiniz. </a>
 <br>
 
-docker build -t identity-app . //docker imajı hazırlar
-<br>
-docker run -it -p 5000:5000 identity-app //hazırlanan docker imajından bir örnek/container oluşturur
+docker imajı hazırlar <br>
+docker build -t identity-app . <br>
+
+hazırlanan docker imajından bir örnek/container oluşturur <br>
+docker run -it -p 5000:5000 identity-app <br>
+
+ve mutlu son  <b>docker start identity-app</b> komutu ile kontainer ayağa kaldırılır.
