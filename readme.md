@@ -18,7 +18,7 @@ db.createUser( { user: "Huso",
 <br>
 <br>
 5. Docker işlemleri <br>
-<a href="/Identity/Identity/Dockerfile"> Örnek Dockerfile'a /Identity/Identity/Dockerfile yolundan ulaşabilirsiniz. </a>
+ Örnek Dockerfile dosyasına <a href="/Identity/Identity/Dockerfile"> /Identity/Identity/Dockerfile</a> yolundan ulaşabilirsiniz. 
 <br>
 
 docker imajı hazırlar <br>
