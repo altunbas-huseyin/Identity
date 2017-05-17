@@ -26,3 +26,10 @@ docker build -t identity-app . <br>
 hazırlanan docker imajından bir örnek/container oluşturur <br>
 docker run -it -p 5000:5000 identity-app <br>
 ve mutlu son  <b>docker start identity-app</b> komutu ile kontainer ayağa kaldırılır.
+
+6. Roller 
+<ul>
+<li> SystemAdmin : Tüm sistemi ve kullanıcıları yönetebilen kullanıcı. </li>
+<li> AppAdmin    : Yeni oluşturulan bir proje,app olarak isimlendirmede  sıkıntı yok sanırım. parse.com yada farklı bir servise üye olmak yerine bu sisteme üye olan kişinin hesabı. Bu apiyi kullanarak yazılım geliştirebilir. </li>
+<li> AppUser     :  AppAdmin rolüne sahip üye tarafından eklenen kullanıcı. </li>
+</ul>
