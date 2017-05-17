@@ -15,3 +15,12 @@ db.createUser( { user: "Huso",
 
 4. Bir database oluşturulur örn. Identity ve buna bir user tanımlanır. örnek user oluþturma resmi : <br /> 
 ![alt text](readme/mongo-user.PNG)
+<br>
+<br>
+5. Docker işlemleri
+<a href="/Identity/Identity/Dockerfile"> Örnek Dockerfile'a /Identity/Identity/Dockerfile yolundan ulaşabilirsiniz. </a>
+<br>
+
+docker build -t identity-app . //docker imajı hazırlar
+<br>
+docker run -it -p 5000:5000 identity-app //hazırlanan docker imajından bir örnek/container oluşturur
