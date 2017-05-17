@@ -14,10 +14,10 @@ using Identity.Filters;
 using IdentityModels.Users;
 using IdentityHelper;
 
-namespace Identity.Controllers
+namespace Identity.Controllers1
 {
-
-    [Route("api/v1/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/[controller]")]
     public class UsersController : Controller
     {
         private UserRepo userRepo = new UserRepo();

@@ -7,10 +7,10 @@ using Microsoft.OData;
 using Identity.Filters;
 using Identity.Middleware;
 
-namespace Identity.Controllers
+namespace Identity.Controllers1
 {
-
-    [Route("api/v1/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/[controller]")]
     [ValidateModel]
     public class ValuesController : Controller
     {
