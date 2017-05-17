@@ -23,8 +23,6 @@ db.createUser( { user: "Huso",
 
 docker imajı hazırlar <br>
 docker build -t identity-app . <br>
-
 hazırlanan docker imajından bir örnek/container oluşturur <br>
 docker run -it -p 5000:5000 identity-app <br>
-
 ve mutlu son  <b>docker start identity-app</b> komutu ile kontainer ayağa kaldırılır.
