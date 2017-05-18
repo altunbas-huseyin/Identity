@@ -6,7 +6,7 @@ bu işlemin davranışını düzenleyebilirsiniz. Bununla ilgili daha fazla bilg
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_NewBackgroundProfile>True</_NewBackgroundProfile>
+    <_NewBackgroundProfile>False</_NewBackgroundProfile>
     <_PublishTargetUrl>C:\Users\haltunbas\Desktop\publish\Identity</_PublishTargetUrl>
   </PropertyGroup>
 </Project>

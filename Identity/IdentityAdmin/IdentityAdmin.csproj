@@ -10,9 +10,13 @@
 
   <ItemGroup>
     <Compile Remove="assets - Kopyala\**" />
+    <Compile Remove="wwwroot - Kopyala\**" />
     <Content Remove="assets - Kopyala\**" />
+    <Content Remove="wwwroot - Kopyala\**" />
     <EmbeddedResource Remove="assets - Kopyala\**" />
+    <EmbeddedResource Remove="wwwroot - Kopyala\**" />
     <None Remove="assets - Kopyala\**" />
+    <None Remove="wwwroot - Kopyala\**" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />

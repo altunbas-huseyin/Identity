@@ -14,7 +14,7 @@ db.createUser( { user: "Huso",
 ] } )
 
 4. Bir database oluşturulur örn. Identity ve buna bir user tanımlanır. örnek user oluþturma resmi : <br /> 
-![alt text](readme/mongo-user.PNG)
+![alt text](/readme/mongo-user.PNG)
 <br>
 <br>
 5. Docker işlemleri <br>
