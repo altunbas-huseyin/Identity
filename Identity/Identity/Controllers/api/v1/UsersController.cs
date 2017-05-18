@@ -39,11 +39,12 @@ namespace Identity.Controllers1
             {
                 status = true;
             }
+
             return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, _user, error);
         }
 
 
-        [ValidateModel("AppAdmin, AppUser")]
+        [ValidateModel("SystemAdmin, AppAdmin")]
         [HttpPost]
         public CommonApiResponse Add(UserRegisterView userView)
         {
@@ -99,8 +100,8 @@ namespace Identity.Controllers1
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{Id}")]
+        public string Get(int Id)
         {
             return "value";
         }

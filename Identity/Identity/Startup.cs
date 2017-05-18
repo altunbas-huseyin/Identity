@@ -41,7 +41,11 @@ namespace Identity
                 options.ApiVersionSelector = new CurrentImplementationApiVersionSelector(options);
             });
 
-            services.AddMvc(options => options.MaxModelValidationErrors = 50);
+            services.AddMvc(options => options.MaxModelValidationErrors = 50)
+                 .AddJsonOptions(option =>
+                 {   //Dönen Json'ı camelCase olarak formatlar.
+                     option.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+                 }); ;
             
         }
 
