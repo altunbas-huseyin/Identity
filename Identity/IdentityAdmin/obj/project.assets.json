@@ -755,6 +755,22 @@
           "lib/netstandard1.3/Microsoft.AspNetCore.StaticFiles.dll": {}
         }
       },
+      "Microsoft.AspNetCore.StaticFilesEx/1.0.0.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0",
+          "Microsoft.AspNetCore.Http.Extensions": "1.0.0",
+          "Microsoft.Extensions.FileProviders.Abstractions": "1.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0",
+          "Microsoft.Extensions.WebEncoders": "1.0.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.AspNetCore.StaticFilesEx.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.AspNetCore.StaticFilesEx.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.WebUtilities/1.1.1": {
         "type": "package",
         "dependencies": {
@@ -4243,6 +4259,48 @@
         "lib/netstandard1.3/Microsoft.AspNetCore.StaticFiles.xml",
         "microsoft.aspnetcore.staticfiles.1.1.1.nupkg.sha512",
         "microsoft.aspnetcore.staticfiles.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.StaticFilesEx/1.0.0.4": {
+      "sha512": "6GysSNg8QRq6XKDBBciUm3+GpYfc2NiFKW6voJwG/8gY1IrreV4Qe4GiOSsoQCa4qri7WXi5lpkLDq4vcqiUDw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.staticfilesex/1.0.0.4",
+      "files": [
+        "lib/net451/Microsoft.AspNetCore.StaticFilesEx.dll",
+        "lib/net451/Microsoft.AspNetCore.StaticFilesEx.pdb",
+        "lib/net451/Microsoft.AspNetCore.StaticFilesEx.xml",
+        "lib/netstandard1.3/Microsoft.AspNetCore.StaticFilesEx.dll",
+        "lib/netstandard1.3/Microsoft.AspNetCore.StaticFilesEx.pdb",
+        "lib/netstandard1.3/Microsoft.AspNetCore.StaticFilesEx.xml",
+        "microsoft.aspnetcore.staticfilesex.1.0.0.4.nupkg.sha512",
+        "microsoft.aspnetcore.staticfilesex.nuspec",
+        "src/Microsoft.AspNetCore.StaticFilesEx/Constants.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/DefaultFilesExtensions.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/DefaultFilesMiddleware.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/DefaultFilesOptions.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/DirectoryBrowserExtensions.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/DirectoryBrowserMiddleware.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/DirectoryBrowserOptions.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/DirectoryBrowserServiceExtensions.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/FileExtensionContentTypeProvider.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/FileServerExtensions.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/FileServerOptions.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/Helpers.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/HtmlDirectoryFormatter.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/IContentTypeProvider.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/IDirectoryFormatter.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/Infrastructure/RangeHelpers.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/Infrastructure/SharedOptions.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/Infrastructure/SharedOptionsBase.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/LoggerExtensions.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/Properties/AssemblyInfo.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/Resources.Designer.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/StaticFileContext.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/StaticFileExtensions.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/StaticFileMiddleware.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/StaticFileOptions.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/StaticFileResponseContext.cs",
+        "src/Microsoft.AspNetCore.StaticFilesEx/StaticFilesExHttpContextExtensions.cs"
       ]
     },
     "Microsoft.AspNetCore.WebUtilities/1.1.1": {
@@ -9802,6 +9860,7 @@
       "Microsoft.AspNetCore >= 1.1.1",
       "Microsoft.AspNetCore.Mvc >= 1.1.2",
       "Microsoft.AspNetCore.StaticFiles >= 1.1.1",
+      "Microsoft.AspNetCore.StaticFilesEx >= 1.0.0.4",
       "Microsoft.Extensions.Logging.Debug >= 1.1.1",
       "Microsoft.NETCore.App >= 1.1.1",
       "Microsoft.VisualStudio.Web.BrowserLink >= 1.1.0"
@@ -9854,6 +9913,10 @@
           "Microsoft.ApplicationInsights.AspNetCore": {
             "target": "Package",
             "version": "2.0.0"
+          },
+          "Microsoft.AspNetCore.StaticFilesEx": {
+            "target": "Package",
+            "version": "1.0.0.4"
           },
           "Microsoft.AspNetCore.StaticFiles": {
             "target": "Package",

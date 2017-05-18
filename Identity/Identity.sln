@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityRepository", "Ident
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityConfig", "IdentityConfig\IdentityConfig.csproj", "{6C135276-385C-435E-B827-4AACD9ACB095}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityAdmin", "IdentityAdmin\IdentityAdmin.csproj", "{6C3D8901-AE18-4F74-9F86-CF5CF357CC7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{6C135276-385C-435E-B827-4AACD9ACB095}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C135276-385C-435E-B827-4AACD9ACB095}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C135276-385C-435E-B827-4AACD9ACB095}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C3D8901-AE18-4F74-9F86-CF5CF357CC7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C3D8901-AE18-4F74-9F86-CF5CF357CC7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C3D8901-AE18-4F74-9F86-CF5CF357CC7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C3D8901-AE18-4F74-9F86-CF5CF357CC7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
