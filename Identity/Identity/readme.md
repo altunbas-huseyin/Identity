@@ -51,3 +51,11 @@ docker run --name=identity  -p 5000:5000 identity-app
 container durdurulup çalışturılabilir
 docker stop identity
 docker start identity
+
+toplu komut
+docker stop identity && 
+docker rm identity && 
+docker rmi identity-app &&
+docker build -t identity-app . &&
+docker run --name=identity  -p 5000:5000 identity-app &&
+docker start identity 
