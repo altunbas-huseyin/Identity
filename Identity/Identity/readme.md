@@ -41,6 +41,11 @@ Daha önceden çalışan bir identity adında container olduğu için önce iden
 <b> docker stop identity </b>
 sonra identity isimli container'ı siliyoruz
 <b>docker rm identity</b>
+
+docker image siliniyor, silinmez ise bir önceki image ı görüyor ve image oluşturulurken image için kopyalanan dosyaları kullanıyor. kısacası image mutlaka silinmeli
+docker rmi identity-app
+docker build -t identity-app .
+
 sonra tekrar identity container oluşturulur ve çalıştılır aşağıdaki komut ile.
 docker run --name=identity  -p 5000:5000 identity-app
 container durdurulup çalışturılabilir

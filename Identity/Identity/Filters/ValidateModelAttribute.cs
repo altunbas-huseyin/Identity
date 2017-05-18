@@ -31,7 +31,7 @@ namespace Identity.Filters
         public override void OnActionExecuting(ActionExecutingContext context)
         {
 
-
+            return;
             if (!context.ModelState.IsValid)
             {
                 context.Result = new BadRequestObjectResult(context.ModelState);
