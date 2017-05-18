@@ -24,7 +24,7 @@ db.createUser( { user: "Huso",
 docker imajı hazırlar <br>
 docker build -t identity-app . <br>
 hazırlanan docker imajından bir örnek/container oluşturur <br>
-docker run -it -p 5000:5000 identity-app <br>
+docker run --name=identity  -p 5000:5000 identity-app <br>
 ve mutlu son  <b>docker start identity-app</b> komutu ile kontainer ayağa kaldırılır.
 
 6. Roller 
@@ -33,3 +33,13 @@ ve mutlu son  <b>docker start identity-app</b> komutu ile kontainer ayağa kald�
 <li> AppAdmin    : Yeni oluşturulan bir proje,app olarak isimlendirmede  sıkıntı yok sanırım. parse.com yada farklı bir servise üye olmak yerine bu sisteme üye olan kişinin hesabı. Bu apiyi kullanarak yazılım geliştirebilir. </li>
 <li> AppUser     :  AppAdmin rolüne sahip üye tarafından eklenen kullanıcı. </li>
 </ul>
+
+
+
+7. Deployment
+Daha önceden çalışan bir identity adında container olduğu için önce identity isimli container'ı durduruyoruz
+<b> docker stop identity </b>
+sonra identity isimli container'ı siliyoruz
+<b>docker rm identity</b>
+sonra tekrar identity container oluşturulur ve çalıştılır aşağıdaki komut ile.
+docker run --name=identity  -p 5000:5000 identity-app
