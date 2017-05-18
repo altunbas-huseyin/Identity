@@ -43,3 +43,6 @@ sonra identity isimli container'ı siliyoruz
 <b>docker rm identity</b>
 sonra tekrar identity container oluşturulur ve çalıştılır aşağıdaki komut ile.
 docker run --name=identity  -p 5000:5000 identity-app
+container durdurulup çalışturılabilir
+docker stop identity
+docker start identity
