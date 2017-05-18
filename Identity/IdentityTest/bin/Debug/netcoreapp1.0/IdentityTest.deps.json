@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "5babea4d7c06c3d69ec49ecd094311ade8eb0f74"
+    "signature": "e371592a0b96619932c9ce0973425cb9ffc76744"
   },
   "compilationOptions": {},
   "targets": {
@@ -518,15 +518,6 @@
         },
         "runtime": {
           "lib/netstandard1.6/Microsoft.AspNetCore.Mvc.TagHelpers.dll": {}
-        }
-      },
-      "microsoft.aspnetcore.mvc.versioning/1.0.3": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Mvc": "1.1.2",
-          "NETStandard.Library": "1.6.1"
-        },
-        "runtime": {
-          "lib/netstandard1.6/Microsoft.AspNetCore.Mvc.Versioning.dll": {}
         }
       },
       "microsoft.aspnetcore.mvc.viewfeatures/1.1.2": {
@@ -3325,7 +3316,6 @@
           "Microsoft.AspNetCore.Diagnostics": "1.1.1",
           "Microsoft.AspNetCore.Hosting": "1.1.1",
           "Microsoft.AspNetCore.Mvc": "1.1.2",
-          "Microsoft.AspNetCore.Mvc.Versioning": "1.0.3",
           "Microsoft.AspNetCore.OData.Radzen": "1.0.7",
           "Microsoft.AspNetCore.Owin": "1.1.1",
           "Microsoft.AspNetCore.Server.Kestrel": "1.1.1",
@@ -3672,13 +3662,6 @@
       "sha512": "sha512-Kd1din7EJIp+hDUcwI92SNA42OAm1vmjnc3touzXteDmZSSUiEUHyZti/LIiB+z82VqcvPNqTJv4HSC689ChRw==",
       "path": "microsoft.aspnetcore.mvc.taghelpers/1.1.2",
       "hashPath": "microsoft.aspnetcore.mvc.taghelpers.1.1.2.nupkg.sha512"
-    },
-    "microsoft.aspnetcore.mvc.versioning/1.0.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-OZZ5U8aXkIv1hto/ak1MAFdLWFhvk0h+itYDEAa7TUMKpKTPjL3WJlVZQmF3TSNj+fkx82dXjbtroWlKsiExvw==",
-      "path": "microsoft.aspnetcore.mvc.versioning/1.0.3",
-      "hashPath": "microsoft.aspnetcore.mvc.versioning.1.0.3.nupkg.sha512"
     },
     "microsoft.aspnetcore.mvc.viewfeatures/1.1.2": {
       "type": "package",

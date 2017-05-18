@@ -16,8 +16,8 @@ using IdentityHelper;
 
 namespace Identity.Controllers1
 {
-    [ApiVersion("1.0")]
-    [Route("api/[controller]")]
+
+    [Route("api/v1/[controller]")]
     public class UsersController : Controller
     {
         private UserRepo userRepo = new UserRepo();
