@@ -41,6 +41,17 @@ namespace Identity
                 options.ApiVersionSelector = new CurrentImplementationApiVersionSelector(options);
             });
 
+
+            //Policy tanımlamasını yaptığımız kısımdır.
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+            {
+                builder.WithOrigins("*")//AllowOrigins diyerek herkese ya da belirli adreslere erişim hakkı verebilirsiniz.
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+            }));
+
+            services.AddApplicationInsightsTelemetry(Configuration);
+
             services.AddMvc(options => options.MaxModelValidationErrors = 50)
                  .AddJsonOptions(option =>
                  {   //Dönen Json'ı camelCase olarak formatlar.
@@ -56,7 +67,7 @@ namespace Identity
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            app.UseCors("AllowAll");
+            app.UseCors("CorsPolicy");//CorsPolicy ismi ile tanımlanan güvenlik tanımlamasını tüm uygulama için geçerli olmasını sağlamış oluyoruz.
             app.UseMvc();
             app.UseResponseWrapper();
 
