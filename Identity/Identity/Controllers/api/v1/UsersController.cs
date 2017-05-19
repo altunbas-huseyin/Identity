@@ -24,31 +24,14 @@ namespace Identity.Controllers1
         private StatusRepo statusRepo = new StatusRepo();
         private RoleRepo roleRepo = new RoleRepo();
         private string error = "";
-        private bool status = false;
+        private bool status = false; 
         Jwt jwt = new Jwt();
         public UsersController()
         {
             jwt = this.ViewBag.Jwt;
         }
 
-        [HttpPost]
-        public CommonApiResponse Login(string Email, string Password)
-        {
-            UserView _user = userRepo.LoginByEmail(Email, Password);
-            if (_user == null)
-            {
-                error = "Kullanıcı bilgileri geçersiz.";
-                status = false;
-            }
-            else
-            {
-                status = true;
-            }
-
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, _user, error);
-        }
-
-
+ 
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()

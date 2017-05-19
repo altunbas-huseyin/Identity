@@ -19,7 +19,7 @@ namespace IdentityRepository
 
         public UserView LoginByEmail(String Email, string Password)
         {
-            UserView userView = new UserView();
+            UserView userView = null;
             Password = IdentityHelper.Encripty.EncryptString(Password);
             User user = userRepository.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
             if (user != null)
@@ -27,7 +27,10 @@ namespace IdentityRepository
                 userView = this.UserToUserView(user);
                 userView.Jwt = jwtRepo.Add(user.Id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(1));
             }
-
+            else
+            {
+                return userView; 
+            }
 
             return userView;
         }
