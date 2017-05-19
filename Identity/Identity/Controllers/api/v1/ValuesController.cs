@@ -19,7 +19,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Get()
         {
            
-            var r = this.ViewBag.Jwt;
+           
             var t = CommonApiResponse.Create(System.Net.HttpStatusCode.OK,true, new string[] { "value1", "value2" });
             //  return new string[] { "value1", "value2" };
             return t;

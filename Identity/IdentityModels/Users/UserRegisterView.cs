@@ -7,6 +7,7 @@ namespace IdentityModels.Users
 {
     public class UserRegisterView
     {
+        public string ParentId { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }

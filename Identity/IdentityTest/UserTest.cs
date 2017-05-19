@@ -129,9 +129,8 @@ namespace IdentityTest
             _user.Name = "Hüseyin";
             _user.SurName = "Altunbaş";
 
-            var result = userController.Add(_user);
+            var result = userController.Post(_user);
         }
-
 
     }
 }

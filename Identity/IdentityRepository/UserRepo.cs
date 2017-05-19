@@ -65,14 +65,19 @@ namespace IdentityRepository
             return userRepository.Delete(user);
         }
 
-        public User GetById(String Id)
+        public User GetById(string ParentId, String Id)
         {
-            User user = userRepository.SearchFor(p => p.Id == new Guid(Id)).FirstOrDefault();
-
+            User user = userRepository.SearchFor(p => p.ParentId == ParentId && p.Id == new Guid(Id)).FirstOrDefault();
             return user;
         }
 
-        public User GetByEmailAndParentId(String Email, string ParentId)
+        public User GetById(String Id)
+        {
+            User user = userRepository.SearchFor(p => p.Id == new Guid(Id)).FirstOrDefault();
+            return user;
+        }
+
+        public User GetByEmailAndParentId(string ParentId, String Email)
         {
             User user = userRepository.SearchFor(p => p.Email == Email && p.ParentId == ParentId).FirstOrDefault();
             return user;
@@ -83,6 +88,14 @@ namespace IdentityRepository
             User user = userRepository.SearchFor(p => p.Email == Email).FirstOrDefault();
             return user;
         }
+
+
+        public User GetByEmail(string ParentId, string Email)
+        {
+            User user = userRepository.SearchFor(p => p.ParentId == ParentId && p.Email == Email).FirstOrDefault();
+            return user;
+        }
+
 
         public bool AddUniqIndex()
         {

@@ -25,6 +25,11 @@ namespace Identity.Controllers1
         private RoleRepo roleRepo = new RoleRepo();
         private string error = "";
         private bool status = false;
+        Jwt jwt = new Jwt();
+        public UsersController()
+        {
+            jwt = this.ViewBag.Jwt;
+        }
 
         [HttpPost]
         public CommonApiResponse Login(string Email, string Password)
@@ -42,35 +47,6 @@ namespace Identity.Controllers1
 
             return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, _user, error);
         }
-
-
-        [ValidateModel("SystemAdmin, AppAdmin")]
-        [HttpPost]
-        public CommonApiResponse Add(UserRegisterView userView)
-        {
-            if (userRepo.GetByEmail(userView.Email) != null)
-            {
-                status = false;
-                error = "Bu mail adresi sistemimize kayıtlıdır.";
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, "", error);
-            }
-
-            User user = new User();
-            user.Email = userView.Email;
-            user.Password = Encripty.EncryptString(userView.Password);
-            user.Name = userView.Name;
-            user.SurName = userView.SurName;
-            user.FirmCode = userView.FirmCode;
-            user.FirmLogo = userView.FirmLogo;
-            user.Status = statusRepo.GetByName("WaitingForApproval");
-            user.Role = new List<Role>();
-            user.Role.Add(roleRepo.GetByName("AppUser"));
-
-            userRepo.Add(user);
-            status = true;
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, user, error);
-        }
-
 
 
         // GET api/values
@@ -100,16 +76,42 @@ namespace Identity.Controllers1
         }
 
         // GET api/values/5
-        [HttpGet("{Id}")]
-        public string Get(int Id)
+        [HttpGet("{id}")]
+        public CommonApiResponse Get(string id)
         {
-            return "value";
+            User user = userRepo.GetById(jwt.UserId, id);
+            status = true;
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, user, error);
+
         }
 
         // POST api/values
+        [ValidateModel("SystemAdmin, AppAdmin")]
         [HttpPost]
-        public void Post([FromBody]string value)
+        public CommonApiResponse Post([FromBody]UserRegisterView userView)
         {
+            userView.ParentId = jwt.UserId;
+            if (userRepo.GetByEmail(userView.Email) != null)
+            {
+                status = false;
+                error = "Bu mail adresi sistemimize kayıtlıdır.";
+                return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, "", error);
+            }
+
+            User user = new User();
+            user.Email = userView.Email;
+            user.Password = Encripty.EncryptString(userView.Password);
+            user.Name = userView.Name;
+            user.SurName = userView.SurName;
+            user.FirmCode = userView.FirmCode;
+            user.FirmLogo = userView.FirmLogo;
+            user.Status = statusRepo.GetByName("WaitingForApproval");
+            user.Role = new List<Role>();
+            user.Role.Add(roleRepo.GetByName("AppUser"));
+
+            userRepo.Add(user);
+            status = true;
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, user, error);
         }
 
         // PUT api/values/5
