@@ -15,7 +15,7 @@ namespace IdentityConfig
             this.ConnectionString = "";
             this.MongoDbDatabaseName = "Identity";
             //this.MongoDbConnectionString = "mongodb://u1:Huso7474@138.68.80.239:27017/{DB_NAME}?safe=true";
-            this.MongoDbConnectionString = "mongodb://207.154.245.236:27017/{DB_NAME}?safe=true";
+            this.MongoDbConnectionString = "mongodb://207.154.245.236:27017/{DB_NAME}";
         }
     }
 }
