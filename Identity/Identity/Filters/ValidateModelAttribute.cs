@@ -31,7 +31,6 @@ namespace Identity.Filters
         public override void OnActionExecuting(ActionExecutingContext context)
         {
 
-            return;
             if (!context.ModelState.IsValid)
             {
                 context.Result = new BadRequestObjectResult(context.ModelState);
@@ -41,12 +40,24 @@ namespace Identity.Filters
             context.HttpContext.Request.Headers.TryGetValue("Token", out _Token);
             if (_Token.Count > 0)
             {
-                string Token = _Token.FirstOrDefault();
-
-                Jwt jwt = jwtRepo.CheckToken(Token);
-                if (jwt == null)
+                string Token = "";
+                Jwt jwt = new Jwt();
+                try
                 {
-                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Token geçersiz.");
+                    Token = _Token.FirstOrDefault();
+
+                    jwt = jwtRepo.CheckToken(Token);
+                    if (jwt == null)
+                    {
+                        CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Token geçersiz.");
+                        BadRequestObjectResult badReq = new BadRequestObjectResult(response);
+                        context.Result = badReq;
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, ex.Message);
                     BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                     context.Result = badReq;
                     return;
@@ -74,7 +85,7 @@ namespace Identity.Filters
                         }
                         if (!IsAcces)
                         {
-                            CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null,  "Yetkiniz yok.");
+                            CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Yetkiniz yok.");
                             BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                             context.Result = badReq;
                             return;
@@ -86,7 +97,7 @@ namespace Identity.Filters
                 }
                 catch (Exception ex)
                 {
-                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Hata oluştu");
+                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, ex.Message);
                     BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                     context.Result = badReq;
                     return;
