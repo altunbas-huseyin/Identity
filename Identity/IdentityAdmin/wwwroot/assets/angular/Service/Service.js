@@ -27,8 +27,8 @@ app.factory('authService', ['$http', function ($http) {
       //  });
 
         var dataJSON = {
-            Email: 'Dougles Adams',
-            Password: 'dfdfdf'
+            Email: loginData.Email,
+            Password: loginData.Password
         };
 
        

@@ -28,14 +28,16 @@ app.controller("loginCtrl", function ($scope, authService) {
         //})
 
         
-        $scope.loginData = {
-            userName: "Gokhan",
-            password: "123456"
-        };
+      
 
         $scope.message = "";
 
         $scope.login = function () {
+
+            $scope.loginData = {
+                Email: $scope.Email,
+                Password: $scope.Password
+            };
 
             authService.login($scope.loginData).then(function (response) {
 
