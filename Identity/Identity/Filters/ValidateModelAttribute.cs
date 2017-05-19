@@ -57,7 +57,7 @@ namespace Identity.Filters
                 }
                 catch (Exception ex)
                 {
-                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, ex.Message);
+                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.InternalServerError, false, null, ex.Message);
                     BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                     context.Result = badReq;
                     return;
@@ -97,7 +97,7 @@ namespace Identity.Filters
                 }
                 catch (Exception ex)
                 {
-                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, ex.Message);
+                    CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.InternalServerError, false, null, ex.Message);
                     BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                     context.Result = badReq;
                     return;
