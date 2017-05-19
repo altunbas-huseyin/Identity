@@ -34,7 +34,6 @@ namespace IdentityRepository
 
         public UserView UserToUserView(User user)
         {
-
             UserView userView = new UserView();
             userView.Email = user.Email;
             userView.Extra1 = user.Extra1;

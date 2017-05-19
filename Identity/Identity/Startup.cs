@@ -45,7 +45,9 @@ namespace Identity
                  .AddJsonOptions(option =>
                  {   //Dönen Json'ı camelCase olarak formatlar.
                      option.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
-                 }); ;
+                 }); 
+
+            
             
         }
 
@@ -54,7 +56,7 @@ namespace Identity
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            app.UseCors("AllowAll");
             app.UseMvc();
             app.UseResponseWrapper();
 
