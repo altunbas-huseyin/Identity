@@ -1,35 +1,17 @@
 ﻿
 
-//angular.module('myApp', []).controller('loginCtrl', function ($scope, testService) {
-//    $scope.Name = "Hüseyin";
-//    $scope.Surname = "Altunbaş";
-//
-//    $scope.login = function () {
-//        alert($scope.UserName);
-//        alert($scope.Password)
-//    };
-//});
-
-
 app.controller("loginCtrl", function ($scope, authService) {
+
+    authService.isLoginByRedirect();
     $scope.Name = "Hüseyin";
     $scope.Surname = "Altunbaş";
     //var t = loginService.login("rrr", "ttt");
-    
-    
+    //console.log(authService.getUser());
+    //console.log(authService.getToken());
+    //alert(authService.isLogin());
 
     $scope.login = function () {
         
-        //loginService.login("22222", "eeeeee", function (data) {
-        //    $scope.venues = data.response;
-        //    console.log(data[0]);
-        //    console.log("iiii");
-        //    alert(data.response);
-        //})
-
-        
-      
-
         $scope.message = "";
 
         $scope.login = function () {
@@ -40,9 +22,9 @@ app.controller("loginCtrl", function ($scope, authService) {
             };
 
             authService.login($scope.loginData).then(function (response) {
-
-                //$location.path('/orders');
-                console.log(response);
+             
+                $location.path('/');
+                //console.log(response);
 
             },
              function (err) {
