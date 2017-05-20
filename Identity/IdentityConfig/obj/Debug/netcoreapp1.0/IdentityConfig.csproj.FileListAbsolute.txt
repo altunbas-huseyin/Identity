@@ -4,4 +4,3 @@ C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityConfig\bin\Debug\n
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityConfig\obj\Debug\netcoreapp1.0\IdentityConfig.AssemblyInfo.cs
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityConfig\obj\Debug\netcoreapp1.0\IdentityConfig.dll
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityConfig\obj\Debug\netcoreapp1.0\IdentityConfig.pdb
-C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityConfig\obj\Debug\netcoreapp1.0\IdentityConfig.csprojResolveAssemblyReference.cache

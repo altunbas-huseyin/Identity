@@ -111,26 +111,26 @@ namespace IdentityTest
             Assert.AreEqual(result, true);
         }
 
-      // [TestMethod]
-      // public void Login()
-      // {
-      //     UsersController userController = new UsersController();
-      //     var result = userController.Login("altunbas.huseyin@gmail.com", "Web+webmercek");
-      //     //Assert.AreEqual("fooview", result.ViewName);
-      // }
-      //
-      // [TestMethod]
-      // public void Register()
-      // {
-      //     UsersController userController = new UsersController();
-      //     UserRegisterView _user = new UserRegisterView();
-      //     _user.Email = "Huseyin";
-      //     _user.Password = Encripty.EncryptString("1111");
-      //     _user.Name = "Hüseyin";
-      //     _user.SurName = "Altunbaş";
-      //
-      //     var result = userController.Post(_user);
-      // }
+        [TestMethod]
+        public void Login()
+        {
+           // Identity.Controllers1.lo userController = new Identity.Controllers1.LoginController();
+           // var result = userController.Login("altunbas.huseyin@gmail.com", "Web+webmercek");
+            //Assert.AreEqual("fooview", result.ViewName);
+        }
+
+        //[TestMethod]
+        // public void Register()
+        // {
+        //     UsersController userController = new UsersController();
+        //     UserRegisterView _user = new UserRegisterView();
+        //     _user.Email = "Huseyin";
+        //     _user.Password = Encripty.EncryptString("1111");
+        //     _user.Name = "Hüseyin";
+        //     _user.SurName = "Altunbaş";
+        //
+        //     var result = userController.Post(_user);
+        // }
 
     }
 }
