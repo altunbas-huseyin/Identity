@@ -58,10 +58,10 @@ namespace IdentityTest
             Assert.AreNotEqual(status, null);
             Assert.AreNotEqual(role, null);
 
-
             string email = "test@" + Guid.NewGuid() + ".com";
 
             User _user = new User();
+            //_user.ParentId = _user._id;
             _user.Email = email;
             _user.Password = Encripty.EncryptString("1111");
             _user.Name = "Hüseyin";
@@ -69,13 +69,13 @@ namespace IdentityTest
             _user.Status = status;
             _user.Role = new List<Role>();
             _user.Role.Add(role);
-
+           
             userRepo.Add(_user);
 
             UserView user = userRepo.LoginByEmail(email,"1111");
             Assert.AreNotEqual(user, null);
 
-            Jwt jwt = jwtRepo.GetByUserId(_user.Id.ToString());
+            Jwt jwt = jwtRepo.GetByUserId(_user._id.ToString());
             Jwt jwtCheckToken = jwtRepo.CheckToken(jwt.Token);
         }
 
@@ -111,26 +111,26 @@ namespace IdentityTest
             Assert.AreEqual(result, true);
         }
 
-        [TestMethod]
-        public void Login()
-        {
-            UsersController userController = new UsersController();
-            var result = userController.Login("altunbas.huseyin@gmail.com", "Web+webmercek");
-            //Assert.AreEqual("fooview", result.ViewName);
-        }
-
-        [TestMethod]
-        public void Register()
-        {
-            UsersController userController = new UsersController();
-            UserRegisterView _user = new UserRegisterView();
-            _user.Email = "Huseyin";
-            _user.Password = Encripty.EncryptString("1111");
-            _user.Name = "Hüseyin";
-            _user.SurName = "Altunbaş";
-
-            var result = userController.Post(_user);
-        }
+      // [TestMethod]
+      // public void Login()
+      // {
+      //     UsersController userController = new UsersController();
+      //     var result = userController.Login("altunbas.huseyin@gmail.com", "Web+webmercek");
+      //     //Assert.AreEqual("fooview", result.ViewName);
+      // }
+      //
+      // [TestMethod]
+      // public void Register()
+      // {
+      //     UsersController userController = new UsersController();
+      //     UserRegisterView _user = new UserRegisterView();
+      //     _user.Email = "Huseyin";
+      //     _user.Password = Encripty.EncryptString("1111");
+      //     _user.Name = "Hüseyin";
+      //     _user.SurName = "Altunbaş";
+      //
+      //     var result = userController.Post(_user);
+      // }
 
     }
 }

@@ -11,10 +11,10 @@ namespace IdentityRepository
     {
         private MongoDbRepository<User> userRepository = new MongoDbRepository<User>();
         private JwtRepo jwtRepo = new JwtRepo();
-        public Guid Add(User user)
+        public string Add(User user)
         {
             userRepository.Insert(user);
-            return user.Id;
+            return user._id;
         }
 
         public UserView LoginByEmail(String Email, string Password)
@@ -25,7 +25,7 @@ namespace IdentityRepository
             if (user != null)
             {
                 userView = this.UserToUserView(user);
-                userView.Jwt = jwtRepo.Add(user.Id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(1));
+                userView.Jwt = jwtRepo.Add(user._id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(1));
             }
             else
             {
@@ -43,7 +43,7 @@ namespace IdentityRepository
             userView.Extra2 = user.Extra2;
             userView.FirmCode = user.FirmCode;
             userView.FirmLogo = user.FirmLogo;
-            userView.Id = user.Id;
+            userView._id = user._id;
             userView.ProjectName = user.ProjectName;
             userView.Role = user.Role;
             userView.Name = user.Name;
@@ -63,19 +63,19 @@ namespace IdentityRepository
         public bool Delete(String Id)
         {
             User user = new User();
-            user.Id = Guid.Parse(Id);
+            user._id = Id;
             return userRepository.Delete(user);
         }
 
         public User GetById(string ParentId, String Id)
         {
-            User user = userRepository.SearchFor(p => p.ParentId == ParentId && p.Id == new Guid(Id)).FirstOrDefault();
+            User user = userRepository.SearchFor(p => p.ParentId == ParentId && p._id == Id).FirstOrDefault();
             return user;
         }
 
         public User GetById(String Id)
         {
-            User user = userRepository.SearchFor(p => p.Id == new Guid(Id)).FirstOrDefault();
+            User user = userRepository.SearchFor(p => p._id == Id).FirstOrDefault();
             return user;
         }
 

@@ -17,7 +17,7 @@ namespace IdentityRepository
         public bool Delete(String Id)
         {
             Role role = new Role();
-            role.Id = new Guid(Id);
+            role._id = Id;
             return roleRepository.Delete(role);
         }
 
