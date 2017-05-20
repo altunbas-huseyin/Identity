@@ -67,6 +67,12 @@ namespace IdentityRepository
             return userRepository.Delete(user);
         }
 
+        public List<User> Get(string ParentId)
+        {
+            List<User> userList = userRepository.SearchFor(p => p.ParentId == ParentId).ToList();
+            return userList;
+        }
+
         public User GetById(string ParentId, String Id)
         {
             User user = userRepository.SearchFor(p => p.ParentId == ParentId && p._id == Id).FirstOrDefault();

@@ -34,11 +34,11 @@ namespace Identity.Controllers1
  
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public CommonApiResponse Get()
         {
-            HttpStatusCode s = new HttpStatusCode();
-            //CommonApiResponse c = new CommonApiResponse(s);
-            return new string[] { "value1", "value2" };
+            List<User> userList = userRepo.Get(jwt.UserId);
+            status = true;
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, userList, error);
         }
 
         public IEnumerable<User> Get(int take, int skip, IEnumerable<Sort> sort, Filter filter, IEnumerable<Aggregator> aggregates, IEnumerable<Sort> group)
@@ -62,9 +62,9 @@ namespace Identity.Controllers1
         [HttpGet("{id}")]
         public CommonApiResponse Get(string id)
         {
-           // User user = userRepo.GetById(jwt.UserId, id);
-           // status = true;
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, "", error);
+            User user = userRepo.GetById(jwt.UserId, id);
+            status = true;
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, user, error);
 
         }
 
