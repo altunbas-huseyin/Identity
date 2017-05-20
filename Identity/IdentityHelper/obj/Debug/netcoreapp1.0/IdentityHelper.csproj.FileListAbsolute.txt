@@ -4,3 +4,4 @@ C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityHelper\bin\Debug\n
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityHelper\obj\Debug\netcoreapp1.0\IdentityHelper.AssemblyInfo.cs
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityHelper\obj\Debug\netcoreapp1.0\IdentityHelper.dll
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityHelper\obj\Debug\netcoreapp1.0\IdentityHelper.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityHelper\obj\Debug\netcoreapp1.0\IdentityHelper.csprojResolveAssemblyReference.cache
