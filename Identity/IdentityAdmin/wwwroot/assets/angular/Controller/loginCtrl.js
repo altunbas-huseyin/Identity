@@ -3,8 +3,9 @@
 app.controller("loginCtrl", function ($scope, authService) {
 
     authService.isLoginByRedirect();
-    $scope.Name = "Hüseyin";
-    $scope.Surname = "Altunbaş";
+    var user = authService.getUser()
+    $scope.Name = user.name;
+    $scope.Surname = user.surName;
     //var t = loginService.login("rrr", "ttt");
     //console.log(authService.getUser());
     //console.log(authService.getToken());
