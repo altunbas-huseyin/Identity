@@ -62,9 +62,9 @@ namespace Identity.Controllers1
         [HttpGet("{id}")]
         public CommonApiResponse Get(string id)
         {
-            User user = userRepo.GetById(jwt.UserId, id);
-            status = true;
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, user, error);
+           // User user = userRepo.GetById(jwt.UserId, id);
+           // status = true;
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, "", error);
 
         }
 
@@ -73,7 +73,7 @@ namespace Identity.Controllers1
         [HttpPost]
         public CommonApiResponse Post([FromBody]UserRegisterView userView)
         {
-            userView.ParentId = jwt.UserId;
+           // userView.ParentId = jwt.UserId;
             if (userRepo.GetByEmail(userView.Email) != null)
             {
                 status = false;

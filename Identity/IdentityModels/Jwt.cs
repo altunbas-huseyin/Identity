@@ -8,8 +8,6 @@ namespace IdentityModels
 {
     public class Jwt : EntityBase
     {
-        [BsonRepresentation(BsonType.String)]
-        [BsonIgnoreIfDefault]
         public string UserId { get; set; }
         public string Token { get; set; }
         public DateTime DeadLine { get; set; }

@@ -8,12 +8,8 @@ namespace IdentityModels
 {
     public class UserRole : EntityBase
     {
-        [BsonRepresentation(BsonType.String)]
-        [BsonIgnoreIfDefault]
-        public Guid UserId { get; set; }
 
-        [BsonRepresentation(BsonType.String)]
-        [BsonIgnoreIfDefault]
+        public Guid UserId { get; set; }
         public Guid RoleId { get; set; }
     }
 }

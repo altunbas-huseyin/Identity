@@ -9,8 +9,6 @@ namespace IdentityModels.Users
     public class UserView : EntityBase
     {
         public string ProjectName { get; set; }
-        [BsonRepresentation(BsonType.String)]
-        [BsonIgnoreIfDefault]
         public string ParentId { get; set; }
         public List<Role> Role { get; set; }
         public string Email { get; set; }

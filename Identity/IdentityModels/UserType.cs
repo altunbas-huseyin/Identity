@@ -8,9 +8,7 @@ namespace IdentityModels
 {
     public class UserType : EntityBase
     {
-
         public string Name { get; set; }
-        
 
     }
 }

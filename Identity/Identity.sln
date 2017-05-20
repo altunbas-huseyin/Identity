@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "Identity\Identity.csproj", "{7ECF08BF-43B6-4451-8980-34D3D6F7B338}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity", "Identity\Identity.csproj", "{7ECF08BF-43B6-4451-8980-34D3D6F7B338}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDbRepository", "MongoDbRepository\MongoDbRepository.csproj", "{46C1A2A6-7D85-43BA-9C68-367B4A94056D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDbRepository", "MongoDbRepository\MongoDbRepository.csproj", "{46C1A2A6-7D85-43BA-9C68-367B4A94056D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityHelper", "IdentityHelper\IdentityHelper.csproj", "{42E0A06F-EC3D-4F6E-AAD0-62CFF6964532}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityTest", "IdentityTest\IdentityTest.csproj", "{DF516308-3A16-4F78-B3FB-4977F1174B22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityHelper", "IdentityHelper\IdentityHelper.csproj", "{42E0A06F-EC3D-4F6E-AAD0-62CFF6964532}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityModels", "IdentityModels\IdentityModels.csproj", "{BB70440A-3B98-4211-B21D-C88B1C99ADF1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityRepository", "IdentityRepository\IdentityRepository.csproj", "{9AF70A37-3529-4714-83EB-45A44C45D5E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityConfig", "IdentityConfig\IdentityConfig.csproj", "{6C135276-385C-435E-B827-4AACD9ACB095}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityConfig", "IdentityConfig\IdentityConfig.csproj", "{6C135276-385C-435E-B827-4AACD9ACB095}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityAdmin", "IdentityAdmin\IdentityAdmin.csproj", "{DB14A200-C5CB-41E3-9580-44C5C543DDF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityAdmin", "IdentityAdmin\IdentityAdmin.csproj", "{DB14A200-C5CB-41E3-9580-44C5C543DDF9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityTest", "IdentityTest\IdentityTest.csproj", "{E01542D9-02BC-4EA5-9ADF-375776DFB7F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +37,6 @@ Global
 		{42E0A06F-EC3D-4F6E-AAD0-62CFF6964532}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E0A06F-EC3D-4F6E-AAD0-62CFF6964532}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42E0A06F-EC3D-4F6E-AAD0-62CFF6964532}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF516308-3A16-4F78-B3FB-4977F1174B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF516308-3A16-4F78-B3FB-4977F1174B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF516308-3A16-4F78-B3FB-4977F1174B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF516308-3A16-4F78-B3FB-4977F1174B22}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB70440A-3B98-4211-B21D-C88B1C99ADF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB70440A-3B98-4211-B21D-C88B1C99ADF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB70440A-3B98-4211-B21D-C88B1C99ADF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +53,10 @@ Global
 		{DB14A200-C5CB-41E3-9580-44C5C543DDF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB14A200-C5CB-41E3-9580-44C5C543DDF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB14A200-C5CB-41E3-9580-44C5C543DDF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E01542D9-02BC-4EA5-9ADF-375776DFB7F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E01542D9-02BC-4EA5-9ADF-375776DFB7F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E01542D9-02BC-4EA5-9ADF-375776DFB7F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E01542D9-02BC-4EA5-9ADF-375776DFB7F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

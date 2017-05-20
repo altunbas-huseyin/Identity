@@ -28,7 +28,7 @@ namespace Identity.Controllers1
 
         // POST api/values
         [HttpPost]
-        public CommonApiResponse Post([FromBody]UserLoginView userLoginView)
+        public CommonApiResponse Post([FromBody]IdentityModels.Users.UserLoginView userLoginView)
         {
             UserView _user = userRepo.LoginByEmail(userLoginView.Email, userLoginView.Password);
             if (_user == null)
