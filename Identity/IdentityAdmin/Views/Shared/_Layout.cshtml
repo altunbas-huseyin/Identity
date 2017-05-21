@@ -19,6 +19,10 @@
          https://code.google.com/p/chromium/issues/detail?id=332189
          */
     </script>
+    <script>
+        //var apiUrl = "http://localhost:46842/";
+        var apiUrl = "http://localhost:22326/";
+    </script>
 </head>
 <body ng-app="myApp">
     <!--
@@ -733,7 +737,7 @@
     <div class="loader-wrap hiding hide">
         <i class="fa fa-circle-o-notch fa-spin-fast"></i>
     </div>
-
+    <div id="rickshaw" class="chart-overflow-bottom hide"></div>
    
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="~/assets/angular/app.js"></script>
@@ -773,6 +777,14 @@
     <script src="/assets/vendor/bootstrap/js/dist/popover.js"></script>
     <script src="/assets/vendor/bootstrap_calendar/bootstrap_calendar/js/bootstrap_calendar.min.js"></script>
     <script src="/assets/vendor/jquery-animateNumber/jquery.animateNumber.min.js"></script>
+
+    <!-- Kendo Grid -->
+    @{ /*http://www.c-sharpcorner.com/UploadFile/fc9f65/crud-operation-in-kendo-grid-using-web-api/*/}
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1316/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1316/styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1316/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1316/styles/kendo.dataviz.default.min.css" />
+    <script src="http://cdn.kendostatic.com/2014.3.1316/js/kendo.all.min.js"></script> 
 
     <!-- page specific js -->
     <script src="/assets/js/index.js"></script>

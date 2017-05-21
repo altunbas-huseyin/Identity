@@ -139,14 +139,14 @@ $(function(){
         } );
 
         function onResize(){
-            var $chart = $('#rickshaw');
-            graph.configure({
-                width: $chart.width(),
-                height: 130
-            });
-            graph.render();
-
-            $chart.find('svg').css({height: '130px'});
+            //var $chart = $('#rickshaw');
+            //graph.configure({
+            //    width: $chart.width(),
+            //    height: 130
+            //});
+            //graph.render();
+            //
+            //$chart.find('svg').css({height: '130px'});
         }
 
         SingApp.onResize(onResize);

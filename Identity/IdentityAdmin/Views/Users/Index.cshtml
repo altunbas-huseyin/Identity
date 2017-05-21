@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="content-wrap">
+    <!-- main page content. the place to put widgets in. usually consists of .row > .col-lg-* > .widget.  -->
+    <main id="content" class="content" role="main">
+        <h1 class="page-title">Dashboard <small><small>The Lucky One</small></small></h1>
+      
+        <div class="row">
+            
+            <div id="grid1"></div> 
+            
+        </div>
+    </main>
+</div>
+
+
+
+<script>
+    setTimeout(RunKendo, 5000);
+    function RunKendo()
+    { 
+        dataSource = new kendo.data.DataSource({
+            transport: {
+                read:
+                {
+                    url: "http://localhost:54129/api/Category",
+                    dataType: "json",
+                },
+                destroy:
+                {
+                    url: "http://localhost:54129/api/Category",
+                    type: "DELETE"
+                },
+                create:
+                {
+                    url: "http://localhost:54129/api/Category",
+                    type: "POST"
+                },
+                update:
+                {
+                    url: "http://localhost:54129/api/Category",
+                    type: "PUT",
+                    parameterMap: function (options, operation) {
+                        if (operation !== "read" && options.models) {
+                            return {
+                                models: kendo.stringify(options.models)
+                            };
+                        }
+                    }
+                },
+            },
+            schema:
+            {
+                model:
+                {
+                    id: "CategoryID",
+                    fields: {
+                        CategoryID: { editable: false, nullable: true, type: "number" },
+                        CategoryName: { editable: true, nullable: true, type: "string" },
+                    }
+                }
+            }
+        });
+        $("#grid1").kendoGrid({
+            dataSource: dataSource,
+            editable: "inline",
+            toolbar: ["create"],
+            columns: [
+                {
+                    field: "CategoryID",
+                    title: "number",
+                },
+                {
+                    field: "CategoryName",
+                    title: "Name"
+                },
+                {
+                    command: ["edit",
+                        {
+                            name: "destroy",
+                            text: "remove",
+                        }
+                    ],
+                }
+            ],
+            height: "500px",
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5
+            },
+        }).data("kendoGrid");
+    }
+
+</script>  
