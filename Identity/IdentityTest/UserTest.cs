@@ -1,4 +1,4 @@
-﻿using Identity.Controllers1;
+﻿
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using IdentityModels;
 using IdentityRepository;
@@ -82,7 +82,6 @@ namespace IdentityTest
         [TestMethod]
         public void AddSystemUser()
         {
-
             Role role = roleRepo.GetByName("SystemAdmin");
             Assert.AreNotEqual(role, null);
 
@@ -91,6 +90,7 @@ namespace IdentityTest
             {
                 User user = new User();
                 user.Email = "altunbas.huseyin@gmail.com";
+                user.ParentId = "00000000-0000-0000-0000-000000000000";
                 user.Password = "1111";
                 user.Name = "Hüseyin";
                 user.SurName = "Altunbaş";
@@ -101,6 +101,7 @@ namespace IdentityTest
                 userRepo.Add(user);
             }
 
+            User _user = userRepo.GetByParentId("00000000-0000-0000-0000-000000000000");
 
         }
 

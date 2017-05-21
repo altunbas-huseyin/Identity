@@ -29,7 +29,7 @@ namespace IdentityRepository
             }
             else
             {
-                return userView; 
+                return userView;
             }
 
             return userView;
@@ -82,6 +82,12 @@ namespace IdentityRepository
         public User GetById(String Id)
         {
             User user = userRepository.SearchFor(p => p._id == Id).FirstOrDefault();
+            return user;
+        }
+
+        public User GetByParentId(string ParentId)
+        {
+            User user = userRepository.SearchFor(p => p.ParentId == ParentId).FirstOrDefault();
             return user;
         }
 
