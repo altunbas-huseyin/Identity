@@ -47,11 +47,11 @@ app.factory('authService', ['$http', function ($http, $location) {
                 headers: { 'Content-Type': 'application/json; charset=utf-8' }
 
             }).success(function (response) {
-
-                if (response.status) {
+                debugger;
+                if (response.status === true) {
                     window.localStorage.setItem("isLogin", true);
                     window.localStorage.setItem("apiUser", JSON.stringify(response.result));
-                    window.location = "/";
+                    
                 }
               
 

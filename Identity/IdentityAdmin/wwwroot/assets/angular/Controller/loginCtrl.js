@@ -23,8 +23,12 @@ app.controller("loginCtrl", function ($scope, authService) {
             };
 
             authService.login($scope.loginData).then(function (response) {
-             
-                $location.path('/');
+                debugger;
+                if (response.data.status === true)
+                {
+                    window.location = "/";
+                }
+                
                 //console.log(response);
 
             },

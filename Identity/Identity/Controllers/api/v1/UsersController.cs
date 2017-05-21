@@ -18,6 +18,7 @@ namespace Identity.Controllers1
 {
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
+    [ValidateModel("SystemAdmin,AppAdmin")]
     public class UsersController : Controller
     {
         private UserRepo userRepo = new UserRepo();
@@ -26,19 +27,15 @@ namespace Identity.Controllers1
         private string error = "";
         private bool status = false; 
         Jwt jwt = new Jwt();
-        public UsersController()
-        {
-            jwt = this.ViewBag.Jwt;
-        }
-
- 
+         
         // GET api/values
         [HttpGet]
         public CommonApiResponse Get()
         {
+            jwt = ViewBag.Jwt;
             List<User> userList = userRepo.Get(jwt.UserId);
             status = true;
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, userList, error);
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, userList, error);
         }
 
         public IEnumerable<User> Get(int take, int skip, IEnumerable<Sort> sort, Filter filter, IEnumerable<Aggregator> aggregates, IEnumerable<Sort> group)
@@ -62,9 +59,10 @@ namespace Identity.Controllers1
         [HttpGet("{id}")]
         public CommonApiResponse Get(string id)
         {
+            jwt = ViewBag.Jwt;
             User user = userRepo.GetById(jwt.UserId, id);
             status = true;
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, user, error);
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, user, error);
 
         }
 

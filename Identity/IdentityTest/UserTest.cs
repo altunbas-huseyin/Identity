@@ -63,7 +63,7 @@ namespace IdentityTest
             User _user = new User();
             //_user.ParentId = _user._id;
             _user.Email = email;
-            _user.Password = Encripty.EncryptString("1111");
+            _user.Password = "1111";
             _user.Name = "Hüseyin";
             _user.SurName = "Altunbaş";
             _user.Status = status;

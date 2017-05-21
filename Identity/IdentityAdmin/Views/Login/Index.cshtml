@@ -29,6 +29,18 @@
     <script src="~/assets/angular/app.js"></script>
     <script src="~/assets/angular/Service/Service.js"></script>
     <script src="~/assets/angular/Controller/loginCtrl.js"></script>
+
+    <script>
+
+         var apiUrl = "http://localhost:22326/";
+
+         var user = window.localStorage.getItem("apiUser");
+         user = JSON.parse(user);
+         var Token = user.jwt.token;
+
+    </script>
+
+
 </head>
 <body class="login-page"  ng-app="myApp">
 

@@ -20,8 +20,13 @@
          */
     </script>
     <script>
-        //var apiUrl = "http://localhost:46842/";
+      
         var apiUrl = "http://localhost:22326/";
+
+        var user = window.localStorage.getItem("apiUser");
+        user = JSON.parse(user);
+        var Token = user.jwt.token;
+
     </script>
 </head>
 <body ng-app="myApp">
@@ -780,11 +785,11 @@
 
     <!-- Kendo Grid -->
     @{ /*http://www.c-sharpcorner.com/UploadFile/fc9f65/crud-operation-in-kendo-grid-using-web-api/*/}
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1316/styles/kendo.common.min.css" />
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1316/styles/kendo.default.min.css" />
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1316/styles/kendo.dataviz.min.css" />
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1316/styles/kendo.dataviz.default.min.css" />
-    <script src="http://cdn.kendostatic.com/2014.3.1316/js/kendo.all.min.js"></script> 
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2017.1.118/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2017.1.118/styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2017.1.118/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2017.1.118/styles/kendo.dataviz.default.min.css" />
+    <script src="http://cdn.kendostatic.com/2017.1.118/js/kendo.all.min.js"></script> 
 
     <!-- page specific js -->
     <script src="/assets/js/index.js"></script>

@@ -13,6 +13,7 @@ namespace IdentityRepository
         private JwtRepo jwtRepo = new JwtRepo();
         public string Add(User user)
         {
+            user.Password = IdentityHelper.Encripty.EncryptString(user.Password);
             userRepository.Insert(user);
             return user._id;
         }

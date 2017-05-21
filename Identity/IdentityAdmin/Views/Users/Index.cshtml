@@ -26,8 +26,12 @@
             transport: {
                 read:
                 {
-                    url: "http://localhost:54129/api/Category",
+                    url: apiUrl + "api/Users/Get",
                     dataType: "json",
+                    type: "GET",
+                    beforeSend: function (req) {
+                        req.setRequestHeader('Token', Token);
+                    }
                 },
                 destroy:
                 {
@@ -56,7 +60,7 @@
             {
                 model:
                 {
-                    id: "CategoryID",
+                    id: "_id",
                     fields: {
                         CategoryID: { editable: false, nullable: true, type: "number" },
                         CategoryName: { editable: true, nullable: true, type: "string" },
@@ -70,7 +74,7 @@
             toolbar: ["create"],
             columns: [
                 {
-                    field: "CategoryID",
+                    field: "_id",
                     title: "number",
                 },
                 {
