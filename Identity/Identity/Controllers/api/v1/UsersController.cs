@@ -55,16 +55,16 @@ namespace Identity.Controllers1
             return new List<User>();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public CommonApiResponse Get(string id)
-        {
-            jwt = ViewBag.Jwt;
-            User user = userRepo.GetById(jwt.UserId, id);
-            status = true;
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, user, error);
-
-        }
+        //// GET api/values/5
+        //[HttpGet("{id}")]
+        //public CommonApiResponse Get(string id)
+        //{
+        //    jwt = ViewBag.Jwt;
+        //    User user = userRepo.GetById(jwt.UserId, id);
+        //    status = true;
+        //    return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, user, error);
+        //
+        //}
 
         // POST api/values
         [ValidateModel("SystemAdmin, AppAdmin")]

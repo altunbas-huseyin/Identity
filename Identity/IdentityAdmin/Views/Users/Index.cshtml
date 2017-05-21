@@ -26,11 +26,13 @@
             transport: {
                 read:
                 {
-                    url: apiUrl + "api/Users/Get",
+                    url: apiUrl + "api/Users",
                     dataType: "json",
+                    contentType: "application/json",
                     type: "GET",
                     beforeSend: function (req) {
                         req.setRequestHeader('Token', Token);
+                        req.setRequestHeader('api-version', '1.0');
                     }
                 },
                 destroy:
