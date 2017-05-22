@@ -20,6 +20,11 @@ namespace IdentityTest
         StatusRepo statusRepo = new StatusRepo();
 
         [TestMethod]
+        public void nativeQuery()
+        {
+          object y=  userRepo.nativequery();
+        }
+        [TestMethod]
         public void AddUser()
         {
             Status status = statusRepo.GetByName("Active");

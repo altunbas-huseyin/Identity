@@ -103,6 +103,13 @@ public class MongoDbRepository<TEntity> :
         return collection.FindAllAs<TEntity>().ToList();
     }
 
+    public IList<TEntity> NativeQuery()
+    {
+        BsonDocument query = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>("{ 'Email':'altunbas.huseyin@gmail.com'}");
+        QueryDocument queryDoc = new QueryDocument(query);
+        return collection.FindAs<TEntity>(new QueryDocument(queryDoc)).ToList();
+    }
+
     public TEntity GetById(Guid id)
     {
         return collection.FindOneByIdAs<TEntity>(id);

@@ -18,6 +18,13 @@ namespace IdentityRepository
             return user._id;
         }
 
+        public object nativequery()
+        {
+
+           object rr = userRepository.NativeQuery();
+            return rr;
+        }
+
         public UserView LoginByEmail(String Email, string Password)
         {
             UserView userView = null;
