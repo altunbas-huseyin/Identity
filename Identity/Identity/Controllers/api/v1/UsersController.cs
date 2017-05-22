@@ -95,14 +95,12 @@ namespace Identity.Controllers1
                 user.Role = new List<Role>();
                 user.Role.Add(roleRepo.GetByName("AppUser"));
 
-                UserValidator validator = new UserValidator();
-                ValidationResult results = validator.Validate(user);
-                bool validationSucceeded = results.IsValid;
-                IList<ValidationFailure> failures = results.Errors;
-                if (!validationSucceeded)
+                List<ValidationFailure> list = UserValidator.Check(user).ToList();
+                if (list.Count>0)
                 {
-                    return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, null, failures.ToString());
+                    return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, null, list.ToString());
                 }
+
                 userRepo.Add(user);
                 status = true;
                 return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, user, error);

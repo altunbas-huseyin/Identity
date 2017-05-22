@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,6 +32,16 @@ namespace IdentityModels.Users
             {
                 return false;
             }
+        }
+
+        public static IList<ValidationFailure> Check(User user)
+        {
+            UserValidator validator = new UserValidator();
+            ValidationResult results = validator.Validate(user);
+            bool validationSucceeded = results.IsValid;
+            IList<ValidationFailure> failures = results.Errors;
+
+            return failures;
         }
     }
 }
