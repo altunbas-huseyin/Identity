@@ -52,11 +52,11 @@ namespace Identity
 
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddMvc(options => options.MaxModelValidationErrors = 50)
-                 .AddJsonOptions(option =>
-                 {   //Dönen Json'ı camelCase olarak formatlar.
-                     option.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
-                 }); 
+          // services.AddMvc(options => options.MaxModelValidationErrors = 50)
+          //      .AddJsonOptions(option =>
+          //      {   //Dönen Json'ı camelCase olarak formatlar.
+          //          option.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+          //      }); 
 
             
             

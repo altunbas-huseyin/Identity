@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "be3fc236cd39264a175f4a0faf2f88e3f2288784"
+    "signature": "138023a5f85475a3eaeb3181f25461216f41978c"
   },
   "compilationOptions": {},
   "targets": {
@@ -362,7 +362,7 @@
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
           "NETStandard.Library": "1.6.1",
-          "Newtonsoft.Json": "10.0.2",
+          "Newtonsoft.Json": "9.0.1",
           "System.Reflection.TypeExtensions": "4.3.0"
         },
         "runtime": {
@@ -539,7 +539,7 @@
           "Microsoft.AspNetCore.Mvc.Formatters.Json": "1.1.3",
           "Microsoft.Extensions.WebEncoders": "1.1.2",
           "NETStandard.Library": "1.6.1",
-          "Newtonsoft.Json": "10.0.2",
+          "Newtonsoft.Json": "9.0.1",
           "System.Buffers": "4.3.0",
           "System.Runtime.Serialization.Primitives": "4.3.0"
         },
@@ -867,7 +867,7 @@
           "Microsoft.Extensions.Configuration": "1.1.2",
           "Microsoft.Extensions.Configuration.FileExtensions": "1.1.2",
           "NETStandard.Library": "1.6.1",
-          "Newtonsoft.Json": "10.0.2",
+          "Newtonsoft.Json": "9.0.1",
           "System.Dynamic.Runtime": "4.3.0",
           "System.Runtime.Serialization.Primitives": "4.3.0"
         },
@@ -896,7 +896,7 @@
       "microsoft.extensions.dependencymodel/1.1.2": {
         "dependencies": {
           "Microsoft.DotNet.PlatformAbstractions": "1.1.2",
-          "Newtonsoft.Json": "10.0.2",
+          "Newtonsoft.Json": "9.0.1",
           "System.Diagnostics.Debug": "4.3.0",
           "System.Dynamic.Runtime": "4.3.0",
           "System.Linq": "4.3.0"
@@ -1118,7 +1118,7 @@
       "microsoft.identitymodel.tokens/5.1.2": {
         "dependencies": {
           "Microsoft.IdentityModel.Logging": "1.1.2",
-          "Newtonsoft.Json": "10.0.2",
+          "Newtonsoft.Json": "9.0.1",
           "System.Collections": "4.3.0",
           "System.Diagnostics.Tools": "4.3.0",
           "System.Runtime": "4.3.0",
@@ -1370,7 +1370,7 @@
       "microsoft.testplatform.testhost/15.0.0": {
         "dependencies": {
           "Microsoft.TestPlatform.ObjectModel": "15.0.0",
-          "Newtonsoft.Json": "10.0.2"
+          "Newtonsoft.Json": "9.0.1"
         },
         "runtime": {
           "lib/netstandard1.5/Microsoft.TestPlatform.CommunicationUtilities.dll": {},
@@ -1650,17 +1650,33 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "newtonsoft.json/10.0.2": {
+      "newtonsoft.json/9.0.1": {
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
-          "NETStandard.Library": "1.6.1",
-          "System.ComponentModel.TypeConverter": "4.3.0",
-          "System.Runtime.Serialization.Formatters": "4.3.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Dynamic.Runtime": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Linq.Expressions": "4.3.0",
+          "System.ObjectModel": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
           "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Xml.XmlDocument": "4.3.0"
+          "System.Text.Encoding": "4.3.0",
+          "System.Text.Encoding.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0",
+          "System.Xml.XDocument": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/Newtonsoft.Json.dll": {}
+          "lib/netstandard1.0/Newtonsoft.Json.dll": {}
         }
       },
       "portable.bouncycastle/1.8.1.2": {
@@ -2551,7 +2567,6 @@
           "System.Threading": "4.3.0",
           "System.Threading.Tasks": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
-          "System.Xml.XmlDocument": "4.3.0",
           "System.Xml.XmlSerializer": "4.0.11"
         },
         "runtime": {
@@ -2749,18 +2764,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Runtime.Numerics.dll": {}
-        }
-      },
-      "system.runtime.serialization.formatters/4.3.0": {
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Serialization.Primitives": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.4/System.Runtime.Serialization.Formatters.dll": {}
         }
       },
       "system.runtime.serialization.json/4.0.2": {
@@ -3254,23 +3257,6 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "system.xml.xmldocument/4.3.0": {
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Text.Encoding": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Xml.ReaderWriter": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
-        }
-      },
       "system.xml.xmlserializer/4.0.11": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -3288,8 +3274,7 @@
           "System.Runtime.Extensions": "4.3.0",
           "System.Text.RegularExpressions": "4.3.0",
           "System.Threading": "4.3.0",
-          "System.Xml.ReaderWriter": "4.3.0",
-          "System.Xml.XmlDocument": "4.3.0"
+          "System.Xml.ReaderWriter": "4.3.0"
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
@@ -3304,8 +3289,7 @@
           "System.Runtime": "4.3.0",
           "System.Runtime.Extensions": "4.3.0",
           "System.Threading": "4.3.0",
-          "System.Xml.ReaderWriter": "4.3.0",
-          "System.Xml.XmlDocument": "4.3.0"
+          "System.Xml.ReaderWriter": "4.3.0"
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
@@ -3339,7 +3323,6 @@
           "Microsoft.OData.Edm": "7.2.0",
           "Microsoft.Spatial": "7.2.0",
           "MongoDbRepository": "1.0.0",
-          "Newtonsoft.Json": "10.0.2",
           "System.Linq.Queryable": "4.3.0"
         },
         "runtime": {
@@ -4164,12 +4147,12 @@
       "path": "netstandard.library/1.6.1",
       "hashPath": "netstandard.library.1.6.1.nupkg.sha512"
     },
-    "newtonsoft.json/10.0.2": {
+    "newtonsoft.json/9.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-iwElSU2IXmwGvytJsezyDML2ZWDkG2JzTYzlU/BNlmzMdlmRvbnwITsGGY74gwVEpDli1UdOLkMT7/3jxWvXzA==",
-      "path": "newtonsoft.json/10.0.2",
-      "hashPath": "newtonsoft.json.10.0.2.nupkg.sha512"
+      "sha512": "sha512-U82mHQSKaIk+lpSVCbWYKNavmNH1i5xrExDEquU1i6I5pV6UMOqRnJRSlKO3cMPfcpp0RgDY+8jUXHdQ4IfXvw==",
+      "path": "newtonsoft.json/9.0.1",
+      "hashPath": "newtonsoft.json.9.0.1.nupkg.sha512"
     },
     "portable.bouncycastle/1.8.1.2": {
       "type": "package",
@@ -4759,13 +4742,6 @@
       "path": "system.runtime.numerics/4.3.0",
       "hashPath": "system.runtime.numerics.4.3.0.nupkg.sha512"
     },
-    "system.runtime.serialization.formatters/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-KT591AkTNFOTbhZlaeMVvfax3RqhH1EJlcwF50Wm7sfnBLuHiOeZRRKrr1ns3NESkM20KPZ5Ol/ueMq5vg4QoQ==",
-      "path": "system.runtime.serialization.formatters/4.3.0",
-      "hashPath": "system.runtime.serialization.formatters.4.3.0.nupkg.sha512"
-    },
     "system.runtime.serialization.json/4.0.2": {
       "type": "package",
       "serviceable": true,
@@ -4961,13 +4937,6 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
-    },
-    "system.xml.xmldocument/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
-      "path": "system.xml.xmldocument/4.3.0",
-      "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
     },
     "system.xml.xmlserializer/4.0.11": {
       "type": "package",
