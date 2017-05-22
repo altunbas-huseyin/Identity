@@ -37,17 +37,25 @@
                 },
                 destroy:
                 {
-                    url: "http://localhost:54129/api/Category",
-                    type: "DELETE"
+                    url: apiUrl + "api/Users",
+                    type: "DELETE",
+                    beforeSend: function (req) {
+                        req.setRequestHeader('Token', Token);
+                        req.setRequestHeader('api-version', '1.0');
+                    }
                 },
                 create:
                 {
-                    url: "http://localhost:54129/api/Category",
-                    type: "POST"
+                    url: apiUrl + "api/Users",
+                    type: "POST",
+                    beforeSend: function (req) {
+                        req.setRequestHeader('Token', Token);
+                        req.setRequestHeader('api-version', '1.0');
+                    }
                 },
                 update:
                 {
-                    url: "http://localhost:54129/api/Category",
+                    url: apiUrl + "api/Users",
                     type: "PUT",
                     parameterMap: function (options, operation) {
                         if (operation !== "read" && options.models) {
@@ -55,17 +63,22 @@
                                 models: kendo.stringify(options.models)
                             };
                         }
+                    },
+                    beforeSend: function (req) {
+                        req.setRequestHeader('Token', Token);
+                        req.setRequestHeader('api-version', '1.0');
                     }
                 },
             },
             schema:
             {
+                data: "result",
                 model:
                 {
                     id: "_id",
                     fields: {
-                        CategoryID: { editable: false, nullable: true, type: "number" },
-                        CategoryName: { editable: true, nullable: true, type: "string" },
+                        name: { editable: false, nullable: true, type: "string" },
+                        surName: { editable: true, nullable: true, type: "string" },
                     }
                 }
             }
@@ -77,10 +90,10 @@
             columns: [
                 {
                     field: "_id",
-                    title: "number",
+                    title: "Id",
                 },
                 {
-                    field: "CategoryName",
+                    field: "name",
                     title: "Name"
                 },
                 {
