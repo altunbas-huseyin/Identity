@@ -2,6 +2,32 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.0": {
+      "FluentValidation/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.0/FluentValidation.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/FluentValidation.dll": {}
+        }
+      },
+      "FluentValidation.AspNetCore/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "FluentValidation": "7.0.0",
+          "Microsoft.AspNetCore.Mvc": "1.1.2",
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.6/FluentValidation.AspNetCore.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/FluentValidation.AspNetCore.dll": {}
+        }
+      },
       "Kendo.DynamicLinqCore/1.0.3": {
         "type": "package",
         "dependencies": {
@@ -4773,6 +4799,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
+          "FluentValidation.AspNetCore": "7.0.0",
           "Microsoft.NETCore.App": "1.0.4",
           "mongocsharpdriver": "2.4.3"
         }
@@ -4799,6 +4826,32 @@
     }
   },
   "libraries": {
+    "FluentValidation/7.0.0": {
+      "sha512": "l/VGEyMgysRgr6hGdVIYe/087xjSjID4NaQhHVS2yHqP/wyUB4txW15SxFijwSFtTHtzN9DPsysfKkU1gXURNA==",
+      "type": "package",
+      "path": "fluentvalidation/7.0.0",
+      "files": [
+        "fluentvalidation.7.0.0.nupkg.sha512",
+        "fluentvalidation.nuspec",
+        "lib/net45/FluentValidation.dll",
+        "lib/net45/FluentValidation.xml",
+        "lib/netstandard1.0/FluentValidation.dll",
+        "lib/netstandard1.0/FluentValidation.xml"
+      ]
+    },
+    "FluentValidation.AspNetCore/7.0.0": {
+      "sha512": "J8KA40bb9zwqwg3RCVnpH/wHK0W1zNgf3tCyE3CMfyIPSGLgnFVZ+mIw4lu27eDo1OwdDFoMcf4ExBparVL/hg==",
+      "type": "package",
+      "path": "fluentvalidation.aspnetcore/7.0.0",
+      "files": [
+        "fluentvalidation.aspnetcore.7.0.0.nupkg.sha512",
+        "fluentvalidation.aspnetcore.nuspec",
+        "lib/net451/FluentValidation.AspNetCore.dll",
+        "lib/net451/FluentValidation.AspNetCore.xml",
+        "lib/netstandard1.6/FluentValidation.AspNetCore.dll",
+        "lib/netstandard1.6/FluentValidation.AspNetCore.xml"
+      ]
+    },
     "Kendo.DynamicLinqCore/1.0.3": {
       "sha512": "/rnHz7/pLz/JP4jqujym6XrfAsWtcPCv2gx3s4YNGJ6IQ45+8nVBzQOHtWZ7cUF4axuSDcK1RdUghNyq1O87rg==",
       "type": "package",

@@ -13,6 +13,7 @@ using IdentityRepository;
 using Identity.Filters;
 using IdentityModels.Users;
 using IdentityHelper;
+using FluentValidation.Results;
 
 namespace Identity.Controllers1
 {
@@ -25,9 +26,9 @@ namespace Identity.Controllers1
         private StatusRepo statusRepo = new StatusRepo();
         private RoleRepo roleRepo = new RoleRepo();
         private string error = "";
-        private bool status = false; 
+        private bool status = false;
         Jwt jwt = new Jwt();
-         
+
         // GET api/values
         [HttpGet]
         public CommonApiResponse Get()
@@ -94,6 +95,14 @@ namespace Identity.Controllers1
                 user.Role = new List<Role>();
                 user.Role.Add(roleRepo.GetByName("AppUser"));
 
+                UserValidator validator = new UserValidator();
+                ValidationResult results = validator.Validate(user);
+                bool validationSucceeded = results.IsValid;
+                IList<ValidationFailure> failures = results.Errors;
+                if (!validationSucceeded)
+                {
+                    return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, null, failures.ToString());
+                }
                 userRepo.Add(user);
                 status = true;
                 return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, user, error);
