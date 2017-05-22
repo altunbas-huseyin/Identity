@@ -71,28 +71,38 @@ namespace Identity.Controllers1
         [HttpPost]
         public CommonApiResponse Post([FromBody]UserRegisterView userView)
         {
-           // userView.ParentId = jwt.UserId;
-            if (userRepo.GetByEmail(userView.Email) != null)
+
+            try
             {
-                status = false;
-                error = "Bu mail adresi sistemimize kayıtlıdır.";
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, "", error);
+                jwt = ViewBag.Jwt;
+                if (userRepo.GetByEmail(userView.Email) != null)
+                {
+                    status = false;
+                    error = "Bu mail adresi sistemimize kayıtlıdır.";
+                    return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, "", error);
+                }
+
+                User user = new User();
+                user.ParentId = jwt.UserId;
+                user.Email = userView.Email;
+                user.Password = Encripty.EncryptString(userView.Password);
+                user.Name = userView.Name;
+                user.SurName = userView.SurName;
+                user.FirmCode = userView.FirmCode;
+                user.FirmLogo = userView.FirmLogo;
+                user.Status = statusRepo.GetByName("WaitingForApproval");
+                user.Role = new List<Role>();
+                user.Role.Add(roleRepo.GetByName("AppUser"));
+
+                userRepo.Add(user);
+                status = true;
+                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, user, error);
             }
-
-            User user = new User();
-            user.Email = userView.Email;
-            user.Password = Encripty.EncryptString(userView.Password);
-            user.Name = userView.Name;
-            user.SurName = userView.SurName;
-            user.FirmCode = userView.FirmCode;
-            user.FirmLogo = userView.FirmLogo;
-            user.Status = statusRepo.GetByName("WaitingForApproval");
-            user.Role = new List<Role>();
-            user.Role.Add(roleRepo.GetByName("AppUser"));
-
-            userRepo.Add(user);
-            status = true;
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, user, error);
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, null, error);
+            }
         }
 
         // PUT api/values/5

@@ -113,16 +113,16 @@
                 
                 <li>
                     <!-- an example of nested submenu. basic bootstrap collapse component -->
-                    <a class="collapsed" href="#sidebar-forms" data-toggle="collapse" data-parent="#sidebar">
+                    <a class="collapsed" href="#sidebar-forms-users" data-toggle="collapse" data-parent="#sidebar">
                         <span class="icon">
                             <i class="glyphicon glyphicon-align-right"></i>
                         </span>
                         Üyeler
                         <i class="toggle fa fa-angle-down"></i>
                     </a>
-                    <ul id="sidebar-forms" class="collapse">
+                    <ul id="sidebar-forms-users" class="collapse">
                         <li><a href="#" onclick="window.location='/Users/'">AppAdmin/Üye Listesi</a></li>
-                        <li><a href="/assets/form_validation.html">Üye Ekle</a></li>
+                        <li><a href="#" onclick="window.location='/Users/Add'">Üye Ekle</a></li>
                     </ul>
                 </li>
 
@@ -748,6 +748,7 @@
     <script src="~/assets/angular/app.js"></script>
     <script src="~/assets/angular/Service/Service.js"></script>
     <script src="~/assets/angular/Controller/loginCtrl.js"></script>
+    <script src="~/assets/angular/Controller/userCtrl.js"></script>
 
     <!-- common libraries. required for every page-->
     <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>

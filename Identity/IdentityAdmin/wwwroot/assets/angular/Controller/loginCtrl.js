@@ -11,8 +11,7 @@ app.controller("loginCtrl", function ($scope, authService) {
     //console.log(authService.getToken());
     //alert(authService.isLogin());
 
-    $scope.login = function () {
-        
+   
         $scope.message = "";
 
         $scope.login = function () {
@@ -38,5 +37,4 @@ app.controller("loginCtrl", function ($scope, authService) {
         };
 
 
-    };
 });

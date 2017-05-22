@@ -64,8 +64,29 @@ app.factory('authService', ['$http', function ($http, $location) {
 
     };
 
+    var _add = function (user) {
+
+       
+        var result = $http.post(apiUrl + 'api/Users', JSON.stringify(user),
+            {
+                headers: { 'Content-Type': 'application/json; charset=utf-8', 'Token': Token }
+
+            }).success(function (response) {
+
+                console.log(response.status);
+
+            }).error(function (err, status) {
+
+            });
+
+
+        return result;
+
+    };
+
 
     authServiceFactory.login = _login;
+    authServiceFactory.add = _add;
     authServiceFactory.isLogin = _isLogin;
     authServiceFactory.getUser = _getUser;
     authServiceFactory.getToken = _getToken;

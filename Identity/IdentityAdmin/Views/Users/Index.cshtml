@@ -7,11 +7,11 @@
     <!-- main page content. the place to put widgets in. usually consists of .row > .col-lg-* > .widget.  -->
     <main id="content" class="content" role="main">
         <h1 class="page-title">Dashboard <small><small>The Lucky One</small></small></h1>
-      
+
         <div class="row">
-            
-            <div id="grid1"></div> 
-            
+
+            <div id="grid1"></div>
+
         </div>
     </main>
 </div>
@@ -19,9 +19,14 @@
 
 
 <script>
-    setTimeout(RunKendo, 5000);
-    function RunKendo()
-    { 
+   
+
+    window.onload = function ()
+    {
+        RunKendo();
+    }
+    //setTimeout(RunKendo, 5000);
+    function RunKendo() {
         dataSource = new kendo.data.DataSource({
             transport: {
                 read:
@@ -88,22 +93,16 @@
             editable: "inline",
             toolbar: ["create"],
             columns: [
-                {
-                    field: "_id",
-                    title: "Id",
-                },
-                {
-                    field: "name",
-                    title: "Name"
-                },
-                {
-                    command: ["edit",
-                        {
-                            name: "destroy",
-                            text: "remove",
-                        }
-                    ],
-                }
+                { field: "_id", title: "Id", },
+                { field: "name", title: "Name" },
+                { field: "surName", title: "SurName" },
+                { field: "email", title: "Email" },
+                { field: "status", title: "Status" },
+                { field: "firmName", title: "FirmName" },
+                { field: "type", title: "Type" },
+                //{ field: "role", title: "Role", template: "#=  JSON.stringify(role) # " },
+                { field: "extra1", title: "Extra1" },
+                { field: "extra2", title: "Extra2" },
             ],
             height: "500px",
             pageable: {
