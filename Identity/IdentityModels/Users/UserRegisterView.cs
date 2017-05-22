@@ -8,6 +8,7 @@ namespace IdentityModels.Users
     public class UserRegisterView
     {
         public string ParentId { get; set; }
+        public List<string> RoleIdList { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string FirmCode { get; set; }

@@ -82,7 +82,7 @@ namespace Identity.Controllers1
                     error = "Bu mail adresi sistemimize kayıtlıdır.";
                     return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, "", error);
                 }
-
+                User tempUser = userRepo.GetById(jwt.UserId);
                 User user = new User();
                 user.ParentId = jwt.UserId;
                 user.Email = userView.Email;
@@ -93,7 +93,11 @@ namespace Identity.Controllers1
                 user.FirmLogo = userView.FirmLogo;
                 user.Status = statusRepo.GetByName("WaitingForApproval");
                 user.Role = new List<Role>();
-                user.Role.Add(roleRepo.GetByName("AppUser"));
+                //user.Role.Add(roleRepo.GetByName("AppUser"));
+
+                ////bu işlemi bir app user yapmaya çalışıyor ise kendi oluşturduğu rollerden üye ye atayabilir.
+                //if (tempUser.Role.Where(p => p.Name == "AppUser").Count() > 0)
+                //{ }
 
                 List<ValidationFailure> list = UserValidator.Check(user).ToList();
                 if (list.Count>0)
