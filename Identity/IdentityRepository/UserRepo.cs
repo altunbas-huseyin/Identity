@@ -49,8 +49,8 @@ namespace IdentityRepository
             userView.Email = user.Email;
             userView.Extra1 = user.Extra1;
             userView.Extra2 = user.Extra2;
-            userView.FirmCode = user.FirmCode;
-            userView.FirmLogo = user.FirmLogo;
+            userView.ProjectName = user.ProjectName;
+            userView.ProjectCode = user.ProjectCode;
             userView._id = user._id;
             userView.ProjectName = user.ProjectName;
             userView.Role = user.Role;
@@ -124,6 +124,7 @@ namespace IdentityRepository
             List<string> list = new List<string>();
             list.Add("PatrentId");
             list.Add("Email");
+            list.Add("ProjectCode");
             bool result = userRepository.AddUniqIndex(list.ToArray());
             return result;
         }

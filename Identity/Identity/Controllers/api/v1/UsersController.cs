@@ -89,8 +89,8 @@ namespace Identity.Controllers1
                 user.Password = Encripty.EncryptString(userView.Password);
                 user.Name = userView.Name;
                 user.SurName = userView.SurName;
-                user.FirmCode = userView.FirmCode;
-                user.FirmLogo = userView.FirmLogo;
+                user.ProjectName = userView.ProjectName;
+                user.ProjectCode = userView.ProjectCode;
                 user.Status = statusRepo.GetByName("WaitingForApproval");
                 user.Role = new List<Role>();
                 //user.Role.Add(roleRepo.GetByName("AppUser"));

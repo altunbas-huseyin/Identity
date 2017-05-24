@@ -1,4 +1,7 @@
-1. Mongo DB docker da oluþturulur <br />
+IdentityAdmin projesi şu an için durduruldu çünkü gerek yok gibi duruyor.
+Yeni bir App user açılacağı zaman test projesi içinden aç ve yola devam edilecek zaman kaybına gerek yok.
+
+1. Mongo DB docker da oluşturulur <br />
 docker run --name mongo-server -p 27017:27017 -d mongo:2.4 --auth
 
 2. oluþturulan mongo-server içine admin olarak bağlanılır <br />
@@ -48,7 +51,7 @@ docker build -t identity-app .
 
 sonra tekrar identity container oluşturulur ve çalıştılır aşağıdaki komut ile.
 docker run --name=identity  -p 5000:5000 identity-app
-container durdurulup çalışturılabilir
+container durdurulup çalıştırılabilir
 docker stop identity
 docker start identity
 
