@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using IdentityModels.Users;
 using IdentityHelper;
+using IdentityModels.Roles;
 
 namespace IdentityTest
 {

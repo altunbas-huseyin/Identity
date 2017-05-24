@@ -14,6 +14,7 @@ using Identity.Filters;
 using IdentityModels.Users;
 using IdentityHelper;
 using FluentValidation.Results;
+using IdentityModels.Roles;
 
 namespace Identity.Controllers1
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace IdentityModels
+namespace IdentityModels.Roles
 {
     public class Role : EntityBase
     {

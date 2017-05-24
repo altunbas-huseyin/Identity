@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Identity.Filters;
 using IdentityRepository;
 using IdentityModels;
+using IdentityModels.Roles;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
