@@ -56,5 +56,11 @@ namespace IdentityRepository
             return roleList;
         }
 
+        public Role GetById(string UserId, string Id)
+        {
+            Role role = roleRepository.SearchFor(p => p._id == Id && p.UserId == UserId).First();
+            return role;
+        }
+
     }
 }
