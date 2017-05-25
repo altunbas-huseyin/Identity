@@ -95,6 +95,7 @@ namespace IdentityTest
             if (userRepo.GetByEmail("altunbas.huseyin@gmail.com") == null)
             {
                 User user = new User();
+                user._id = "1c823a7d-7475-4c09-ad13-3b94a53ca943";
                 user.Email = "altunbas.huseyin@gmail.com";
                 user.ParentId = "00000000-0000-0000-0000-000000000000";
                 user.Password = "1111";
