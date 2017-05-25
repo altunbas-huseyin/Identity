@@ -33,6 +33,24 @@ namespace IdentityRepository
             return userUpdateResult;
         }
 
+        public bool UserRemoveRole(string ParentId, string UserId, string RoleId)
+        {
+
+            User user = userRepo.GetById(ParentId, UserId);
+            if (user == null)
+            { return false; }
+
+            bool resultIsAdded = IsAddedRole(user, RoleId);
+            if (resultIsAdded)
+            {
+                Role role = user.Role.Where(p => p._id == RoleId).First();
+                user.Role.Remove(role);
+                return userRepo.Update(user);
+            }
+
+            return false;
+        }
+
         public bool IsAddedRole(User user, string RoleId)
         {
             Role role = user.Role.Where(p => p._id == RoleId).First();
