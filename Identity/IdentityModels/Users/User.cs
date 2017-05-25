@@ -9,6 +9,7 @@ namespace IdentityModels.Users
 {
     public class User : EntityBase
     {
+        public string ParentId { get; set; } = "00000000-0000-0000-0000-000000000000";
         public string ProjectName { get; set; }
         public string ProjectCode { get; set; }
         public List<Role> Role { get; set; }

@@ -11,7 +11,6 @@ namespace IdentityModels
     {
         [BsonId]
         public string _id { get; set; }
-        public string ParentId { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
         public Status Status { get; set; }
@@ -19,7 +18,7 @@ namespace IdentityModels
         public EntityBase()
         {
             this._id = Guid.NewGuid().ToString();
-            this.ParentId = Guid.Parse("00000000-0000-0000-0000-000000000000").ToString();
+           
         }
 
     }
