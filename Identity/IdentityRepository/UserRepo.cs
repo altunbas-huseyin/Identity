@@ -11,6 +11,7 @@ namespace IdentityRepository
     {
         private MongoDbRepository<User> userRepository = new MongoDbRepository<User>();
         private JwtRepo jwtRepo = new JwtRepo();
+        private UserConvertRepo _userConvertRepo = new UserConvertRepo();
         public string Add(User user)
         {
             user.Password = IdentityHelper.Encripty.EncryptString(user.Password);
@@ -32,33 +33,13 @@ namespace IdentityRepository
             User user = userRepository.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
             if (user != null)
             {
-                userView = this.UserToUserView(user);
+                userView = _userConvertRepo.UserToUserView(user);
                 userView.Jwt = jwtRepo.Add(user._id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(1));
             }
             else
             {
                 return userView;
             }
-
-            return userView;
-        }
-
-        public UserView UserToUserView(User user)
-        {
-            UserView userView = new UserView();
-            userView.Email = user.Email;
-            userView.Extra1 = user.Extra1;
-            userView.Extra2 = user.Extra2;
-            userView.ProjectName = user.ProjectName;
-            userView.ProjectCode = user.ProjectCode;
-            userView._id = user._id;
-            userView.ProjectName = user.ProjectName;
-            userView.Role = user.Role;
-            userView.Name = user.Name;
-            userView.SurName = user.SurName;
-            userView.UpdateDate = user.UpdateDate;
-            userView.ParentId = user.ParentId;
-            userView.Status = user.Status;
 
             return userView;
         }

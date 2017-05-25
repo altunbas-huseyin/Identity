@@ -26,8 +26,7 @@ namespace Identity.Controllers1
         private UserRepo userRepo = new UserRepo();
         private StatusRepo statusRepo = new StatusRepo();
         private RoleRepo roleRepo = new RoleRepo();
-        private string error = "";
-        private bool status = false;
+        private UserConvertRepo _userConvertRepo = new UserConvertRepo();
         Jwt jwt = new Jwt();
 
         // GET api/values
@@ -36,8 +35,8 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             List<User> userList = userRepo.Get(jwt.UserId);
-            status = true;
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, userList, error);
+            
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, userList, null);
         }
 
         public IEnumerable<User> Get(int take, int skip, IEnumerable<Sort> sort, Filter filter, IEnumerable<Aggregator> aggregates, IEnumerable<Sort> group)
@@ -78,12 +77,11 @@ namespace Identity.Controllers1
                 jwt = ViewBag.Jwt;
                 if (userRepo.GetByEmail(userView.Email) != null)
                 {
-                    status = false;
-                    error = "Bu mail adresi sistemimize kayıtlıdır.";
-                    return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, status, "", error);
+                    return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, false, null, "Bu mail adresi sistemimize kayıtlıdır.");
                 }
                 User tempUser = userRepo.GetById(jwt.UserId);
                 User user = new User();
+
                 user.ParentId = jwt.UserId;
                 user.Email = userView.Email;
                 user.Password = Encripty.EncryptString(userView.Password);
@@ -94,33 +92,72 @@ namespace Identity.Controllers1
                 user.Status = statusRepo.GetByName("WaitingForApproval");
                 user.Role = new List<Role>();
 
-                List<ValidationFailure> list = UserValidator.Check(user).ToList();
-                if (list.Count>0)
+                List<ValidationFailure> list = UserValidator.FieldValidate(user).ToList();
+                if (list.Count > 0)
                 {
-                    return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, null, list.ToString());
+                    return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, list.ToString());
                 }
 
                 userRepo.Add(user);
-                status = true;
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, user, error);
+
+                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, user, null);
             }
             catch (Exception ex)
             {
-                error = ex.Message;
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, null, error);
+                
+                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, ex.Message);
             }
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public CommonApiResponse Put([FromBody]UserUpdateView userUpdateView)
         {
+            jwt = ViewBag.Jwt;
+            User user = userRepo.GetById(jwt.UserId, userUpdateView._id);
+
+            if (user == null)
+            {
+                return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, false, null, "Üye bulunamadı");
+            }
+
+            user.Email = userUpdateView.Email;
+            user.Name = userUpdateView.Name;
+            user.SurName = userUpdateView.SurName;
+            user.FirmName = userUpdateView.FirmName;
+            user.Extra1 = userUpdateView.Extra1;
+            user.Extra2 = userUpdateView.Extra2;
+
+            bool result = userRepo.Update(user);
+            if (!result)
+            {
+                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "güncelleme esnasında hata oluştu.");
+            }
+
+            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, "Güncelleme başarılı", null);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public CommonApiResponse Delete(string Id)
         {
+            jwt = ViewBag.Jwt;
+            User user = userRepo.GetById(jwt.UserId, Id);
+            if (user == null)
+            {
+                return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, false, null, "Üye bulunamadı");
+            }
+
+            bool result = userRepo.Delete(user._id);
+            if (result)
+            {
+                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, "işlem başarılı", null);
+            }
+            else
+            {
+               
+                return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, false, null, "İşlem başarısız.");
+            }
         }
     }
 }

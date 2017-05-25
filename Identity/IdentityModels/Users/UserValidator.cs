@@ -39,7 +39,7 @@ namespace IdentityModels.Users
             }
         }
 
-        public static IList<ValidationFailure> Check(User user)
+        public static IList<ValidationFailure> FieldValidate(User user)
         {
             UserValidator validator = new UserValidator();
             ValidationResult results = validator.Validate(user);

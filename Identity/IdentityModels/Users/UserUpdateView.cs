@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace IdentityModels.Users
 {
-    public class UserRegisterView
+    public class UserUpdateView
     {
-        public List<string> RoleIdList { get; set; }
+        public string _id { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
-        public string ProjectName { get; set; }
-        public string ProjectCode { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }
         public string FirmName { get; set; }
