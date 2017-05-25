@@ -15,7 +15,7 @@ namespace IdentityRepository
             return roleRepository.Update(role);
         }
 
-        public bool Delete(string UserId,String Id)
+        public bool Delete(String Id)
         {
             Role role = new Role();
             role._id = Id;
@@ -46,8 +46,15 @@ namespace IdentityRepository
 
         public Role GetByName(string UserId, string Name)
         {
-            Role role = roleRepository.SearchFor(p => p.UserId==UserId && p.Name == Name).FirstOrDefault();
+            Role role = roleRepository.SearchFor(p => p.UserId == UserId && p.Name == Name).FirstOrDefault();
             return role;
         }
+
+        public List<Role> GetByUserId(string UserId)
+        {
+            List<Role> roleList = roleRepository.SearchFor(p => p.UserId == UserId).ToList();
+            return roleList;
+        }
+
     }
 }

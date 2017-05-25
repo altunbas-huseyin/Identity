@@ -21,7 +21,7 @@ namespace IdentityRepository
         public object nativequery()
         {
 
-           object rr = userRepository.NativeQuery();
+            object rr = userRepository.NativeQuery();
             return rr;
         }
 
