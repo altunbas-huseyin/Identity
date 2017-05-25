@@ -73,7 +73,6 @@ namespace Identity.Controllers1
         [HttpPost]
         public CommonApiResponse Post([FromBody]UserRegisterView userView)
         {
-
             try
             {
                 jwt = ViewBag.Jwt;
@@ -94,11 +93,6 @@ namespace Identity.Controllers1
                 user.ProjectCode = userView.ProjectCode;
                 user.Status = statusRepo.GetByName("WaitingForApproval");
                 user.Role = new List<Role>();
-                //user.Role.Add(roleRepo.GetByName("AppUser"));
-
-                ////bu işlemi bir app user yapmaya çalışıyor ise kendi oluşturduğu rollerden üye ye atayabilir.
-                //if (tempUser.Role.Where(p => p.Name == "AppUser").Count() > 0)
-                //{ }
 
                 List<ValidationFailure> list = UserValidator.Check(user).ToList();
                 if (list.Count>0)

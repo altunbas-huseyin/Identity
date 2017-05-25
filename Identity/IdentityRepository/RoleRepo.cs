@@ -15,7 +15,7 @@ namespace IdentityRepository
             return roleRepository.Update(role);
         }
 
-        public bool Delete(String Id)
+        public bool Delete(string UserId,String Id)
         {
             Role role = new Role();
             role._id = Id;
@@ -36,7 +36,11 @@ namespace IdentityRepository
 
         public bool AddUniqIndex()
         {
-            bool result = roleRepository.AddUniqIndex("Name");
+            List<string> list = new List<string>();
+            list.Add("UserId");
+            list.Add("Name");
+
+            bool result = roleRepository.AddUniqIndex(list.ToArray());
             return true;
         }
 
