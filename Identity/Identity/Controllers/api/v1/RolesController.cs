@@ -94,7 +94,6 @@ namespace Identity.Controllers1
             jwt = ViewBag.Jwt;
             Role role = roleRepo.GetById(jwt.UserId, Id);
             return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, role, null);
-            
         }
     }
 }

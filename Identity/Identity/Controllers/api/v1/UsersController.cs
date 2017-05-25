@@ -152,7 +152,6 @@ namespace Identity.Controllers1
             }
             else
             {
-               
                 return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, false, null, "İşlem başarısız.");
             }
         }
