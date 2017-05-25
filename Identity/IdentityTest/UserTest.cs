@@ -29,7 +29,7 @@ namespace IdentityTest
         public void AddUser()
         {
             Status status = statusRepo.GetByName("Active");
-            Role role = roleRepo.GetByName("AppUser");
+            Role role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", "AppUser");
             Assert.AreNotEqual(role, null);
 
             if (userRepo.GetByEmail("ee@tt.com") == null)
@@ -59,7 +59,7 @@ namespace IdentityTest
         public void UserLifeCycle()
         {
             Status status = statusRepo.GetByName("Active");
-            Role role = roleRepo.GetByName("AppUser");
+            Role role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943","AppUser");
 
             Assert.AreNotEqual(status, null);
             Assert.AreNotEqual(role, null);
@@ -88,7 +88,7 @@ namespace IdentityTest
         [TestMethod]
         public void AddSystemUser()
         {
-            Role role = roleRepo.GetByName("SystemAdmin");
+            Role role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", "SystemAdmin");
             Assert.AreNotEqual(role, null);
 
             Status status = statusRepo.GetByName("Active");

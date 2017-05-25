@@ -27,13 +27,13 @@ namespace IdentityTest
             Role roleAppAdmin = new Role { _id = "57daa98a-3c56-4f0e-9247-3a07ac1b4c08", UserId = "1c823a7d-7475-4c09-ad13-3b94a53ca943", Name = "AppAdmin", Description = "X isimli bir proje üyelerinin yönetilebileceği bir hesap." };
             Role roleAppUser = new Role { _id = "44211fbb-ed8a-405d-a639-9919f5fbbb3e", UserId = "1c823a7d-7475-4c09-ad13-3b94a53ca943", Name = "AppUser", Description = "Herhangi bir AppAdmin kullanıcısının oluşturduğu kullanıcılar." };
 
-            if (roleRepo.GetByName("SystemAdmin") == null)
+            if (roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", "SystemAdmin") == null)
                 roleRepo.Insert(roleSystemAdmin);
 
-            if (roleRepo.GetByName("AppAdmin") == null)
+            if (roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", "AppAdmin") == null)
                 roleRepo.Insert(roleAppAdmin);
 
-            if (roleRepo.GetByName("AppUser") == null)
+            if (roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", "AppUser") == null)
                 roleRepo.Insert(roleAppUser);
 
         }

@@ -25,7 +25,7 @@ namespace IdentityRepository
 
         public bool Insert(Role role)
         {
-            Role _role = this.GetByName(role.Name);
+            Role _role = this.GetByName(role.UserId, role.Name);
             if (_role == null)
             {
                 roleRepository.Insert(role);
@@ -44,9 +44,9 @@ namespace IdentityRepository
             return true;
         }
 
-        public Role GetByName(string Name)
+        public Role GetByName(string UserId, string Name)
         {
-            Role role = roleRepository.SearchFor(p => p.Name == Name).FirstOrDefault();
+            Role role = roleRepository.SearchFor(p => p.UserId==UserId && p.Name == Name).FirstOrDefault();
             return role;
         }
     }
