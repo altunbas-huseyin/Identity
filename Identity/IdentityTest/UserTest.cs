@@ -66,8 +66,8 @@ namespace IdentityTest
         [TestMethod]
         public void DeleteUser()
         {
-            //bool result = userRepo.Delete(user._id);
-            //Assert.AreEqual(result, true);
+            bool result = userRepo.Delete(user._id);
+            Assert.AreEqual(result, true);
 
         }
 

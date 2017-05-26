@@ -86,7 +86,6 @@ public class MongoDbRepository<TEntity> :
     public bool Delete(TEntity entity)
     {
         return collection.Remove(Query.EQ("_id", entity._id)).DocumentsAffected > 0;
-        
     }
 
     public IList<TEntity>
