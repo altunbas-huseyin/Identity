@@ -19,8 +19,6 @@
 
 
 <script>
-   
-
     window.onload = function ()
     {
         RunKendo();
@@ -90,7 +88,7 @@
         });
         $("#grid1").kendoGrid({
             dataSource: dataSource,
-            editable: "inline",
+            //editable: "inline",
             toolbar: ["create"],
             columns: [
                 { field: "_id", title: "Id", },
@@ -98,8 +96,7 @@
                 { field: "surName", title: "SurName" },
                 { field: "email", title: "Email" },
                 { field: "status", title: "Status" },
-                { field: "firmName", title: "FirmName" },
-                { field: "type", title: "Type" },
+                { field: "role", title: "Role" },
                 //{ field: "role", title: "Role", template: "#=  JSON.stringify(role) # " },
                 { field: "extra1", title: "Extra1" },
                 { field: "extra2", title: "Extra2" },
