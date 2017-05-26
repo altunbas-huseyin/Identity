@@ -8,8 +8,8 @@ namespace IdentityModels
 {
     public class RolePermission : EntityBase
     {
-
-        public Guid PermissionId { get; set; }
-        public Guid RoleId { get; set; }
+        public string UserId { get; set; }
+        public string PermissionId { get; set; }
+        public string RoleId { get; set; }
     }
 }
