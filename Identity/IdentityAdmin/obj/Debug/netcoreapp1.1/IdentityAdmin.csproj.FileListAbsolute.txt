@@ -3,7 +3,7 @@ C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityAdmin\bin\Debug\ne
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityAdmin\bin\Debug\netcoreapp1.1\IdentityAdmin.runtimeconfig.dev.json
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityAdmin\bin\Debug\netcoreapp1.1\IdentityAdmin.dll
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityAdmin\bin\Debug\netcoreapp1.1\IdentityAdmin.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityAdmin\obj\Debug\netcoreapp1.1\IdentityAdmin.csprojResolveAssemblyReference.cache
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityAdmin\obj\Debug\netcoreapp1.1\IdentityAdmin.AssemblyInfo.cs
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityAdmin\obj\Debug\netcoreapp1.1\IdentityAdmin.dll
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityAdmin\obj\Debug\netcoreapp1.1\IdentityAdmin.pdb
-C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityAdmin\obj\Debug\netcoreapp1.1\IdentityAdmin.csprojResolveAssemblyReference.cache

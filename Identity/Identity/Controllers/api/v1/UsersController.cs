@@ -85,8 +85,6 @@ namespace Identity.Controllers1
                 user.Password = Encripty.EncryptString(userView.Password);
                 user.Name = userView.Name;
                 user.SurName = userView.SurName;
-                user.ProjectName = userView.ProjectName;
-                user.ProjectCode = userView.ProjectCode;
                 user.Status = statusRepo.GetByName("WaitingForApproval");
                 user.Role = new List<Role>();
 
@@ -121,7 +119,6 @@ namespace Identity.Controllers1
             user.Email = userUpdateView.Email;
             user.Name = userUpdateView.Name;
             user.SurName = userUpdateView.SurName;
-            user.FirmName = userUpdateView.FirmName;
             user.Extra1 = userUpdateView.Extra1;
             user.Extra2 = userUpdateView.Extra2;
 

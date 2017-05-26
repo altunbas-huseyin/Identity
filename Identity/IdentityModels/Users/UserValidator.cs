@@ -16,11 +16,6 @@ namespace IdentityModels.Users
             RuleFor(p => p.SurName).NotEmpty().WithMessage("Lütfen soyadınızı giriniz.");
             RuleFor(p => p.SurName).Length(2, 100).WithMessage("Soyad alanını kontrol ediniz");
 
-
-            RuleFor(p => p.ProjectCode).NotEmpty().WithMessage("Proje kodu boş geçilemez.");
-            RuleFor(p => p.ProjectCode).Length(2, 100).WithMessage("Proje kodu alanı 4 ila 20 karakter arasında olmalıdır.");
-
-
             RuleFor(p => p.Password).Length(4, 20).WithMessage("Şifreniz 4 ila 20 karakter olmalıdır.");
 
             RuleFor(p => p.ParentId).Must(ParentId).WithMessage("ParentId alanını kontrol ediniz.");

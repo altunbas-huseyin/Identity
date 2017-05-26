@@ -10,7 +10,6 @@ namespace IdentityModels.Users
         public string Email { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }
-        public string FirmName { get; set; }
         public dynamic Extra1 { get; set; }
         public dynamic Extra2 { get; set; }
     }

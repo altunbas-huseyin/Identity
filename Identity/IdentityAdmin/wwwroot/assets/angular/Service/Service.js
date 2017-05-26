@@ -42,7 +42,7 @@ app.factory('authService', ['$http', function ($http, $location) {
             Password: loginData.Password
         };
 
-        var result = $http.post(apiUrl + '/api/Login', JSON.stringify(dataJSON),
+        var result = $http.post(apiUrl + 'api/Login', JSON.stringify(dataJSON),
             {
                 headers: { 'Content-Type': 'application/json; charset=utf-8' }
 
