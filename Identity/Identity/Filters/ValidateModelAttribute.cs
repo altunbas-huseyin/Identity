@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityModels.Users;
+using IdentityModels.Roles;
 
 namespace Identity.Filters
 {
@@ -16,7 +17,7 @@ namespace Identity.Filters
         JwtRepo jwtRepo = new JwtRepo();
         UserRepo userRepo = new UserRepo();
         RoleRepo roleRepo = new RoleRepo();
-        List<string> Role = new List<string>();
+        List<string> requiredRoleList = new List<string>();
 
         Microsoft.Extensions.Primitives.StringValues _Token = "";
         bool IsAcces = false;
@@ -26,7 +27,7 @@ namespace Identity.Filters
         }
         public ValidateModelAttribute(string _role)
         {
-            Role = _role.Split(new char[] { ',' }).ToList();
+            requiredRoleList = _role.Split(new char[] { ',' }).ToList();
         }
         public override void OnActionExecuting(ActionExecutingContext context)
         {
@@ -74,13 +75,19 @@ namespace Identity.Filters
                         context.Result = badReq;
                         return;
                     }
-                    if (Role.Count > 0)
+
+                    if (requiredRoleList.Count > 0)
                     {
-                        foreach (string item in Role)
+                        foreach (string requiredRoleName in requiredRoleList)
                         {
-                            if (user.Role.Where(p => p.Name == item).Count() > 0)
+                            foreach (var userRole in user.Role)
                             {
-                                IsAcces = true;
+                                if (requiredRoleName == userRole.Name)
+                                {
+                                    Role _role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", requiredRoleName);
+                                    if (_role != null)
+                                    { IsAcces = true; break; }
+                                }
                             }
                         }
                         if (!IsAcces)
