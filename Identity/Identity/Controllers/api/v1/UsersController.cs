@@ -57,16 +57,16 @@ namespace Identity.Controllers1
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public CommonApiResponse Get(string id)
+        [HttpGet("{Id}")]
+        public CommonApiResponse Get(string Id)
         {
             jwt = ViewBag.Jwt;
-            User user = userRepo.GetById(jwt.UserId, id);
+            User user = userRepo.GetById(jwt.UserId, Id);
             return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, user, null);
         }
 
         // POST api/values
-        [ValidateModel("SystemAdmin, AppAdmin")]
+        [ValidateModel("SystemAdmin,AppAdmin")]
         [HttpPost]
         public CommonApiResponse Post([FromBody]UserRegisterView userView)
         {
