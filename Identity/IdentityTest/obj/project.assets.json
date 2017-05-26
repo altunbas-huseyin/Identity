@@ -1644,16 +1644,16 @@
           "build/netcoreapp1.0/Microsoft.Net.Test.Sdk.targets": {}
         }
       },
-      "Microsoft.NETCore.App/1.0.4": {
+      "Microsoft.NETCore.App/1.0.5": {
         "type": "package",
         "dependencies": {
           "Libuv": "1.9.1",
           "Microsoft.CSharp": "4.0.1",
           "Microsoft.CodeAnalysis.CSharp": "1.3.0",
           "Microsoft.CodeAnalysis.VisualBasic": "1.3.0",
-          "Microsoft.NETCore.DotNetHostPolicy": "1.0.3",
+          "Microsoft.NETCore.DotNetHostPolicy": "1.0.5",
           "Microsoft.NETCore.Platforms": "1.0.2",
-          "Microsoft.NETCore.Runtime.CoreCLR": "1.0.6",
+          "Microsoft.NETCore.Runtime.CoreCLR": "1.0.7",
           "Microsoft.VisualBasic": "10.0.1",
           "NETStandard.Library": "1.6.0",
           "System.Buffers": "4.0.0",
@@ -1670,10 +1670,10 @@
           "System.Linq.Expressions": "4.1.1",
           "System.Linq.Parallel": "4.0.1",
           "System.Linq.Queryable": "4.0.1",
-          "System.Net.Http": "4.1.1",
+          "System.Net.Http": "4.1.2",
           "System.Net.NameResolution": "4.0.0",
           "System.Net.Requests": "4.0.11",
-          "System.Net.Security": "4.0.0",
+          "System.Net.Security": "4.0.1",
           "System.Net.WebHeaderCollection": "4.0.1",
           "System.Numerics.Vectors": "4.1.1",
           "System.Reflection.DispatchProxy": "4.0.1",
@@ -1689,7 +1689,8 @@
           "System.Threading.Tasks.Extensions": "4.0.0",
           "System.Threading.Tasks.Parallel": "4.0.1",
           "System.Threading.Thread": "4.0.0",
-          "System.Threading.ThreadPool": "4.0.10"
+          "System.Threading.ThreadPool": "4.0.10",
+          "runtime.native.System.Security.Cryptography": "4.0.1"
         },
         "compile": {
           "lib/netcoreapp1.0/_._": {}
@@ -1701,7 +1702,7 @@
       "Microsoft.NETCore.DotNetHost/1.0.1": {
         "type": "package"
       },
-      "Microsoft.NETCore.DotNetHostPolicy/1.0.3": {
+      "Microsoft.NETCore.DotNetHostPolicy/1.0.5": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.DotNetHostResolver": "1.0.1"
@@ -1713,7 +1714,7 @@
           "Microsoft.NETCore.DotNetHost": "1.0.1"
         }
       },
-      "Microsoft.NETCore.Jit/1.0.6": {
+      "Microsoft.NETCore.Jit/1.0.7": {
         "type": "package"
       },
       "Microsoft.NETCore.Platforms/1.1.0": {
@@ -1725,10 +1726,10 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.Runtime.CoreCLR/1.0.6": {
+      "Microsoft.NETCore.Runtime.CoreCLR/1.0.7": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Jit": "1.0.6",
+          "Microsoft.NETCore.Jit": "1.0.7",
           "Microsoft.NETCore.Windows.ApiSets": "1.0.1"
         }
       },
@@ -2446,6 +2447,19 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        }
+      },
+      "runtime.native.System.Security.Cryptography/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.2",
+          "Microsoft.NETCore.Targets": "1.0.3"
         },
         "compile": {
           "lib/netstandard1.0/_._": {}
@@ -4760,12 +4774,18 @@
           "Microsoft.Data.OData": "5.8.2",
           "Microsoft.Extensions.Configuration.Abstractions": "1.1.2",
           "Microsoft.Extensions.Logging.Debug": "1.1.2",
-          "Microsoft.NETCore.App": "1.0.4",
+          "Microsoft.NETCore.App": "1.0.5",
           "Microsoft.OData.Core": "7.2.0",
           "Microsoft.OData.Edm": "7.2.0",
           "Microsoft.Spatial": "7.2.0",
           "MongoDbRepository": "1.0.0",
           "System.Linq.Queryable": "4.3.0"
+        },
+        "compile": {
+          "bin/placeholder/netcoreapp1.0/Identity.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/netcoreapp1.0/Identity.dll": {}
         }
       },
       "IdentityConfig/1.0.0": {
@@ -4783,7 +4803,13 @@
           "Microsoft.Extensions.DependencyInjection": "1.1.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.1",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.2",
-          "Microsoft.NETCore.App": "1.0.4"
+          "Microsoft.NETCore.App": "1.0.5"
+        },
+        "compile": {
+          "bin/placeholder/netcoreapp1.0/IdentityConfig.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/netcoreapp1.0/IdentityConfig.dll": {}
         }
       },
       "IdentityHelper/1.0.0": {
@@ -4792,7 +4818,13 @@
         "dependencies": {
           "MailKit": "1.16.1",
           "Microsoft.AspNetCore.DataProtection": "1.1.2",
-          "Microsoft.NETCore.App": "1.0.4"
+          "Microsoft.NETCore.App": "1.0.5"
+        },
+        "compile": {
+          "bin/placeholder/netcoreapp1.0/IdentityHelper.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/netcoreapp1.0/IdentityHelper.dll": {}
         }
       },
       "IdentityModels/1.0.0": {
@@ -4800,8 +4832,14 @@
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "FluentValidation.AspNetCore": "7.0.0",
-          "Microsoft.NETCore.App": "1.0.4",
+          "Microsoft.NETCore.App": "1.0.5",
           "mongocsharpdriver": "2.4.3"
+        },
+        "compile": {
+          "bin/placeholder/netcoreapp1.0/IdentityModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/netcoreapp1.0/IdentityModels.dll": {}
         }
       },
       "IdentityRepository/1.0.0": {
@@ -4809,8 +4847,14 @@
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "IdentityHelper": "1.0.0",
-          "Microsoft.NETCore.App": "1.0.4",
+          "Microsoft.NETCore.App": "1.0.5",
           "MongoDbRepository": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/netcoreapp1.0/IdentityRepository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/netcoreapp1.0/IdentityRepository.dll": {}
         }
       },
       "MongoDbRepository/1.0.0": {
@@ -4819,8 +4863,14 @@
         "dependencies": {
           "IdentityConfig": "1.0.0",
           "IdentityModels": "1.0.0",
-          "Microsoft.NETCore.App": "1.0.4",
+          "Microsoft.NETCore.App": "1.0.5",
           "mongocsharpdriver": "2.4.3"
+        },
+        "compile": {
+          "bin/placeholder/netcoreapp1.0/MongoDbRepository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/netcoreapp1.0/MongoDbRepository.dll": {}
         }
       }
     }
@@ -6230,15 +6280,15 @@
         "microsoft.net.test.sdk.nuspec"
       ]
     },
-    "Microsoft.NETCore.App/1.0.4": {
-      "sha512": "4XIOd4F9xV6gTalmKVW5bO24LhHTi7FA+UpscU1tQKMe778Q444TmrYgHdvUVJEFJZjanEZdZBROKU+Jc9YyWQ==",
+    "Microsoft.NETCore.App/1.0.5": {
+      "sha512": "fJwYrYqOcPSpsAxWpFh31/zAeDSwkQoF9U/tdSzkTQ3z16jVdEYfLkOY6tfLYUApnqCXmRvjUeoST0J0Y/Lvsw==",
       "type": "package",
-      "path": "microsoft.netcore.app/1.0.4",
+      "path": "microsoft.netcore.app/1.0.5",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netcoreapp1.0/_._",
-        "microsoft.netcore.app.1.0.4.nupkg.sha512",
+        "microsoft.netcore.app.1.0.5.nupkg.sha512",
         "microsoft.netcore.app.nuspec"
       ]
     },
@@ -6254,14 +6304,14 @@
         "runtime.json"
       ]
     },
-    "Microsoft.NETCore.DotNetHostPolicy/1.0.3": {
-      "sha512": "emPcHCi96pF2Rqkmya+oqPKVhokXb1VE4ZwtsUNrW5Hn3/ClGJN7wOsi7xvuNurR1JGZd2hQFwDUUjJqW1cunA==",
+    "Microsoft.NETCore.DotNetHostPolicy/1.0.5": {
+      "sha512": "CnzTCV0zsK3//viy0jsTVm21DToJlsIxRAR7VhxOvyQEvh09fzUNKo5DzmoC++uE8E7IqppUpKicES4Tc2QwgA==",
       "type": "package",
-      "path": "microsoft.netcore.dotnethostpolicy/1.0.3",
+      "path": "microsoft.netcore.dotnethostpolicy/1.0.5",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
-        "microsoft.netcore.dotnethostpolicy.1.0.3.nupkg.sha512",
+        "microsoft.netcore.dotnethostpolicy.1.0.5.nupkg.sha512",
         "microsoft.netcore.dotnethostpolicy.nuspec",
         "runtime.json"
       ]
@@ -6278,14 +6328,14 @@
         "runtime.json"
       ]
     },
-    "Microsoft.NETCore.Jit/1.0.6": {
-      "sha512": "jwa1SyM4DYR0PNSXoTW01e33WLeti1Ub3e29D8e9NoVjSbVTcfbLzgimQzN7YAo60xZv+nc7xVxPe5UjxNnBSg==",
+    "Microsoft.NETCore.Jit/1.0.7": {
+      "sha512": "XNKeqaGxSzxLNzkCzZp6y1Z77e/+NrooBlO2i9io9NY6F+faxjdCzH0REe3Hub9aobla7/xREVqxPw2UwfGNkg==",
       "type": "package",
-      "path": "microsoft.netcore.jit/1.0.6",
+      "path": "microsoft.netcore.jit/1.0.7",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
-        "microsoft.netcore.jit.1.0.6.nupkg.sha512",
+        "microsoft.netcore.jit.1.0.7.nupkg.sha512",
         "microsoft.netcore.jit.nuspec",
         "runtime.json"
       ]
@@ -6303,14 +6353,14 @@
         "runtime.json"
       ]
     },
-    "Microsoft.NETCore.Runtime.CoreCLR/1.0.6": {
-      "sha512": "FQRXbnO3Y1YxxIbFtGtMWDShWT070GJtzOvSKY0z2ylP7njHSUVt5cI99Ij1eIWR0pVN3mrLLWpY1joJkDddQA==",
+    "Microsoft.NETCore.Runtime.CoreCLR/1.0.7": {
+      "sha512": "T/Vdcl2OVdfHvOm2rOnqMyQV+BeH+uzjnaY+uC5f73rEe7FyInru5pU8wMcj32eUL0aa+itvO19dCFoJ+ONEkA==",
       "type": "package",
-      "path": "microsoft.netcore.runtime.coreclr/1.0.6",
+      "path": "microsoft.netcore.runtime.coreclr/1.0.7",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
-        "microsoft.netcore.runtime.coreclr.1.0.6.nupkg.sha512",
+        "microsoft.netcore.runtime.coreclr.1.0.7.nupkg.sha512",
         "microsoft.netcore.runtime.coreclr.nuspec",
         "runtime.json"
       ]
@@ -7046,6 +7096,18 @@
         "lib/netstandard1.0/_._",
         "runtime.native.System.Net.Security.4.3.0.nupkg.sha512",
         "runtime.native.System.Net.Security.nuspec"
+      ]
+    },
+    "runtime.native.System.Security.Cryptography/4.0.1": {
+      "sha512": "qI+Fpzceafwgsf51cUToBZH565X7bzOBBbnkNcflfHP0pCdxtVzcBBP4U6NjFo3s/w0UvSUAf1vTBSZcPWLbrw==",
+      "type": "package",
+      "path": "runtime.native.system.security.cryptography/4.0.1",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/netstandard1.0/_._",
+        "runtime.native.system.security.cryptography.4.0.1.nupkg.sha512",
+        "runtime.native.system.security.cryptography.nuspec"
       ]
     },
     "runtime.native.System.Security.Cryptography.Apple/4.3.0": {
@@ -12374,7 +12436,7 @@
       "MSTest.TestAdapter >= 1.1.17",
       "MSTest.TestFramework >= 1.1.17",
       "Microsoft.NET.Test.Sdk >= 15.0.0",
-      "Microsoft.NETCore.App >= 1.0.4"
+      "Microsoft.NETCore.App >= 1.0.5"
     ]
   },
   "packageFolders": {
@@ -12391,14 +12453,17 @@
       "originalTargetFrameworks": [
         "netcoreapp1.0"
       ],
+      "files": {
+        "lib/netcoreapp1.0/IdentityTest.dll": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityTest\\bin\\placeholder\\netcoreapp1.0\\IdentityTest.dll"
+      },
       "frameworks": {
         "netcoreapp1.0": {
           "projectReferences": {
-            "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityModels\\IdentityModels.csproj": {
-              "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityModels\\IdentityModels.csproj"
-            },
             "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityHelper\\IdentityHelper.csproj": {
               "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityHelper\\IdentityHelper.csproj"
+            },
+            "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityModels\\IdentityModels.csproj": {
+              "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\IdentityModels\\IdentityModels.csproj"
             },
             "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Identity\\Identity.csproj": {
               "projectPath": "C:\\Users\\haltunbas\\Documents\\GitHub\\Identity\\Identity\\Identity\\Identity.csproj"
@@ -12410,22 +12475,21 @@
     "frameworks": {
       "netcoreapp1.0": {
         "dependencies": {
-          "MSTest.TestFramework": {
+          "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "1.1.17"
+            "version": "1.0.5"
+          },
+          "Microsoft.NET.Test.Sdk": {
+            "target": "Package",
+            "version": "15.0.0"
           },
           "MSTest.TestAdapter": {
             "target": "Package",
             "version": "1.1.17"
           },
-          "Microsoft.NETCore.App": {
+          "MSTest.TestFramework": {
             "target": "Package",
-            "version": "1.0.4",
-            "autoReferenced": true
-          },
-          "Microsoft.NET.Test.Sdk": {
-            "target": "Package",
-            "version": "15.0.0"
+            "version": "1.1.17"
           }
         }
       }

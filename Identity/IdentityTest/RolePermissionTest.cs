@@ -8,14 +8,14 @@ using System.Text;
 namespace IdentityTest
 {
     [TestClass]
-    public class PermissionTest
+    public class RolePermissionTest
     {
-        PermissionRepo permissionRepo = new PermissionRepo();
-        Permission permission = new Permission();
+        RolePermissionRepo permissionRepo = new RolePermissionRepo();
+        RolePermission permission = new RolePermission();
 
-        public PermissionTest()
+        public RolePermissionTest()
         {
-            permission = new Permission { UserId = "11127a7e-eb62-442b-b0dd-05cc0102ebc1", _id= "11127a7e-eb62-442b-b0dd-05cc0102ebc1", Name = "Test", Description = "Test" };
+            permission = new RolePermission { UserId = "11127a7e-eb62-442b-b0dd-05cc0102ebc1", _id= "11127a7e-eb62-442b-b0dd-05cc0102ebc1", PermissionId= "11127a7e-eb62-442b-b0dd-05cc0102ebc1", RoleId= "11127a7e-eb62-442b-b0dd-05cc0102ebc1" };
         }
 
         [TestMethod]
