@@ -8,6 +8,8 @@ using System.Text;
 using IdentityModels.Users;
 using IdentityHelper;
 using IdentityModels.Roles;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http;
 
 namespace IdentityTest
 {
@@ -64,11 +66,9 @@ namespace IdentityTest
         }
 
         [TestMethod]
-        public void DeleteUser()
+        public void UserAddJwt()
         {
-            bool result = userRepo.Delete(user._id);
-            Assert.AreEqual(result, true);
-
+            Jwt jwt = jwtRepo.Add(user._id, Guid.NewGuid().ToString(), DateTime.Now.AddDays(5));
         }
 
         [TestMethod]
@@ -108,9 +108,15 @@ namespace IdentityTest
         [TestMethod]
         public void Login()
         {
-            // Identity.Controllers1.lo userController = new Identity.Controllers1.LoginController();
-            // var result = userController.Login("altunbas.huseyin@gmail.com", "Web+webmercek");
-            //Assert.AreEqual("fooview", result.ViewName);
+            Jwt jwt = jwtRepo.GetByUserId(user._id.ToString());
+            Identity.Controllers1.LoginController userController = new Identity.Controllers1.LoginController();
+
+            userController.HttpContext.Items.Add("Token", jwt.Token);
+
+
+            UserLoginView userLoginView = new UserLoginView { Email = "altunbas.huseyin@gmail.com", Password = "Web+webmercek" };
+            var result = userController.Post(userLoginView);
+            Assert.AreEqual(true, result.Status);
         }
 
         //[TestMethod]
@@ -125,6 +131,15 @@ namespace IdentityTest
         //
         //     var result = userController.Post(_user);
         // }
+
+
+        [TestMethod]
+        public void DeleteUser()
+        {
+            bool result = userRepo.Delete(user._id);
+            Assert.AreEqual(result, true);
+
+        }
 
     }
 }
