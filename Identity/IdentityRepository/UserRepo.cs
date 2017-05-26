@@ -12,11 +12,11 @@ namespace IdentityRepository
         private MongoDbRepository<User> userRepository = new MongoDbRepository<User>();
         private JwtRepo jwtRepo = new JwtRepo();
         private UserConvertRepo _userConvertRepo = new UserConvertRepo();
-        public string Add(User user)
+        public bool Add(User user)
         {
             user.Password = IdentityHelper.Encripty.EncryptString(user.Password);
-            userRepository.Insert(user);
-            return user._id;
+           return userRepository.Insert(user);
+            
         }
 
         public object nativequery()

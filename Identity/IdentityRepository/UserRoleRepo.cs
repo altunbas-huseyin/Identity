@@ -35,7 +35,6 @@ namespace IdentityRepository
 
         public bool UserRemoveRole(string ParentId, string UserId, string RoleId)
         {
-
             User user = userRepo.GetById(ParentId, UserId);
             if (user == null)
             { return false; }

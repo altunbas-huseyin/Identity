@@ -14,74 +14,67 @@ namespace IdentityTest
     [TestClass]
     public class UserTest
     {
-
         UserRepo userRepo = new UserRepo();
         RoleRepo roleRepo = new RoleRepo();
         JwtRepo jwtRepo = new JwtRepo();
         StatusRepo statusRepo = new StatusRepo();
 
+        private User user = null;
+
+        public UserTest()
+        {
+            Status status = statusRepo.GetByName("Active");
+            Role role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", "AppUser");
+
+            user = new User();
+            user._id = "bra6b053-f21b-4304-8844-93f073465630";
+            user.Email = "test@test.com";
+            user.Password = "1111";
+            user.Name = "Hüseyin";
+            user.SurName = "Altunbaş";
+            user.Status = status.Status;
+            user.Role = new List<Role>();
+            user.Role.Add(role);
+        }
+
+        [TestMethod]
+        public void AddUniqIndex()
+        {
+            bool result = userRepo.AddUniqIndex();
+            Assert.AreEqual(result, true);
+        }
+
         [TestMethod]
         public void nativeQuery()
         {
-          object y=  userRepo.nativequery();
+            object y = userRepo.nativequery();
         }
         [TestMethod]
         public void AddUser()
         {
-            Status status = statusRepo.GetByName("Active");
-            Role role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", "AppUser");
-            Assert.AreNotEqual(role, null);
-
-            if (userRepo.GetByEmail("ee@tt.com") == null)
-            {
-                User user = new User();
-                user.Email = "ee@tt.com";
-                user.Password = "1111";
-                user.Name = "Hüseyin";
-                user.SurName = "Altunbaş";
-                user.Status = status.Status;
-                user.Role = new List<Role>();
-                user.Role.Add(role);
-
-                userRepo.Add(user);
-            }
-
+            bool result = userRepo.Add(user);
+            Assert.AreEqual(result, true);
         }
 
         [TestMethod]
         public void LoginByEmail()
         {
-            UserView user = userRepo.LoginByEmail("ee@tt.com", "1111");
+            UserView userView = userRepo.LoginByEmail(user.Email, user.Password);
+            Assert.AreNotEqual(userView, null);
+        }
+
+        [TestMethod]
+        public void DeleteUser()
+        {
+            bool result = userRepo.Delete(user._id);
+            Assert.AreEqual(result, true);
 
         }
 
         [TestMethod]
-        public void UserLifeCycle()
+        public void UserJwtTest()
         {
-            Status status = statusRepo.GetByName("Active");
-            Role role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943","AppUser");
-
-            Assert.AreNotEqual(status, null);
-            Assert.AreNotEqual(role, null);
-
-            string email = "test@" + Guid.NewGuid() + ".com";
-
-            User _user = new User();
-            //_user.ParentId = _user._id;
-            _user.Email = email;
-            _user.Password = "1111";
-            _user.Name = "Hüseyin";
-            _user.SurName = "Altunbaş";
-            _user.Status = status;
-            _user.Role = new List<Role>();
-            _user.Role.Add(role);
-           
-            userRepo.Add(_user);
-
-            UserView user = userRepo.LoginByEmail(email,"1111");
-            Assert.AreNotEqual(user, null);
-
-            Jwt jwt = jwtRepo.GetByUserId(_user._id.ToString());
+            Jwt jwt = jwtRepo.GetByUserId(user._id.ToString());
             Jwt jwtCheckToken = jwtRepo.CheckToken(jwt.Token);
         }
 
@@ -113,17 +106,10 @@ namespace IdentityTest
         }
 
         [TestMethod]
-        public void AddUniqIndex()
-        {
-            bool result = userRepo.AddUniqIndex();
-            Assert.AreEqual(result, true);
-        }
-
-        [TestMethod]
         public void Login()
         {
-           // Identity.Controllers1.lo userController = new Identity.Controllers1.LoginController();
-           // var result = userController.Login("altunbas.huseyin@gmail.com", "Web+webmercek");
+            // Identity.Controllers1.lo userController = new Identity.Controllers1.LoginController();
+            // var result = userController.Login("altunbas.huseyin@gmail.com", "Web+webmercek");
             //Assert.AreEqual("fooview", result.ViewName);
         }
 
