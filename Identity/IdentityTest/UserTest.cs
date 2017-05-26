@@ -10,6 +10,7 @@ using IdentityHelper;
 using IdentityModels.Roles;
 using Microsoft.AspNetCore.Http;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace IdentityTest
 {
@@ -110,13 +111,10 @@ namespace IdentityTest
         {
             Jwt jwt = jwtRepo.GetByUserId(user._id.ToString());
             Identity.Controllers1.LoginController userController = new Identity.Controllers1.LoginController();
+            UserView userView = userRepo.LoginByEmail(user.Email, user.Password);
 
-            userController.HttpContext.Items.Add("Token", jwt.Token);
+            Assert.AreNotEqual(userView, null);
 
-
-            UserLoginView userLoginView = new UserLoginView { Email = "altunbas.huseyin@gmail.com", Password = "Web+webmercek" };
-            var result = userController.Post(userLoginView);
-            Assert.AreEqual(true, result.Status);
         }
 
         //[TestMethod]
