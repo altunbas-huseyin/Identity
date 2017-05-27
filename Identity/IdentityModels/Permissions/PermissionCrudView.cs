@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace IdentityModels
+namespace IdentityModels.Permissions
 {
-    public class Permission : EntityBase
+    public class PermissionCrudView
     {
-        public string UserId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     }

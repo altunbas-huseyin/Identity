@@ -1,4 +1,5 @@
 ﻿using IdentityModels;
+using IdentityModels.Permissions;
 using IdentityRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

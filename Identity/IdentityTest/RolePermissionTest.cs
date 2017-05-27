@@ -15,7 +15,12 @@ namespace IdentityTest
 
         public RolePermissionTest()
         {
-            permission = new RolePermission { UserId = "11127a7e-eb62-442b-b0dd-05cc0102ebc1", _id= "11127a7e-eb62-442b-b0dd-05cc0102ebc1", PermissionId= "11127a7e-eb62-442b-b0dd-05cc0102ebc1", RoleId= "11127a7e-eb62-442b-b0dd-05cc0102ebc1" };
+            permission = new RolePermission();
+            permission._id = "11127a7e-eb62-442b-b0dd-05cc0102ebc1"; 
+            permission.OwnerId= "21127a7e-eb62-442b-b0dd-05cc0102ebc1"; //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
+            permission.UserId = "31127a7e-eb62-442b-b0dd-05cc0102ebc1";
+            permission.PermissionId = "41127a7e-eb62-442b-b0dd-05cc0102ebc1";
+            permission.RoleId = "51127a7e-eb62-442b-b0dd-05cc0102ebc1";
         }
 
         [TestMethod]

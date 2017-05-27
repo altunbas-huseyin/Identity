@@ -45,7 +45,7 @@
           "Microsoft.Data.OData": "5.8.2",
           "Microsoft.Extensions.Configuration.Abstractions": "1.1.2",
           "Microsoft.Extensions.Logging.Debug": "1.1.2",
-          "Microsoft.NETCore.App": "1.0.5",
+          "Microsoft.NETCore.App": "1.0.4",
           "Microsoft.OData.Core": "7.2.0",
           "Microsoft.OData.Edm": "7.2.0",
           "Microsoft.Spatial": "7.2.0",
@@ -733,7 +733,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Core": "1.1.3",
           "Microsoft.Extensions.DependencyInjection": "1.1.1",
-          "Microsoft.NETCore.App": "1.0.5",
+          "Microsoft.NETCore.App": "1.0.4",
           "Microsoft.OData.Core": "7.2.0",
           "Microsoft.OData.Edm": "7.2.0",
           "Microsoft.Spatial": "7.2.0"
@@ -1948,7 +1948,7 @@
       },
       "system.appdomain/2.0.11": {
         "dependencies": {
-          "Microsoft.NETCore.App": "1.0.5",
+          "Microsoft.NETCore.App": "1.0.4",
           "System.Linq": "4.3.0",
           "System.Linq.Expressions": "4.3.0",
           "System.Reflection": "4.3.0",
@@ -3585,7 +3585,7 @@
           "Microsoft.Extensions.DependencyInjection": "1.1.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.1",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.2",
-          "Microsoft.NETCore.App": "1.0.5"
+          "Microsoft.NETCore.App": "1.0.4"
         },
         "runtime": {
           "IdentityConfig.dll": {}
@@ -3598,7 +3598,7 @@
         "dependencies": {
           "MailKit": "1.16.1",
           "Microsoft.AspNetCore.DataProtection": "1.1.2",
-          "Microsoft.NETCore.App": "1.0.5"
+          "Microsoft.NETCore.App": "1.0.4"
         },
         "runtime": {
           "IdentityHelper.dll": {}
@@ -3610,7 +3610,7 @@
       "identitymodels/1.0.0": {
         "dependencies": {
           "FluentValidation.AspNetCore": "7.0.0",
-          "Microsoft.NETCore.App": "1.0.5",
+          "Microsoft.NETCore.App": "1.0.4",
           "mongocsharpdriver": "2.4.3"
         },
         "runtime": {
@@ -3623,7 +3623,7 @@
       "identityrepository/1.0.0": {
         "dependencies": {
           "IdentityHelper": "1.0.0",
-          "Microsoft.NETCore.App": "1.0.5",
+          "Microsoft.NETCore.App": "1.0.4",
           "MongoDbRepository": "1.0.0"
         },
         "runtime": {
@@ -3637,7 +3637,7 @@
         "dependencies": {
           "IdentityConfig": "1.0.0",
           "IdentityModels": "1.0.0",
-          "Microsoft.NETCore.App": "1.0.5",
+          "Microsoft.NETCore.App": "1.0.4",
           "mongocsharpdriver": "2.4.3"
         },
         "runtime": {
@@ -3718,15 +3718,15 @@
         },
         "compileOnly": true
       },
-      "microsoft.netcore.app/1.0.5": {
+      "microsoft.netcore.app/1.0.4": {
         "dependencies": {
           "Libuv": "1.9.1",
           "Microsoft.CSharp": "4.3.0",
           "Microsoft.CodeAnalysis.CSharp": "1.3.0",
           "Microsoft.CodeAnalysis.VisualBasic": "1.3.0",
-          "Microsoft.NETCore.DotNetHostPolicy": "1.0.5",
+          "Microsoft.NETCore.DotNetHostPolicy": "1.0.3",
           "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Runtime.CoreCLR": "1.0.7",
+          "Microsoft.NETCore.Runtime.CoreCLR": "1.0.6",
           "Microsoft.VisualBasic": "10.0.1",
           "NETStandard.Library": "1.6.1",
           "System.Buffers": "4.3.0",
@@ -3762,15 +3762,14 @@
           "System.Threading.Tasks.Extensions": "4.3.0",
           "System.Threading.Tasks.Parallel": "4.0.1",
           "System.Threading.Thread": "4.3.0",
-          "System.Threading.ThreadPool": "4.3.0",
-          "runtime.native.System.Security.Cryptography": "4.0.1"
+          "System.Threading.ThreadPool": "4.3.0"
         },
         "compileOnly": true
       },
       "microsoft.netcore.dotnethost/1.0.1": {
         "compileOnly": true
       },
-      "microsoft.netcore.dotnethostpolicy/1.0.5": {
+      "microsoft.netcore.dotnethostpolicy/1.0.3": {
         "dependencies": {
           "Microsoft.NETCore.DotNetHostResolver": "1.0.1"
         },
@@ -3782,12 +3781,12 @@
         },
         "compileOnly": true
       },
-      "microsoft.netcore.jit/1.0.7": {
+      "microsoft.netcore.jit/1.0.6": {
         "compileOnly": true
       },
-      "microsoft.netcore.runtime.coreclr/1.0.7": {
+      "microsoft.netcore.runtime.coreclr/1.0.6": {
         "dependencies": {
-          "Microsoft.NETCore.Jit": "1.0.7",
+          "Microsoft.NETCore.Jit": "1.0.6",
           "Microsoft.NETCore.Windows.ApiSets": "1.0.1"
         },
         "compileOnly": true
@@ -3816,13 +3815,6 @@
         },
         "compile": {
           "ref/netstandard1.1/Microsoft.VisualBasic.dll": {}
-        },
-        "compileOnly": true
-      },
-      "runtime.native.system.security.cryptography/4.0.1": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Targets": "1.1.0"
         },
         "compileOnly": true
       },
@@ -5618,12 +5610,12 @@
       "path": "microsoft.codeanalysis.visualbasic/1.3.0",
       "hashPath": "microsoft.codeanalysis.visualbasic.1.3.0.nupkg.sha512"
     },
-    "microsoft.netcore.app/1.0.5": {
+    "microsoft.netcore.app/1.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-fJwYrYqOcPSpsAxWpFh31/zAeDSwkQoF9U/tdSzkTQ3z16jVdEYfLkOY6tfLYUApnqCXmRvjUeoST0J0Y/Lvsw==",
-      "path": "microsoft.netcore.app/1.0.5",
-      "hashPath": "microsoft.netcore.app.1.0.5.nupkg.sha512"
+      "sha512": "sha512-4XIOd4F9xV6gTalmKVW5bO24LhHTi7FA+UpscU1tQKMe778Q444TmrYgHdvUVJEFJZjanEZdZBROKU+Jc9YyWQ==",
+      "path": "microsoft.netcore.app/1.0.4",
+      "hashPath": "microsoft.netcore.app.1.0.4.nupkg.sha512"
     },
     "microsoft.netcore.dotnethost/1.0.1": {
       "type": "package",
@@ -5632,12 +5624,12 @@
       "path": "microsoft.netcore.dotnethost/1.0.1",
       "hashPath": "microsoft.netcore.dotnethost.1.0.1.nupkg.sha512"
     },
-    "microsoft.netcore.dotnethostpolicy/1.0.5": {
+    "microsoft.netcore.dotnethostpolicy/1.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CnzTCV0zsK3//viy0jsTVm21DToJlsIxRAR7VhxOvyQEvh09fzUNKo5DzmoC++uE8E7IqppUpKicES4Tc2QwgA==",
-      "path": "microsoft.netcore.dotnethostpolicy/1.0.5",
-      "hashPath": "microsoft.netcore.dotnethostpolicy.1.0.5.nupkg.sha512"
+      "sha512": "sha512-emPcHCi96pF2Rqkmya+oqPKVhokXb1VE4ZwtsUNrW5Hn3/ClGJN7wOsi7xvuNurR1JGZd2hQFwDUUjJqW1cunA==",
+      "path": "microsoft.netcore.dotnethostpolicy/1.0.3",
+      "hashPath": "microsoft.netcore.dotnethostpolicy.1.0.3.nupkg.sha512"
     },
     "microsoft.netcore.dotnethostresolver/1.0.1": {
       "type": "package",
@@ -5646,19 +5638,19 @@
       "path": "microsoft.netcore.dotnethostresolver/1.0.1",
       "hashPath": "microsoft.netcore.dotnethostresolver.1.0.1.nupkg.sha512"
     },
-    "microsoft.netcore.jit/1.0.7": {
+    "microsoft.netcore.jit/1.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-XNKeqaGxSzxLNzkCzZp6y1Z77e/+NrooBlO2i9io9NY6F+faxjdCzH0REe3Hub9aobla7/xREVqxPw2UwfGNkg==",
-      "path": "microsoft.netcore.jit/1.0.7",
-      "hashPath": "microsoft.netcore.jit.1.0.7.nupkg.sha512"
+      "sha512": "sha512-jwa1SyM4DYR0PNSXoTW01e33WLeti1Ub3e29D8e9NoVjSbVTcfbLzgimQzN7YAo60xZv+nc7xVxPe5UjxNnBSg==",
+      "path": "microsoft.netcore.jit/1.0.6",
+      "hashPath": "microsoft.netcore.jit.1.0.6.nupkg.sha512"
     },
-    "microsoft.netcore.runtime.coreclr/1.0.7": {
+    "microsoft.netcore.runtime.coreclr/1.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-T/Vdcl2OVdfHvOm2rOnqMyQV+BeH+uzjnaY+uC5f73rEe7FyInru5pU8wMcj32eUL0aa+itvO19dCFoJ+ONEkA==",
-      "path": "microsoft.netcore.runtime.coreclr/1.0.7",
-      "hashPath": "microsoft.netcore.runtime.coreclr.1.0.7.nupkg.sha512"
+      "sha512": "sha512-FQRXbnO3Y1YxxIbFtGtMWDShWT070GJtzOvSKY0z2ylP7njHSUVt5cI99Ij1eIWR0pVN3mrLLWpY1joJkDddQA==",
+      "path": "microsoft.netcore.runtime.coreclr/1.0.6",
+      "hashPath": "microsoft.netcore.runtime.coreclr.1.0.6.nupkg.sha512"
     },
     "microsoft.netcore.windows.apisets/1.0.1": {
       "type": "package",
@@ -5673,13 +5665,6 @@
       "sha512": "sha512-HpNyOf/4Tp2lh4FyywB55VITk0SqVxEjDzsVDDyF1yafDN6Bq18xcHowzCPINyYHUTgGcEtmpYiRsFdSo0KKdQ==",
       "path": "microsoft.visualbasic/10.0.1",
       "hashPath": "microsoft.visualbasic.10.0.1.nupkg.sha512"
-    },
-    "runtime.native.system.security.cryptography/4.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-qI+Fpzceafwgsf51cUToBZH565X7bzOBBbnkNcflfHP0pCdxtVzcBBP4U6NjFo3s/w0UvSUAf1vTBSZcPWLbrw==",
-      "path": "runtime.native.system.security.cryptography/4.0.1",
-      "hashPath": "runtime.native.system.security.cryptography.4.0.1.nupkg.sha512"
     },
     "system.diagnostics.fileversioninfo/4.0.0": {
       "type": "package",

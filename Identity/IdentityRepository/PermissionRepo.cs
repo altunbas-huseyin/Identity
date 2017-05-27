@@ -1,4 +1,5 @@
 ﻿using IdentityModels;
+using IdentityModels.Permissions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,12 @@ namespace IdentityRepository
         public Permission GetById(string UserId, String Id)
         {
             Permission permission = context.SearchFor(p => p.UserId == UserId && p._id == Id).FirstOrDefault();
+            return permission;
+        }
+
+        public List<Permission> GetByUserId(string UserId)
+        {
+            List<Permission> permission = context.SearchFor(p => p.UserId == UserId).ToList();
             return permission;
         }
 
