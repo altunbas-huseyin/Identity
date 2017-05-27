@@ -42,6 +42,13 @@ namespace IdentityRepository
             return rolePermission;
         }
 
+        public RolePermission GetByOwnerIdAndUserId(string OwnerId, String UserId)
+        {
+            //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
+            RolePermission rolePermission = context.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId).FirstOrDefault();
+            return rolePermission;
+        }
+
         public RolePermission GetByPermissionId(string UserId, String PermissionId)
         {
             RolePermission rolePermission = context.SearchFor(p => p.UserId == UserId && p.PermissionId == PermissionId).FirstOrDefault();
