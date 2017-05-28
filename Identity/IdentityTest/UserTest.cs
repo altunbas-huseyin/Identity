@@ -102,7 +102,7 @@ namespace IdentityTest
                 userRepo.Add(user);
             }
 
-            User _user = userRepo.GetByParentId("00000000-0000-0000-0000-000000000000");
+            User _user = userRepo.GetByParentId("00000000-0000-0000-0000-000000000000", "1c823a7d-7475-4c09-ad13-3b94a53ca943");
 
         }
 

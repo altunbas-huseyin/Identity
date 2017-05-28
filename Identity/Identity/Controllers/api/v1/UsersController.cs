@@ -34,7 +34,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Get()
         {
             jwt = ViewBag.Jwt;
-            List<User> userList = userRepo.Get(jwt.UserId);
+            List<User> userList = userRepo.GetByParentId(jwt.UserId);
             
             return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, userList, null);
         }

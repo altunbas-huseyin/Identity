@@ -11,7 +11,7 @@ using IdentityModels.Permissions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Identity.Controllers.api.v1
+namespace Identity.Controllers1
 {
     [ApiVersion("1.0")]
     [Route("api/[controller]")]

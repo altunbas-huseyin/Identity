@@ -15,8 +15,8 @@ namespace IdentityRepository
         public bool Add(User user)
         {
             user.Password = IdentityHelper.Encripty.EncryptString(user.Password);
-           return userRepository.Insert(user);
-            
+            return userRepository.Insert(user);
+
         }
 
         public object nativequery()
@@ -56,12 +56,6 @@ namespace IdentityRepository
             return userRepository.Delete(user);
         }
 
-        public List<User> Get(string ParentId)
-        {
-            List<User> userList = userRepository.SearchFor(p => p.ParentId == ParentId).ToList();
-            return userList;
-        }
-
         public User GetById(string ParentId, String Id)
         {
             User user = userRepository.SearchFor(p => p.ParentId == ParentId && p._id == Id).FirstOrDefault();
@@ -74,9 +68,15 @@ namespace IdentityRepository
             return user;
         }
 
-        public User GetByParentId(string ParentId)
+        public List<User> GetByParentId(string ParentId)
         {
-            User user = userRepository.SearchFor(p => p.ParentId == ParentId).FirstOrDefault();
+            List<User> userList = userRepository.SearchFor(p => p.ParentId == ParentId).ToList();
+            return userList;
+        }
+
+        public User GetByParentId(string ParentId, String Id)
+        {
+            User user = userRepository.SearchFor(p => p.ParentId == ParentId && p._id == Id).First();
             return user;
         }
 

@@ -1,4 +1,5 @@
 ﻿using IdentityModels;
+using IdentityModels.RolePermissions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace IdentityRepository
 
         public bool Insert(RolePermission rolePermission)
         {
-            RolePermission _role = this.GetByPermissionId(rolePermission.UserId, rolePermission.PermissionId);
+            RolePermission _role = this.GetByUserIdAndPermissionId(rolePermission.OwnerId, rolePermission.UserId, rolePermission._id);
             if (_role == null)
             {
                 context.Insert(rolePermission);
@@ -26,9 +27,9 @@ namespace IdentityRepository
             return context.Update(rolePermission);
         }
 
-        public bool Delete(string UserId, String Id)
+        public bool Delete(string OwnerId, string UserId, String Id)
         {
-            RolePermission _permission = this.GetById(UserId, Id);
+            RolePermission _permission = this.GetById(OwnerId, UserId, Id);
             if (_permission == null)
             {
                 return true;
@@ -36,22 +37,22 @@ namespace IdentityRepository
             return context.Delete(_permission);
         }
 
-        public RolePermission GetById(string UserId, String Id)
+        public RolePermission GetById(string OwnerId, string UserId, String Id)
         {
-            RolePermission rolePermission = context.SearchFor(p => p.UserId == UserId && p._id == Id).FirstOrDefault();
+            RolePermission rolePermission = context.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId && p._id == Id).FirstOrDefault();
             return rolePermission;
         }
 
-        public RolePermission GetByOwnerIdAndUserId(string OwnerId, String UserId)
+        public List<RolePermission> GetByOwnerIdAndUserId(string OwnerId, String UserId)
         {
             //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
-            RolePermission rolePermission = context.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId).FirstOrDefault();
-            return rolePermission;
+            List<RolePermission> rolePermissionList = context.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId).ToList();
+            return rolePermissionList;
         }
 
-        public RolePermission GetByPermissionId(string UserId, String PermissionId)
+        public RolePermission GetByUserIdAndPermissionId(string OwnerId, string UserId, String RolePermissionId)
         {
-            RolePermission rolePermission = context.SearchFor(p => p.UserId == UserId && p.PermissionId == PermissionId).FirstOrDefault();
+            RolePermission rolePermission = context.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId && p.PermissionId == RolePermissionId).FirstOrDefault();
             return rolePermission;
         }
 

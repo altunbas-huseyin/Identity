@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IdentityModels
+namespace IdentityModels.RolePermissions
 {
     public class RolePermission : EntityBase
     {
