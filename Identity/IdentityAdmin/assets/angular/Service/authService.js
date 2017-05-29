@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.factory('authService', ['$http', function ($http, $location) {
+app.service('authService', ['$http', function ($http, $location) {
 
     var authServiceFactory = {};
 
@@ -14,12 +14,22 @@ app.factory('authService', ['$http', function ($http, $location) {
     };
 
     var _isLoginByRedirect = function () {
-        if (window.localStorage.getItem("isLogin")) {
-            //window.location = "/";
-        }
-        else
+        if(window.location.href.indexOf("login.php") >= 0)
         {
-            //window.location = "/Login";
+            if (window.localStorage.getItem("isLogin")) 
+            {
+              //window.location = "/";
+            }
+                else
+                {
+                    window.location = "/login.php";
+                }
+            var currentDate = new Date().toLocaleString()
+            var user = _getUser();
+            /*if(user.jwt.deadLine>currentDate)
+            {
+                window.location = "/login.php";
+            }*/
         }
     };
 

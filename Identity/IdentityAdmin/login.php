@@ -23,7 +23,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="/assets/angular/app.js"></script>
-    <script src="/assets/angular/Service/Service.js"></script>
+    <script src="/assets/angular/Service/authService.js"></script>
     <script src="/assets/angular/Controller/loginCtrl.js"></script>
 
     <script>

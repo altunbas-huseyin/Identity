@@ -113,8 +113,9 @@ namespace Identity.Filters
             else
             {
                 CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Header Token bulunamadı.");
-                BadRequestObjectResult badReq = new BadRequestObjectResult(response);
+                ObjectResult badReq = new ObjectResult(response);
                 context.Result = badReq;
+               
             }
         }
     }
