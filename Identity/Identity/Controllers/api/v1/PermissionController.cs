@@ -87,6 +87,6 @@ namespace Identity.Controllers1
             //return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Hata oluştu");
         }
 
-        
+
     }
 }

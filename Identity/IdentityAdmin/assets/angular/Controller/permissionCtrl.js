@@ -2,7 +2,7 @@
 
 app.controller("permissionCtrl", function ($scope, permissionService) {
 
-    
+
 
     // custom logic start
 
@@ -14,7 +14,7 @@ app.controller("permissionCtrl", function ($scope, permissionService) {
                     //e.success(sampleData);
                     // on failure
                     //e.error("XHR response", "status code", "error message");
-                    
+
                     permissionService.get().then(function (response) {
                         e.success(response.data.result);
                     },
@@ -32,21 +32,20 @@ app.controller("permissionCtrl", function ($scope, permissionService) {
                     ///e.success(e.data);
                     // on failure
                     //e.error("XHR response", "status code", "error message");
-                    
-                   
-                     permissionService.add(e.data).then(function (response) {
-                        if (response.data.status === true)
-                        {
+
+
+                    permissionService.add(e.data).then(function (response) {
+                        if (response.data.status === true) {
                             $scope.runKendo();
                         }
-                        
+
                         //console.log(response);
 
-                            },
-                             function (err) {
-                                 $scope.message = err.error_description;
-                             });
-                     
+                    },
+                        function (err) {
+                            $scope.message = err.error_description;
+                        });
+
 
                 },
                 update: function (e) {
@@ -59,17 +58,16 @@ app.controller("permissionCtrl", function ($scope, permissionService) {
                     //e.error("XHR response", "status code", "error message");
 
                     permissionService.update(e.data).then(function (response) {
-                        if (response.data.status === true)
-                        {
+                        if (response.data.status === true) {
                             $scope.runKendo();
                         }
-                        
+
                         //console.log(response);
 
-                            },
-                             function (err) {
-                                 $scope.message = err.error_description;
-                             });
+                    },
+                        function (err) {
+                            $scope.message = err.error_description;
+                        });
 
                 },
                 destroy: function (e) {
@@ -79,19 +77,18 @@ app.controller("permissionCtrl", function ($scope, permissionService) {
                     ///e.success();
                     // on failure
                     //e.error("XHR response", "status code", "error message");
-                    
-                     permissionService.destroy(e.data).then(function (response) {
-                        if (response.data.status === true)
-                        {
+
+                    permissionService.destroy(e.data).then(function (response) {
+                        if (response.data.status === true) {
                             $scope.runKendo();
                         }
-                        
+
                         //console.log(response);
 
-                            },
-                             function (err) {
-                                 $scope.message = err.error_description;
-                             });
+                    },
+                        function (err) {
+                            $scope.message = err.error_description;
+                        });
 
                 }
             },
