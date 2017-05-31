@@ -33,9 +33,8 @@ app.controller("permissionCtrl", function ($scope, permissionService) {
                     // on failure
                     //e.error("XHR response", "status code", "error message");
                     
-                    /* alert("createee");
+                   
                      permissionService.add(e.data).then(function (response) {
-                        debugger;
                         if (response.data.status === true)
                         {
                             $scope.runKendo();
@@ -47,7 +46,7 @@ app.controller("permissionCtrl", function ($scope, permissionService) {
                              function (err) {
                                  $scope.message = err.error_description;
                              });
-                     */
+                     
 
                 },
                 update: function (e) {
@@ -59,8 +58,7 @@ app.controller("permissionCtrl", function ($scope, permissionService) {
                     // on failure
                     //e.error("XHR response", "status code", "error message");
 
-                    /*permissionService.update(e.data).then(function (response) {
-                        debugger;
+                    permissionService.update(e.data).then(function (response) {
                         if (response.data.status === true)
                         {
                             $scope.runKendo();
@@ -71,7 +69,7 @@ app.controller("permissionCtrl", function ($scope, permissionService) {
                             },
                              function (err) {
                                  $scope.message = err.error_description;
-                             });*/
+                             });
 
                 },
                 destroy: function (e) {
@@ -83,7 +81,6 @@ app.controller("permissionCtrl", function ($scope, permissionService) {
                     //e.error("XHR response", "status code", "error message");
                     
                      permissionService.destroy(e.data).then(function (response) {
-                        debugger;
                         if (response.data.status === true)
                         {
                             $scope.runKendo();

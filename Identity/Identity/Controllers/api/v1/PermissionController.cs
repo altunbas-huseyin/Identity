@@ -76,11 +76,11 @@ namespace Identity.Controllers1
         }
 
         // DELETE api/values/5
-        [HttpDelete]
-        public void Delete()
+        [HttpDelete("{Id}")]
+        public void Delete(string Id)
         {
             jwt = ViewBag.Jwt;
-            bool result = permissionRepo.Delete(jwt.UserId, "");
+            bool result = permissionRepo.Delete(jwt.UserId, Id);
             //if (result)
             //{ return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
             //

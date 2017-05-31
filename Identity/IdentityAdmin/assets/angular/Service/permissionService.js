@@ -66,23 +66,29 @@ app.service('permissionService', ['$http', function ($http, $location) {
 
    var _destroy = function (data) {
 
-       
-       var config = {
+        var config = {
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
-                'api-version': 1,
                 'Token': Token
             }
         };
 
-        var result = $http.delete(apiUrl + 'api/Permission/', config).success(function (response) {
-            console.log(response.status);
+       
+        var result = $http.delete(apiUrl + 'api/Permission/'+data._id, config,
+            {
+                headers: { 'Content-Type': 'application/json; charset=utf-8', 'Token': Token }
 
-        }).error(function (err, status) {
+            }).success(function (response) {
 
-        });
+                console.log(response.status);
+
+            }).error(function (err, status) {
+
+            });
+
 
         return result;
+
 
     };
 
