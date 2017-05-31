@@ -33,7 +33,9 @@ app.controller("permissionCtrl", function ($scope, permissionService) {
                     // on failure
                     //e.error("XHR response", "status code", "error message");
 
-
+                    debugger;
+                    var ddd = e;
+                    
                     permissionService.add(e.data).then(function (response) {
                         if (response.data.status === true) {
                             $scope.runKendo();
