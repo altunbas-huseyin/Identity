@@ -14,7 +14,7 @@ app.controller("permissionCtrl", function ($scope, permissionService) {
                     //e.success(sampleData);
                     // on failure
                     //e.error("XHR response", "status code", "error message");
-
+                    
                     permissionService.get().then(function (response) {
                         e.success(response.data.result);
                     },
@@ -25,31 +25,77 @@ app.controller("permissionCtrl", function ($scope, permissionService) {
                 },
                 create: function (e) {
                     // assign an ID to the new item
-                    e.data.ProductID = sampleDataNextID++;
+                    ///e.data.ProductID = sampleDataNextID++;
                     // save data item to the original datasource
-                    sampleData.push(e.data);
+                    ///sampleData.push(e.data);
                     // on success
-                    e.success(e.data);
+                    ///e.success(e.data);
                     // on failure
                     //e.error("XHR response", "status code", "error message");
-                    console.log(e.data);
+                    
+                    /* alert("createee");
+                     permissionService.add(e.data).then(function (response) {
+                        debugger;
+                        if (response.data.status === true)
+                        {
+                            $scope.runKendo();
+                        }
+                        
+                        //console.log(response);
+
+                            },
+                             function (err) {
+                                 $scope.message = err.error_description;
+                             });
+                     */
+
                 },
                 update: function (e) {
                     // locate item in original datasource and update it
                     //sampleData[getIndexById(e.data.ProductID)] = e.data;
                     // on success
-                    alert(e.data._id);
-                    e.success();
+                    ///alert(e.data._id);
+                    ///e.success();
                     // on failure
                     //e.error("XHR response", "status code", "error message");
+
+                    /*permissionService.update(e.data).then(function (response) {
+                        debugger;
+                        if (response.data.status === true)
+                        {
+                            $scope.runKendo();
+                        }
+                        
+                        //console.log(response);
+
+                            },
+                             function (err) {
+                                 $scope.message = err.error_description;
+                             });*/
+
                 },
                 destroy: function (e) {
                     // locate item in original datasource and remove it
-                    sampleData.splice(getIndexById(e.data.ProductID), 1);
+                    ///sampleData.splice(getIndexById(e.data.ProductID), 1);
                     // on success
-                    e.success();
+                    ///e.success();
                     // on failure
                     //e.error("XHR response", "status code", "error message");
+                    
+                     permissionService.destroy(e.data).then(function (response) {
+                        debugger;
+                        if (response.data.status === true)
+                        {
+                            $scope.runKendo();
+                        }
+                        
+                        //console.log(response);
+
+                            },
+                             function (err) {
+                                 $scope.message = err.error_description;
+                             });
+
                 }
             },
             error: function (e) {

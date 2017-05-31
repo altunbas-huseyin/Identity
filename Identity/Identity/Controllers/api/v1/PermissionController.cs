@@ -58,21 +58,35 @@ namespace Identity.Controllers1
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{Id}")]
-        public CommonApiResponse Delete(string Id)
+        [HttpPut]
+        public CommonApiResponse Put([FromBody]PermissionCrudView permissionView)
         {
             jwt = ViewBag.Jwt;
-            bool result = permissionRepo.Delete(jwt.UserId, Id);
+            Permission permission = new Permission();
+            permission._id = permissionView.Id;
+            permission.UserId = jwt.UserId;
+            permission.Name = permissionView.Name;
+            permission.Description = permissionView.Description;
+
+            bool result = permissionRepo.Update(permission);
             if (result)
-            { return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
+            { return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, permission, null); }
 
             return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Hata oluştu");
         }
+
+        // DELETE api/values/5
+        [HttpDelete]
+        public void Delete()
+        {
+            jwt = ViewBag.Jwt;
+            bool result = permissionRepo.Delete(jwt.UserId, "");
+            //if (result)
+            //{ return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
+            //
+            //return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Hata oluştu");
+        }
+
+        
     }
 }
