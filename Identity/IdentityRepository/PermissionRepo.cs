@@ -14,11 +14,12 @@ namespace IdentityRepository
 
         public bool Insert(Permission permission)
         {
-            Permission _role = this.GetByName(permission.UserId, permission.Name);
-            if (_role == null)
-            {
-                context.Insert(permission);
-            }
+            // Permission _role = this.GetByName(permission.UserId, permission.Name);
+            // if (_role == null)
+            // {
+            //     context.Insert(permission);
+            // }
+            context.Insert(permission);
             return true;
         }
 

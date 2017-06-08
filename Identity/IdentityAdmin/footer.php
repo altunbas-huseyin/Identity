@@ -48,12 +48,24 @@
     <script src="/assets/vendor/jquery-animateNumber/jquery.animateNumber.min.js"></script>
 
     <!-- Kendo Grid -->
-   
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2017.1.118/styles/kendo.common.min.css" />
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2017.1.118/styles/kendo.default.min.css" />
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2017.1.118/styles/kendo.dataviz.min.css" />
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2017.1.118/styles/kendo.dataviz.default.min.css" />
-    <script src="http://cdn.kendostatic.com/2017.1.118/js/kendo.all.min.js"></script> 
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.material.mobile.min.css" />
+    <script src="https://kendo.cdn.telerik.com/2017.2.504/js/kendo.all.min.js"></script>
+
+    <script>
+    function ajaxSettings()
+    {
+        
+            $.ajaxSetup({
+                beforeSend: function (xhr)
+                {
+                   xhr.setRequestHeader("Token",'7e331112-e503-4101-a883-fa934b2fe914');     
+                }
+            });
+    }
+    ajaxSettings();
+    </script>
 
     <!-- page specific js -->
     <script src="/assets/js/index.js"></script>

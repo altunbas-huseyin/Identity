@@ -42,7 +42,7 @@ namespace Identity.Controllers1
 
         // POST api/values
         [HttpPost]
-        public CommonApiResponse Post([FromBody]PermissionCrudView permissionView)
+        public CommonApiResponse Post(PermissionCrudView permissionView)
         {
             jwt = ViewBag.Jwt;
             Permission permission = new Permission();
@@ -59,11 +59,11 @@ namespace Identity.Controllers1
 
         // PUT api/values/5
         [HttpPut]
-        public CommonApiResponse Put([FromBody]PermissionCrudView permissionView)
+        public CommonApiResponse Put(PermissionCrudView permissionView)
         {
             jwt = ViewBag.Jwt;
             Permission permission = new Permission();
-            permission._id = permissionView.Id;
+            permission._id = permissionView._id;
             permission.UserId = jwt.UserId;
             permission.Name = permissionView.Name;
             permission.Description = permissionView.Description;
@@ -76,11 +76,11 @@ namespace Identity.Controllers1
         }
 
         // DELETE api/values/5
-        [HttpDelete("{Id}")]
-        public void Delete(string Id)
+        [HttpDelete]
+        public void Delete(PermissionCrudView permissionView)
         {
             jwt = ViewBag.Jwt;
-            bool result = permissionRepo.Delete(jwt.UserId, Id);
+            bool result = permissionRepo.Delete(jwt.UserId, permissionView._id);
             //if (result)
             //{ return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
             //
