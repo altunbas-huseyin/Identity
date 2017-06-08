@@ -126,6 +126,19 @@
                     </ul>
                 </li>
 
+
+                <li>
+                    <a href="#"  onclick="window.location='/Permissions/'">
+                        <span class="icon">
+                            <i class="fa fa-list"></i>
+                        </span>
+                        Permissions
+       
+                    </a>
+                </li>
+
+
+
                 <li>
                     <!-- an example of nested submenu. basic bootstrap collapse component -->
                     <a class="collapsed" href="#sidebar-forms" data-toggle="collapse" data-parent="#sidebar">
