@@ -8,6 +8,8 @@ using IdentityRepository;
 using IdentityModels;
 using IdentityModels.Roles;
 using Identity.Middleware;
+using FluentValidation.Results;
+using IdentityHelper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,7 +30,7 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             List<Role> roleList = roleRepo.GetByUserId(jwt.UserId);
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, roleList, null);
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, roleList, null);
         }
 
         // GET api/values/5
@@ -37,7 +39,7 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             Role role = roleRepo.GetById(jwt.UserId, Id);
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, role, null);
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, role, null);
         }
 
         // POST api/values
@@ -54,11 +56,11 @@ namespace Identity.Controllers1
             bool result = roleRepo.Insert(role);
             if (result)
             {
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, "Kayıt başarılı", null);
+                return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "Kayıt başarılı", null);
             }
             else
             {
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Kayıt başarısız.");
+                return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, "", FluentValidationHelper.GenerateErrorList("Kayıt Başarısız."));
             }
         }
 
@@ -70,7 +72,7 @@ namespace Identity.Controllers1
             Role role = roleRepo.GetById(jwt.UserId, roleUpdateView.Id);
             if (role == null)
             {
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Rol bulunamadı.");
+                return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, null, FluentValidationHelper.GenerateErrorList("Rol bulunamadı."));
             }
 
             role.Name = roleUpdateView.Name;
@@ -79,11 +81,11 @@ namespace Identity.Controllers1
 
             if (result)
             {
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, "Kayıt başarılı", null);
+                return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "Kayıt başarılı", null);
             }
             else
             {
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Kayıt başarısız.");
+                return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, null, FluentValidationHelper.GenerateErrorList("Kayıt başarısız."));
             }
         }
 
@@ -93,7 +95,7 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             Role role = roleRepo.GetById(jwt.UserId, Id);
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, role, null);
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, role, null);
         }
     }
 }

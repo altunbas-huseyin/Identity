@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.OData;
 using Identity.Filters;
 using Identity.Middleware;
+using IdentityHelper;
 
 namespace Identity.Controllers1
 {
@@ -18,9 +19,9 @@ namespace Identity.Controllers1
         [HttpGet]
         public CommonApiResponse Get()
         {
-           
-           
-            var t = CommonApiResponse.Create(System.Net.HttpStatusCode.OK,true, new string[] { "value1", "value2" });
+
+
+            var t = CommonApiResponse.Create(System.Net.HttpStatusCode.Accepted,true,"","");
             //  return new string[] { "value1", "value2" };
             return t;
         }

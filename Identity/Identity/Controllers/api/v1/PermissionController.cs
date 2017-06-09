@@ -8,6 +8,7 @@ using IdentityRepository;
 using Identity.Middleware;
 using IdentityModels;
 using IdentityModels.Permissions;
+using IdentityHelper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,7 +29,7 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             List<Permission> list = permissionRepo.GetByUserId(jwt.UserId);
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, list, null);
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, list, null);
         }
 
         // GET api/values/5
@@ -37,7 +38,7 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             Permission permission = permissionRepo.GetById(jwt.UserId, Id);
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, permission, null);
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, permission, null);
         }
 
         // POST api/values
@@ -52,9 +53,9 @@ namespace Identity.Controllers1
 
             bool result = permissionRepo.Insert(permission);
             if (result)
-            { return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, permission, null); }
+            { return CommonApiResponse.Create( Response, System.Net.HttpStatusCode.OK, true, permission, null); }
 
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Hata oluştu");
+            return CommonApiResponse.Create( Response, System.Net.HttpStatusCode.OK, false, null, FluentValidationHelper.GenerateErrorList("Hata oluştu"));
         }
 
         // PUT api/values/5
@@ -70,9 +71,9 @@ namespace Identity.Controllers1
 
             bool result = permissionRepo.Update(permission);
             if (result)
-            { return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, permission, null); }
+            { return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, permission, null); }
 
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Hata oluştu");
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, null, FluentValidationHelper.GenerateErrorList("Hata oluştu"));
         }
 
         // DELETE api/values/5
@@ -82,9 +83,9 @@ namespace Identity.Controllers1
             jwt = ViewBag.Jwt;
             bool result = permissionRepo.Delete(jwt.UserId, permissionView._id);
             //if (result)
-            //{ return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
+            //{ return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
             //
-            //return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Hata oluştu");
+            //return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, null, "Hata oluştu");
         }
 
 

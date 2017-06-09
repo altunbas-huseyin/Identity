@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "9c262868c14f1f7c972d207f68eaaf5510cc2376"
+    "signature": "d87b8531e8dbd76479489ded7c17f77593ab8434"
   },
   "compilationOptions": {},
   "targets": {
@@ -15,7 +15,7 @@
           "IdentityRepository.dll": {}
         }
       },
-      "fluentvalidation/7.0.0": {
+      "fluentvalidation/7.0.3": {
         "dependencies": {
           "NETStandard.Library": "1.6.1"
         },
@@ -23,9 +23,9 @@
           "lib/netstandard1.0/FluentValidation.dll": {}
         }
       },
-      "fluentvalidation.aspnetcore/7.0.0": {
+      "fluentvalidation.aspnetcore/7.0.3": {
         "dependencies": {
-          "FluentValidation": "7.0.0",
+          "FluentValidation": "7.0.3",
           "Microsoft.AspNetCore.Mvc": "1.1.2",
           "NETStandard.Library": "1.6.1"
         },
@@ -2387,6 +2387,7 @@
       },
       "identityhelper/1.0.0": {
         "dependencies": {
+          "FluentValidation.AspNetCore": "7.0.3",
           "MailKit": "1.16.1",
           "Microsoft.AspNetCore.DataProtection": "1.1.2"
         },
@@ -2396,7 +2397,7 @@
       },
       "identitymodels/1.0.0": {
         "dependencies": {
-          "FluentValidation.AspNetCore": "7.0.0",
+          "FluentValidation.AspNetCore": "7.0.3",
           "mongocsharpdriver": "2.4.3"
         },
         "runtime": {
@@ -2421,19 +2422,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "fluentvalidation/7.0.0": {
+    "fluentvalidation/7.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-l/VGEyMgysRgr6hGdVIYe/087xjSjID4NaQhHVS2yHqP/wyUB4txW15SxFijwSFtTHtzN9DPsysfKkU1gXURNA==",
-      "path": "fluentvalidation/7.0.0",
-      "hashPath": "fluentvalidation.7.0.0.nupkg.sha512"
+      "sha512": "sha512-QN9vi57t4y6eDxZbamTbf0oWjayCigbU6siL0YGK6Zpak+3Q+c5KDZd3mTG4eM6FJJYxdxjeR/3BICOt1OoBkQ==",
+      "path": "fluentvalidation/7.0.3",
+      "hashPath": "fluentvalidation.7.0.3.nupkg.sha512"
     },
-    "fluentvalidation.aspnetcore/7.0.0": {
+    "fluentvalidation.aspnetcore/7.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-J8KA40bb9zwqwg3RCVnpH/wHK0W1zNgf3tCyE3CMfyIPSGLgnFVZ+mIw4lu27eDo1OwdDFoMcf4ExBparVL/hg==",
-      "path": "fluentvalidation.aspnetcore/7.0.0",
-      "hashPath": "fluentvalidation.aspnetcore.7.0.0.nupkg.sha512"
+      "sha512": "sha512-02sppDnYXFxor1gypgiss93BuVBts5tvPnfv6gPYLlbqRY8EHbx9KdFu5oTStnuts1IBfe2r8kSGRunroMvaag==",
+      "path": "fluentvalidation.aspnetcore/7.0.3",
+      "hashPath": "fluentvalidation.aspnetcore.7.0.3.nupkg.sha512"
     },
     "mailkit/1.16.1": {
       "type": "package",

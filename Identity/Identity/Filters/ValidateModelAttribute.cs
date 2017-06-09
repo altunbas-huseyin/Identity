@@ -92,6 +92,7 @@ namespace Identity.Filters
                         }
                         if (!IsAcces)
                         {
+                            
                             CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Yetkiniz yok.");
                             BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                             context.Result = badReq;

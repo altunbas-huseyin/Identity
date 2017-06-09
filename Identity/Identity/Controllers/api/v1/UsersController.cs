@@ -35,8 +35,8 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             List<User> userList = userRepo.GetByParentId(jwt.UserId);
-            
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, userList, null);
+
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, userList, null);
         }
 
         public IEnumerable<User> Get(int take, int skip, IEnumerable<Sort> sort, Filter filter, IEnumerable<Aggregator> aggregates, IEnumerable<Sort> group)
@@ -62,13 +62,13 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             User user = userRepo.GetById(jwt.UserId, Id);
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, user, null);
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, user, null);
         }
 
         // POST api/values
         [ValidateModel("SystemAdmin,AppAdmin")]
         [HttpPost]
-        public CommonApiResponse Post([FromBody]UserRegisterView userView)
+        public CommonApiResponse Post(UserRegisterView userView)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace Identity.Controllers1
 
                 user.ParentId = jwt.UserId;
                 user.Email = userView.Email;
-                user.Password = Encripty.EncryptString(userView.Password);
+                user.Password = userView.Password;
                 user.Name = userView.Name;
                 user.SurName = userView.SurName;
                 user.Status = statusRepo.GetByName("WaitingForApproval");
@@ -91,22 +91,22 @@ namespace Identity.Controllers1
                 List<ValidationFailure> list = UserValidator.FieldValidate(user).ToList();
                 if (list.Count > 0)
                 {
-                    return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, list.ToString());
+                   return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.NotFound, false, null, list);
                 }
 
-                userRepo.Add(user);
+                bool result = userRepo.Add(user);
 
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, user, null);
+                return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, user, null);
             }
             catch (Exception ex)
             {
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, ex.Message);
+                return CommonApiResponse.Create(System.Net.HttpStatusCode.NoContent, false, null, ex.Message);
             }
         }
 
         // PUT api/values/5
         [HttpPut]
-        public CommonApiResponse Put([FromBody]UserUpdateView userUpdateView)
+        public CommonApiResponse Put(UserUpdateView userUpdateView)
         {
             jwt = ViewBag.Jwt;
             User user = userRepo.GetById(jwt.UserId, userUpdateView._id);
@@ -125,18 +125,18 @@ namespace Identity.Controllers1
             bool result = userRepo.Update(user);
             if (!result)
             {
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "güncelleme esnasında hata oluştu.");
+                return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, null, FluentValidationHelper.GenerateErrorList("güncelleme esnasında hata oluştu."));
             }
 
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, "Güncelleme başarılı", null);
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, user, null);
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public CommonApiResponse Delete(string Id)
+        [HttpDelete]
+        public CommonApiResponse Delete(UserUpdateView userUpdateView)
         {
             jwt = ViewBag.Jwt;
-            User user = userRepo.GetById(jwt.UserId, Id);
+            User user = userRepo.GetById(jwt.UserId, userUpdateView._id);
             if (user == null)
             {
                 return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, false, null, "Üye bulunamadı");
@@ -145,7 +145,7 @@ namespace Identity.Controllers1
             bool result = userRepo.Delete(user._id);
             if (result)
             {
-                return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, "işlem başarılı", null);
+                return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "işlem başarılı", null);
             }
             else
             {

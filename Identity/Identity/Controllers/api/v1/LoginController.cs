@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using IdentityModels.Users;
 using Identity.Middleware;
 using IdentityRepository;
+using IdentityHelper;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -41,7 +42,7 @@ namespace Identity.Controllers1
                 status = true;
             }
 
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, status, _user, error);
+            return CommonApiResponse.Create( Response, System.Net.HttpStatusCode.OK, status, _user, FluentValidationHelper.GenerateErrorList(error));
         }
     }
 }

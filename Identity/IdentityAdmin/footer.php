@@ -54,15 +54,24 @@
     <script src="https://kendo.cdn.telerik.com/2017.2.504/js/kendo.all.min.js"></script>
 
     <script>
+
     function ajaxSettings()
     {
         
             $.ajaxSetup({
                 beforeSend: function (xhr)
                 {
-                   xhr.setRequestHeader("Token",'7e331112-e503-4101-a883-fa934b2fe914');     
+                   xhr.setRequestHeader("Token", Token);     
                 }
             });
+
+
+            $(document).ajaxError(function myErrorHandler(event, xhr, ajaxOptions, thrownError) {
+                
+                alert(xhr.responseJSON.errorMessage);
+                
+            });
+
     }
     ajaxSettings();
     </script>

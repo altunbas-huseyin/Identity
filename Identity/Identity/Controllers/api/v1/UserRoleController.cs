@@ -25,7 +25,7 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             bool result = userRoleRepo.UserAddRole(jwt.UserId, UserId, RoleId);
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, result, null, null);
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, result, null, null);
         }
 
 
@@ -35,7 +35,7 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             bool result = userRoleRepo.UserRemoveRole(jwt.UserId, UserId, RoleId);
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, result, null, null);
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, result, null, null);
         }
     }
 }

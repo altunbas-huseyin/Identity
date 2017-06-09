@@ -52,18 +52,9 @@
                model: {
                    id: "_id",
                    fields: {
-                       id: {
-                           validation: {
-                               required: true
-                           },
-                           editable: false,
-                           hidden: true
-                       },
-                       name: {
-                           validation: {
-                               required: true
-                           }
-                       },
+                       id: {   editable: false,  hidden: true  },
+                       name: {   validation: {   required: true   }  
+                    },
 
                    }
                }

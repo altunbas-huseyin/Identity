@@ -8,6 +8,7 @@ using Identity.Middleware;
 using IdentityModels;
 using IdentityRepository;
 using IdentityModels.RolePermissions;
+using IdentityHelper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,7 +29,7 @@ namespace Identity.Controllers.api.v1
         {
             jwt = ViewBag.Jwt;
             List<RolePermission> list = rolePermissionRepo.GetByOwnerIdAndUserId(jwt.UserId, Id);
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, list, null);
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, list, null);
         }
 
         // GET api/values/5
@@ -37,7 +38,7 @@ namespace Identity.Controllers.api.v1
         {
             jwt = ViewBag.Jwt;
             RolePermission rolePermission = rolePermissionRepo.GetByUserIdAndPermissionId(jwt.UserId, UserId, Id);
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, rolePermission, null);
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, rolePermission, null);
         }
 
         // POST api/values
@@ -54,9 +55,9 @@ namespace Identity.Controllers.api.v1
             bool result = rolePermissionRepo.Insert(rolePermission);
 
             if (result)
-            { return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, rolePermission, null); }
+            { return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, rolePermission, null); }
 
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Hata oluştu");
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, null, FluentValidationHelper.GenerateErrorList("Hata oluştu"));
         }
 
         // PUT api/values/5
@@ -74,9 +75,9 @@ namespace Identity.Controllers.api.v1
             bool result = rolePermissionRepo.Delete(jwt.UserId, UserId, Id);
 
             if (result)
-            { return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
+            { return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
 
-            return CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Hata oluştu");
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, null, FluentValidationHelper.GenerateErrorList("Hata oluştu"));
         }
     }
 }

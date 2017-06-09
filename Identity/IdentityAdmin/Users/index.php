@@ -7,7 +7,7 @@
 
         <div class="row">
 
-            <div id="grid1"></div>
+            <div id="grid"></div>
 
         </div>
     </main>
@@ -16,97 +16,83 @@
 
 
 <script>
-    window.onload = function ()
-    {
-        RunKendo();
-    }
-    //setTimeout(RunKendo, 5000);
-    function RunKendo() {
-        dataSource = new kendo.data.DataSource({
-            transport: {
-                read:
-                {
-                    url: apiUrl + "api/Users",
-                    dataType: "json",
-                    contentType: "application/json",
-                    type: "GET",
-                    beforeSend: function (req) {
-                        req.setRequestHeader('Token', Token);
-                        req.setRequestHeader('api-version', '1.0');
-                    }
-                },
-                destroy:
-                {
-                    url: apiUrl + "api/Users",
-                    type: "DELETE",
-                    beforeSend: function (req) {
-                        req.setRequestHeader('Token', Token);
-                        req.setRequestHeader('api-version', '1.0');
-                    }
-                },
-                create:
-                {
-                    url: apiUrl + "api/Users",
-                    type: "POST",
-                    beforeSend: function (req) {
-                        req.setRequestHeader('Token', Token);
-                        req.setRequestHeader('api-version', '1.0');
-                    }
-                },
-                update:
-                {
-                    url: apiUrl + "api/Users",
-                    type: "PUT",
-                    parameterMap: function (options, operation) {
-                        if (operation !== "read" && options.models) {
-                            return {
-                                models: kendo.stringify(options.models)
-                            };
-                        }
-                    },
-                    beforeSend: function (req) {
-                        req.setRequestHeader('Token', Token);
-                        req.setRequestHeader('api-version', '1.0');
-                    }
-                },
-            },
-            schema:
-            {
-                data: "result",
-                model:
-                {
-                    id: "_id",
-                    fields: {
-                        name: { editable: false, nullable: true, type: "string" },
-                        surName: { editable: true, nullable: true, type: "string" },
-                    }
-                }
-            }
-        });
-        $("#grid1").kendoGrid({
-            dataSource: dataSource,
-            //editable: "inline",
-            toolbar: ["create"],
-            columns: [
-                { field: "_id", title: "Id", },
+   
+
+   window.onload = function() {
+       runKendo();
+   }
+
+
+   function runKendo() {
+
+       var remoteDataSource = new kendo.data.DataSource({
+           pageSize: 20,
+           transport: {
+               read: {
+                   url: apiUrl + "api/Users",
+                   dataType: "json",
+               },
+               create: {
+                   url: apiUrl + "api/Users",
+                   dataType: "json",
+                   type: "POST",
+               },
+               update: {
+                   url: apiUrl + "api/Users",
+                   dataType: "json",
+                   type: "PUT",
+               },
+               destroy: {
+                   url: apiUrl + "api/Users",
+                   dataType: "json",
+                   type: "DELETE"
+               }
+           },
+           schema: {
+               data: "result",
+               model: {
+                   id: "_id",
+                   fields: {
+                     id: {   editable: false,  hidden: true  },
+                   }
+               }
+           }
+       });
+
+       $('#grid').kendoGrid({
+           dataSource: remoteDataSource,
+           toolbar: [{
+               name: "create",
+               text: "Create Customer"
+           }],
+           editable: "popup",
+           scrollable: true,
+           sortable: true,
+           filterable: true,
+           pageable: {
+               refresh: true,
+               pageSizes: true,
+               buttonCount: 5
+           },
+           columns: [
+
+                { field: "id", title: "Id" },
                 { field: "name", title: "Name" },
                 { field: "surName", title: "SurName" },
                 { field: "email", title: "Email" },
-                { field: "status", title: "Status" },
-                { field: "role", title: "Role" },
+                { field: "password", title: "Password" },
                 //{ field: "role", title: "Role", template: "#=  JSON.stringify(role) # " },
                 { field: "extra1", title: "Extra1" },
                 { field: "extra2", title: "Extra2" },
-            ],
-            height: "500px",
-            pageable: {
-                refresh: true,
-                pageSizes: true,
-                buttonCount: 5
-            },
-        }).data("kendoGrid");
-    }
+               {
+                   command: ["edit", "destroy"],
+                   width: "400px"
+               }
+           ]
+       });
+   }
 
+   
 </script>  
 
 <?php include("../footer.php"); ?>
