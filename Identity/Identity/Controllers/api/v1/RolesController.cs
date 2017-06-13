@@ -44,7 +44,7 @@ namespace Identity.Controllers1
 
         // POST api/values
         [HttpPost]
-        public CommonApiResponse Post([FromBody]RoleRegisterView roleRegisterView)
+        public CommonApiResponse Post(RoleRegisterView roleRegisterView)
         {
             jwt = ViewBag.Jwt;
             Role role = new Role();
@@ -56,7 +56,7 @@ namespace Identity.Controllers1
             bool result = roleRepo.Insert(role);
             if (result)
             {
-                return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "Kayıt başarılı", null);
+                return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, role, null);
             }
             else
             {
@@ -66,7 +66,7 @@ namespace Identity.Controllers1
 
         // PUT api/values/5
         [HttpPut]
-        public CommonApiResponse Put([FromBody]RoleUpdateView roleUpdateView)
+        public CommonApiResponse Put(RoleUpdateView roleUpdateView)
         {
             jwt = ViewBag.Jwt;
             Role role = roleRepo.GetById(jwt.UserId, roleUpdateView.Id);
@@ -90,12 +90,15 @@ namespace Identity.Controllers1
         }
 
         // DELETE api/values/5
-        [HttpDelete("{Id}")]
-        public CommonApiResponse Delete(string Id)
+        [HttpDelete]
+        public CommonApiResponse Delete(string UserId, String Id)
         {
             jwt = ViewBag.Jwt;
-            Role role = roleRepo.GetById(jwt.UserId, Id);
-            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, role, null);
+            bool result = roleRepo.Delete(UserId, Id);
+            if (result)
+            { return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
+
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, null, FluentValidationHelper.GenerateErrorList("Hata oluştu"));
         }
     }
 }

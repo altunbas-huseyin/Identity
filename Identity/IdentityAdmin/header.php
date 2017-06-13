@@ -126,6 +126,15 @@
                     </ul>
                 </li>
 
+               <li>
+                    <a href="#"  onclick="window.location='/Roles/'">
+                        <span class="icon">
+                            <i class="fa fa-list"></i>
+                        </span>
+                        Roles
+                    </a>
+                </li>
+
 
                 <li>
                     <a href="#"  onclick="window.location='/Permissions/'">

@@ -15,10 +15,9 @@ namespace IdentityRepository
             return roleRepository.Update(role);
         }
 
-        public bool Delete(String Id)
+        public bool Delete(string UserId, String Id)
         {
-            Role role = new Role();
-            role._id = Id;
+            Role role = this.GetById(UserId, Id);
             return roleRepository.Delete(role);
         }
 
