@@ -69,7 +69,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Put(RoleUpdateView roleUpdateView)
         {
             jwt = ViewBag.Jwt;
-            Role role = roleRepo.GetById(jwt.UserId, roleUpdateView.Id);
+            Role role = roleRepo.GetById(jwt.UserId, roleUpdateView._id);
             if (role == null)
             {
                 return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, null, FluentValidationHelper.GenerateErrorList("Rol bulunamadı."));
@@ -81,7 +81,7 @@ namespace Identity.Controllers1
 
             if (result)
             {
-                return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "Kayıt başarılı", null);
+                return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, role, null);
             }
             else
             {
