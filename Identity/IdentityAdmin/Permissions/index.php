@@ -3,7 +3,7 @@
 <div class="content-wrap">
     <!-- main page content. the place to put widgets in. usually consists of .row > .col-lg-* > .widget.  -->
     <main id="content" class="content" role="main">
-        <h1 class="page-title">Dashboard <small><small>The Lucky One</small></small></h1>
+        <h1 class="page-title">Permissions <small><small> Crud Page</small></small></h1>
 
         <div class="row">
 
@@ -65,7 +65,7 @@
            dataSource: remoteDataSource,
            toolbar: [{
                name: "create",
-               text: "Create Customer"
+               text: "Create Permission"
            }],
            editable: "popup",
            scrollable: true,
