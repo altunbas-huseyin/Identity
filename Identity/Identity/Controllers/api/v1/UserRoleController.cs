@@ -7,6 +7,8 @@ using Identity.Filters;
 using IdentityModels;
 using IdentityRepository;
 using Identity.Middleware;
+using IdentityModels.Roles;
+using IdentityModels.Users;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,9 +21,20 @@ namespace Identity.Controllers1
     {
         Jwt jwt = new Jwt();
         UserRoleRepo userRoleRepo = new UserRoleRepo();
+        UserRepo userRepo = new UserRepo();
+        // GET api/values/5
+        [HttpGet("{Id}")]
+        public CommonApiResponse Get(string Id)
+        {
+            jwt = ViewBag.Jwt;
+            User user = userRepo.GetById(jwt.UserId, Id);
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, user.Role, null);
+        }
+
+
         // POST api/values
-        [HttpPost]
-        public CommonApiResponse Post([FromBody]string UserId, String RoleId)
+        [HttpPost("{UserId}/{RoleId}")]
+        public CommonApiResponse Post(string UserId, String RoleId)
         {
             jwt = ViewBag.Jwt;
             bool result = userRoleRepo.UserAddRole(jwt.UserId, UserId, RoleId);

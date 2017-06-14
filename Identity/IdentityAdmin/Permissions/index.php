@@ -28,21 +28,21 @@
            pageSize: 20,
            transport: {
                read: {
-                   url: apiUrl + "api/Permission",
+                   url: apiUrl + "api/Permissions",
                    dataType: "json",
                },
                create: {
-                   url: apiUrl + "api/Permission",
+                   url: apiUrl + "api/Permissions",
                    dataType: "json",
                    type: "POST",
                },
                update: {
-                   url: apiUrl + "api/Permission",
+                   url: apiUrl + "api/Permissions",
                    dataType: "json",
                    type: "PUT",
                },
                destroy: {
-                   url: apiUrl + "api/Permission",
+                   url: apiUrl + "api/Permissions",
                    dataType: "json",
                    type: "DELETE"
                }
