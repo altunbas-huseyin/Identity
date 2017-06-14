@@ -17,7 +17,7 @@ namespace Identity.Controllers1
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
     [ValidateModel("SystemAdmin,AppAdmin")]
-    public class PermissionController : Controller
+    public class PermissionsController : Controller
     {
         PermissionRepo permissionRepo = new PermissionRepo();
         private StatusRepo statusRepo = new StatusRepo();
