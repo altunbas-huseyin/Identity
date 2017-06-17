@@ -8,23 +8,23 @@ using IdentityModels;
 namespace IdentityRepository
 {
 
-    public class JwtRepo
+    public class JwtRepo : BaseRepo<Jwt>, IBaseRepo<Jwt>
     {
-        private MongoDbRepository<Jwt> jwtRepository = new MongoDbRepository<Jwt>();
+        
         private StatusRepo statusRepo = new StatusRepo();
         public Jwt Add(String UserId, string Token, DateTime DeadLine)
         {
             Status status = statusRepo.GetByName("Active");
 
             Jwt jwt = new Jwt();
-            var jwtOld = jwtRepository.SearchFor(p => p.UserId == UserId);
+            var jwtOld = mongoContext.SearchFor(p => p.UserId == UserId);
             if (jwtOld.Count > 0)
             {
                 jwt = jwtOld[0];
                 jwt.Token = Token;
                 jwt.DeadLine = DeadLine;
 
-                 jwtRepository.Update(jwt);
+                mongoContext.Update(jwt);
             }
             else
             {
@@ -34,7 +34,7 @@ namespace IdentityRepository
                 jwt.DeadLine = DeadLine;
                 jwt.Status = status;
 
-                 jwtRepository.Insert(jwt);
+                mongoContext.Insert(jwt);
             }
 
             return jwt;
@@ -43,7 +43,7 @@ namespace IdentityRepository
         public Jwt CheckToken(string Token)
         {
             Jwt jwt = null;
-            var _token = jwtRepository.SearchFor(p => p.Token == Token);
+            var _token = mongoContext.SearchFor(p => p.Token == Token);
             if (_token.Count > 0)
             {
                 jwt = _token[0];
@@ -53,22 +53,46 @@ namespace IdentityRepository
                     jwt = null;
                 }
             }
-            
+
             return jwt;
         }
 
-
         public Jwt GetByUserId(string UserId)
         {
-            Jwt jwt = jwtRepository.SearchFor(p => p.UserId == UserId).FirstOrDefault();
+            Jwt jwt = mongoContext.SearchFor(p => p.UserId == UserId).FirstOrDefault();
             return jwt;
         }
 
         public bool AddUniqIndex()
         {
-            bool result = jwtRepository.AddUniqIndex(new string[] { "UserId", "Token" });
+            bool result = mongoContext.AddUniqIndex(new string[] { "UserId", "Token" });
 
             return result;
+        }
+
+        public Result Add(Jwt entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result Delete(string Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result Update(Jwt entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Jwt> GetAll(string UserId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Jwt FindById(string Id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
