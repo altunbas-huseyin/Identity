@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using IdentityModels.Roles;
+using IdentityModels;
 
 namespace IdentityRepository
 {
@@ -12,17 +13,23 @@ namespace IdentityRepository
         private MongoDbRepository<User> userRepository = new MongoDbRepository<User>();
         private RoleRepo roleRepo = new RoleRepo();
         private UserRepo userRepo = new UserRepo();
-
-        public bool UserAddRole(string ParentId, string UserId, string RoleId)
+        private Result result = new Result();
+        public Result UserAddRole(string ParentId, string UserId, string RoleId)
         {
             User user = userRepo.GetById(ParentId, UserId);
             if (user == null)
-            { return false; }
+            {
+                result.AddError("Üye bulunamadı.");
+                return result;
+            }
 
             //Rol kullanıcıya daha önce atanmış ise bir işlem yapılmıyor
-            bool result = IsAddedRole(user, RoleId);
-            if (result)
-            { return true; }
+            bool resultIsAdded = IsAddedRole(user, RoleId);
+            if (resultIsAdded)
+            {
+                result.AddError("Bu rol daha önce eklenmiş.");
+                return result;
+            }
 
             Role role = roleRepo.GetById(ParentId, RoleId);
             if (user.Role.Count < 1)
@@ -30,7 +37,8 @@ namespace IdentityRepository
             user.Role.Add(role);
 
             bool userUpdateResult = userRepo.Update(user);
-            return userUpdateResult;
+            result.Status = userUpdateResult;
+            return result;
         }
 
         public bool UserRemoveRole(string ParentId, string UserId, string RoleId)
@@ -52,7 +60,7 @@ namespace IdentityRepository
 
         public bool IsAddedRole(User user, string RoleId)
         {
-            Role role = user.Role.Where(p => p._id == RoleId).First();
+            Role role = user.Role.Where(p => p._id == RoleId).FirstOrDefault();
             if (role != null)
             {
                 return true;

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using FluentValidation.Results;
 using System.Collections.Generic;
+using IdentityModels;
+using IdentityModels.Roles;
 
 namespace Identity.Middleware
 {
@@ -61,12 +63,25 @@ namespace Identity.Middleware
         public List<ValidationFailure> ErrorMessage { get; set; }
         public object Result { get; set; }
 
+        public static CommonApiResponse Create(HttpResponse Response, object result, Result resultStatus)
+        {
+            if (resultStatus.Status)
+            {
+                return new CommonApiResponse(Response, System.Net.HttpStatusCode.OK, true, result, null);
+            }
+            else
+            {
+                return new CommonApiResponse(Response, System.Net.HttpStatusCode.BadRequest, false, null, resultStatus.ErrorList);
+            }
+
+        }
+
         public static CommonApiResponse Create(HttpStatusCode statusCode, bool Status, object result, object errorMessage)
         {
             List<ValidationFailure> errList = new List<ValidationFailure>();
-            ValidationFailure err = new ValidationFailure("",errorMessage.ToString());
+            ValidationFailure err = new ValidationFailure("", errorMessage.ToString());
             errList.Add(err);
-        
+
             return new CommonApiResponse(statusCode, Status, result, errList);
         }
 
@@ -81,14 +96,14 @@ namespace Identity.Middleware
         }
 
 
-       protected CommonApiResponse(HttpStatusCode statusCode, bool status, object result, List<ValidationFailure> errorMessage)
-       {
-           RequestId = Guid.NewGuid().ToString();
-           StatusCode = (int)statusCode;
-           Result = result;
-           ErrorMessage = errorMessage;
-           Status = status;
-       }
+        protected CommonApiResponse(HttpStatusCode statusCode, bool status, object result, List<ValidationFailure> errorMessage)
+        {
+            RequestId = Guid.NewGuid().ToString();
+            StatusCode = (int)statusCode;
+            Result = result;
+            ErrorMessage = errorMessage;
+            Status = status;
+        }
 
         protected CommonApiResponse(HttpResponse Response, HttpStatusCode statusCode, bool status, object result, List<ValidationFailure> errorMessage)
         {

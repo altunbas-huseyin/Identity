@@ -28,7 +28,8 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             User user = userRepo.GetById(jwt.UserId, Id);
-            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, user.Role, null);
+            List<Role> userRole = user.Role;
+            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, userRole, null);
         }
 
 
@@ -37,8 +38,13 @@ namespace Identity.Controllers1
         public CommonApiResponse Post(string UserId, String RoleId)
         {
             jwt = ViewBag.Jwt;
-            bool result = userRoleRepo.UserAddRole(jwt.UserId, UserId, RoleId);
-            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, result, null, null);
+            Result result = userRoleRepo.UserAddRole(jwt.UserId, UserId, RoleId);
+
+            User user = userRepo.GetById(jwt.UserId, UserId);
+            List<Role> userRole = user.Role;
+            
+            return CommonApiResponse.Create(Response, userRole, result);
+
         }
 
 
