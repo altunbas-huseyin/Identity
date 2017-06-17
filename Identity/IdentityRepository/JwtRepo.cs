@@ -8,7 +8,7 @@ using IdentityModels;
 namespace IdentityRepository
 {
 
-    public class JwtRepo : BaseRepo<Jwt>, IJwtRepo<Jwt>
+    public class JwtRepo : BaseRepo<Jwt>
     {
         private Result result = new Result();
         private StatusRepo statusRepo = new StatusRepo();
@@ -60,7 +60,7 @@ namespace IdentityRepository
         public Result GetByUserId(string UserId)
         {
             Jwt jwt = mongoContext.SearchFor(p => p.UserId == UserId).FirstOrDefault();
-            return result=new Result(jwt,true);
+            return result = new Result(jwt, true);
         }
 
         public bool AddUniqIndex()
@@ -68,31 +68,6 @@ namespace IdentityRepository
             bool result = mongoContext.AddUniqIndex(new string[] { "UserId", "Token" });
 
             return result;
-        }
-
-        public Result Add(Jwt entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Result Delete(string Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Result Update(Jwt entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Jwt> GetAll(string UserId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Jwt FindById(string Id)
-        {
-            throw new NotImplementedException();
         }
     }
 }
