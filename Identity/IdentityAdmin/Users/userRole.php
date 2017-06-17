@@ -71,7 +71,7 @@ function onChange() {
            dataSource: remoteDataSource,
            toolbar: [{
                name: "create",
-               text: "Create User"
+               text: "Create Role"
            }],
            editable: "popup",
            scrollable: true,
@@ -89,10 +89,16 @@ function onChange() {
                  { field: "name", title: "name", width: "180px", editor: categoryDropDownEditor, template: "#=name#" },
                 { field: "description", title: "Description" },
 
+               //{
+                //   command: ["destroy"],//edit butonu olmayacak kullanıcıya sadece rol ekleme ve silme olacak
+                //   width: "400px"
+               //},
                {
-                   command: ["destroy"],//edit butonu olmayacak kullanıcıya sadece rol ekleme ve silme olacak
-                   width: "400px"
-               }
+                        command: [
+                                      { text: "Delete", click: roleDelete }
+                                 ],  title: "Delete", width: "10%"
+                    },
+
            ]
        });
    }
@@ -132,6 +138,45 @@ function onChange() {
 
 
 
+  function roleDelete(e) {
+            e.preventDefault();
+            //Get Data Info
+            var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+            console.log(dataItem);
+            
+            
+            swal.queue([{
+                title: 'Confirm',
+                confirmButtonText: 'Delete Record',
+                text:
+                    'is confirm?' ,
+                showLoaderOnConfirm: true,
+                preConfirm: function () {
+                    return new Promise(function (resolve) {
+                         
+                         $.ajax({
+                            type: "DELETE",
+                            url: apiUrl + "api/UserRole/<?=$_id?>/"+dataItem._id,
+                            ajaxasync: true,
+                            data: {  },
+                            success: function (data) {
+                               if(data.status)
+                               {
+                                   swal("Succes");
+                                   runKendo();
+                               }
+                            },
+                            error: function (data) {
+                               
+                            }
+                        })
+                        
+                    })
+                }
+                }])
+
+
+  }
 
 </script>  
 

@@ -110,20 +110,14 @@
             <!-- every .sidebar-nav may have a title -->
             <h5 class="sidebar-nav-title">Template <a class="action-link" href="#"><i class="glyphicon glyphicon-refresh"></i></a></h5>
             <ul class="sidebar-nav">
-                
+
                 <li>
-                    <!-- an example of nested submenu. basic bootstrap collapse component -->
-                    <a class="collapsed" href="#sidebar-forms-users" data-toggle="collapse" data-parent="#sidebar">
+                    <a href="#"  onclick="window.location='/Users/index.php'">
                         <span class="icon">
-                            <i class="glyphicon glyphicon-align-right"></i>
+                            <i class="fa fa-users"></i>
                         </span>
-                        Üyeler
-                        <i class="toggle fa fa-angle-down"></i>
+                        Users
                     </a>
-                    <ul id="sidebar-forms-users" class="collapse">
-                        <li><a href="#" onclick="window.location='/Users/index.php'">AppAdmin/Üye Listesi</a></li>
-                        <li><a href="#" onclick="window.location='/Users/add.php'">Üye Ekle</a></li>
-                    </ul>
                 </li>
 
                <li>

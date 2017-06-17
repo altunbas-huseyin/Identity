@@ -81,13 +81,13 @@
                 { field: "surName", title: "SurName" },
                 { field: "email", title: "Email" },
                 { field: "password", title: "Password" },
-                //{ field: "role", title: "Role", template: "#=  JSON.stringify(role) # " },
                 { field: "extra1", title: "Extra1" },
                 { field: "extra2", title: "Extra2" },
-               {
+                { field: "id", title: "id", width:"190px", template: "<a class='k-button k-button-icontext' target='_blank' href='/Users/userRole.php?_id=#=id#'> Role Manager </a>" },
+                {
                    command: ["edit", "destroy"],
-                   width: "400px"
-               }
+                   width: "250px"
+                }
            ]
        });
    }
