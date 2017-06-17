@@ -8,11 +8,11 @@ using IdentityModels;
 namespace IdentityRepository
 {
 
-    public class JwtRepo : BaseRepo<Jwt>, IBaseRepo<Jwt>
+    public class JwtRepo : BaseRepo<Jwt>, IJwtRepo<Jwt>
     {
-        
+        private Result result = new Result();
         private StatusRepo statusRepo = new StatusRepo();
-        public Jwt Add(String UserId, string Token, DateTime DeadLine)
+        public Result Add(String UserId, string Token, DateTime DeadLine)
         {
             Status status = statusRepo.GetByName("Active");
 
@@ -36,11 +36,11 @@ namespace IdentityRepository
 
                 mongoContext.Insert(jwt);
             }
-
-            return jwt;
+            result = new Result(jwt, true);
+            return result;
         }
 
-        public Jwt CheckToken(string Token)
+        public Result CheckToken(string Token)
         {
             Jwt jwt = null;
             var _token = mongoContext.SearchFor(p => p.Token == Token);
@@ -54,13 +54,13 @@ namespace IdentityRepository
                 }
             }
 
-            return jwt;
+            return new Result(jwt, true);
         }
 
-        public Jwt GetByUserId(string UserId)
+        public Result GetByUserId(string UserId)
         {
             Jwt jwt = mongoContext.SearchFor(p => p.UserId == UserId).FirstOrDefault();
-            return jwt;
+            return result=new Result(jwt,true);
         }
 
         public bool AddUniqIndex()

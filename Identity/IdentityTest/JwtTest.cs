@@ -28,7 +28,7 @@ namespace IdentityTest
         [TestMethod]
         public void GetToken()
         {
-            Jwt result = jwtRepo.CheckToken("fcbe54b8-8798-4d30-b695-8ffb6539911c");
+            Jwt result = (Jwt)jwtRepo.CheckToken("fcbe54b8-8798-4d30-b695-8ffb6539911c").Data;
             Assert.AreNotSame(result, null);
         }
     }

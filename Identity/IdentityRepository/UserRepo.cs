@@ -34,7 +34,8 @@ namespace IdentityRepository
             if (user != null)
             {
                 userView = _userConvertRepo.UserToUserView(user);
-                userView.Jwt = jwtRepo.Add(user._id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(1));
+                Result result  = jwtRepo.Add(user._id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(1));
+                userView.Jwt = (Jwt)result.Data;
             }
             else
             {

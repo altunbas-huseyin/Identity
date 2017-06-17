@@ -47,7 +47,7 @@ namespace Identity.Filters
                 {
                     Token = _Token.FirstOrDefault();
 
-                    jwt = jwtRepo.CheckToken(Token);
+                    jwt = (Jwt)jwtRepo.CheckToken(Token).Data;
                     if (jwt == null)
                     {
                         CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Token geçersiz.");

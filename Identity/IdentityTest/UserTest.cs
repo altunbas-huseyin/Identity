@@ -69,14 +69,14 @@ namespace IdentityTest
         [TestMethod]
         public void UserAddJwt()
         {
-            Jwt jwt = jwtRepo.Add(user._id, Guid.NewGuid().ToString(), DateTime.Now.AddDays(5));
+            Jwt jwt = (Jwt)jwtRepo.Add(user._id, Guid.NewGuid().ToString(), DateTime.Now.AddDays(5)).Data;
         }
 
         [TestMethod]
         public void UserJwtTest()
         {
-            Jwt jwt = jwtRepo.GetByUserId(user._id.ToString());
-            Jwt jwtCheckToken = jwtRepo.CheckToken(jwt.Token);
+            Jwt jwt = (Jwt)jwtRepo.GetByUserId(user._id.ToString()).Data;
+            Jwt jwtCheckToken = (Jwt)jwtRepo.CheckToken(jwt.Token).Data;
         }
 
         [TestMethod]
@@ -109,7 +109,7 @@ namespace IdentityTest
         [TestMethod]
         public void Login()
         {
-            Jwt jwt = jwtRepo.GetByUserId(user._id.ToString());
+            Jwt jwt = (Jwt)jwtRepo.GetByUserId(user._id.ToString()).Data;
             Identity.Controllers1.LoginController userController = new Identity.Controllers1.LoginController();
             UserView userView = userRepo.LoginByEmail(user.Email, user.Password);
 
