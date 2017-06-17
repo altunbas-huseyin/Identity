@@ -7,9 +7,9 @@ using System.Text;
 
 namespace IdentityRepository
 {
-    public class PermissionRepo
+    public class PermissionRepo : BaseRepo<Permission>
     {
-        private MongoDbRepository<Permission> context = new MongoDbRepository<Permission>();
+        
         private StatusRepo statusRepo = new StatusRepo();
 
         public bool Insert(Permission permission)
@@ -17,15 +17,16 @@ namespace IdentityRepository
             // Permission _role = this.GetByName(permission.UserId, permission.Name);
             // if (_role == null)
             // {
-            //     context.Insert(permission);
+            //     mongoContext.Insert(permission);
             // }
-            context.Insert(permission);
+            mongoContext.Insert(permission);
             return true;
         }
 
         public bool Update(Permission permission)
         {
-            return context.Update(permission);
+            
+            return mongoContext.Update(permission);
         }
 
         public bool Delete(string UserId,String Id)
@@ -35,24 +36,24 @@ namespace IdentityRepository
             {
                 return true;
             }
-            return context.Delete(_permission);
+            return mongoContext.Delete(_permission);
         }
 
         public Permission GetByName(string UserId, String Name)
         {
-            Permission permission = context.SearchFor(p => p.UserId == UserId && p.Name == Name).FirstOrDefault();
+            Permission permission = mongoContext.SearchFor(p => p.UserId == UserId && p.Name == Name).FirstOrDefault();
             return permission;
         }
 
         public Permission GetById(string UserId, String Id)
         {
-            Permission permission = context.SearchFor(p => p.UserId == UserId && p._id == Id).FirstOrDefault();
+            Permission permission = mongoContext.SearchFor(p => p.UserId == UserId && p._id == Id).FirstOrDefault();
             return permission;
         }
 
         public List<Permission> GetByUserId(string UserId)
         {
-            List<Permission> permission = context.SearchFor(p => p.UserId == UserId).ToList();
+            List<Permission> permission = mongoContext.SearchFor(p => p.UserId == UserId).ToList();
             return permission;
         }
 
@@ -62,7 +63,7 @@ namespace IdentityRepository
             list.Add("UserId");
             list.Add("Name");
 
-            bool result = context.AddUniqIndex(list.ToArray());
+            bool result = mongoContext.AddUniqIndex(list.ToArray());
             return true;
         }
     }

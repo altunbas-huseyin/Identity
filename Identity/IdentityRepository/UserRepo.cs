@@ -7,22 +7,22 @@ using System.Text;
 
 namespace IdentityRepository
 {
-    public class UserRepo
+    public class UserRepo : BaseRepo<User>
     {
-        private MongoDbRepository<User> userRepository = new MongoDbRepository<User>();
+       
         private JwtRepo jwtRepo = new JwtRepo();
         private UserConvertRepo _userConvertRepo = new UserConvertRepo();
         public bool Add(User user)
         {
             user.Password = IdentityHelper.Encripty.EncryptString(user.Password);
-            return userRepository.Insert(user);
+            return mongoContext.Insert(user);
 
         }
 
         public object nativequery()
         {
 
-            object rr = userRepository.NativeQuery();
+            object rr = mongoContext.NativeQuery();
             return rr;
         }
 
@@ -30,7 +30,7 @@ namespace IdentityRepository
         {
             UserView userView = null;
             Password = IdentityHelper.Encripty.EncryptString(Password);
-            User user = userRepository.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
+            User user = mongoContext.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
             if (user != null)
             {
                 userView = _userConvertRepo.UserToUserView(user);
@@ -47,56 +47,56 @@ namespace IdentityRepository
 
         public bool Update(User user)
         {
-            return userRepository.Update(user);
+            return mongoContext.Update(user);
         }
 
         public bool Delete(String Id)
         {
             User user = new User();
             user._id = Id;
-            return userRepository.Delete(user);
+            return mongoContext.Delete(user);
         }
 
         public User GetById(string ParentId, String Id)
         {
-            User user = userRepository.SearchFor(p => p.ParentId == ParentId && p._id == Id).FirstOrDefault();
+            User user = mongoContext.SearchFor(p => p.ParentId == ParentId && p._id == Id).FirstOrDefault();
             return user;
         }
 
         public User GetById(String Id)
         {
-            User user = userRepository.SearchFor(p => p._id == Id).FirstOrDefault();
+            User user = mongoContext.SearchFor(p => p._id == Id).FirstOrDefault();
             return user;
         }
 
         public List<User> GetByParentId(string ParentId)
         {
-            List<User> userList = userRepository.SearchFor(p => p.ParentId == ParentId).ToList();
+            List<User> userList = mongoContext.SearchFor(p => p.ParentId == ParentId).ToList();
             return userList;
         }
 
         public User GetByParentId(string ParentId, String Id)
         {
-            User user = userRepository.SearchFor(p => p.ParentId == ParentId && p._id == Id).First();
+            User user = mongoContext.SearchFor(p => p.ParentId == ParentId && p._id == Id).First();
             return user;
         }
 
         public User GetByEmailAndParentId(string ParentId, String Email)
         {
-            User user = userRepository.SearchFor(p => p.Email == Email && p.ParentId == ParentId).FirstOrDefault();
+            User user = mongoContext.SearchFor(p => p.Email == Email && p.ParentId == ParentId).FirstOrDefault();
             return user;
         }
 
         public User GetByEmail(String Email)
         {
-            User user = userRepository.SearchFor(p => p.Email == Email).FirstOrDefault();
+            User user = mongoContext.SearchFor(p => p.Email == Email).FirstOrDefault();
             return user;
         }
 
 
         public User GetByEmail(string ParentId, string Email)
         {
-            User user = userRepository.SearchFor(p => p.ParentId == ParentId && p.Email == Email).FirstOrDefault();
+            User user = mongoContext.SearchFor(p => p.ParentId == ParentId && p.Email == Email).FirstOrDefault();
             return user;
         }
 
@@ -107,7 +107,7 @@ namespace IdentityRepository
             list.Add("PatrentId");
             list.Add("Email");
             list.Add("ProjectCode");
-            bool result = userRepository.AddUniqIndex(list.ToArray());
+            bool result = mongoContext.AddUniqIndex(list.ToArray());
             return result;
         }
     }

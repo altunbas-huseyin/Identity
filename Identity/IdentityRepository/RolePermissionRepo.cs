@@ -7,9 +7,9 @@ using System.Text;
 
 namespace IdentityRepository
 {
-    public class RolePermissionRepo
+    public class RolePermissionRepo : BaseRepo<RolePermission>
     {
-        private MongoDbRepository<RolePermission> context = new MongoDbRepository<RolePermission>();
+        
         private StatusRepo statusRepo = new StatusRepo();
 
         public bool Insert(RolePermission rolePermission)
@@ -17,14 +17,14 @@ namespace IdentityRepository
             RolePermission _role = this.GetByUserIdAndPermissionId(rolePermission.OwnerId, rolePermission.UserId, rolePermission._id);
             if (_role == null)
             {
-                context.Insert(rolePermission);
+                mongoContext.Insert(rolePermission);
             }
             return true;
         }
 
         public bool Update(RolePermission rolePermission)
         {
-            return context.Update(rolePermission);
+            return mongoContext.Update(rolePermission);
         }
 
         public bool Delete(string OwnerId, string UserId, String Id)
@@ -34,25 +34,25 @@ namespace IdentityRepository
             {
                 return true;
             }
-            return context.Delete(_permission);
+            return mongoContext.Delete(_permission);
         }
 
         public RolePermission GetById(string OwnerId, string UserId, String Id)
         {
-            RolePermission rolePermission = context.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId && p._id == Id).FirstOrDefault();
+            RolePermission rolePermission = mongoContext.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId && p._id == Id).FirstOrDefault();
             return rolePermission;
         }
 
         public List<RolePermission> GetByOwnerIdAndUserId(string OwnerId, String UserId)
         {
             //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
-            List<RolePermission> rolePermissionList = context.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId).ToList();
+            List<RolePermission> rolePermissionList = mongoContext.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId).ToList();
             return rolePermissionList;
         }
 
         public RolePermission GetByUserIdAndPermissionId(string OwnerId, string UserId, String RolePermissionId)
         {
-            RolePermission rolePermission = context.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId && p.PermissionId == RolePermissionId).FirstOrDefault();
+            RolePermission rolePermission = mongoContext.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId && p.PermissionId == RolePermissionId).FirstOrDefault();
             return rolePermission;
         }
 
@@ -62,7 +62,7 @@ namespace IdentityRepository
             list.Add("UserId");
             list.Add("PermissionId");
             list.Add("RoleId");
-            bool result = context.AddUniqIndex(list.ToArray());
+            bool result = mongoContext.AddUniqIndex(list.ToArray());
             return true;
         }
     }

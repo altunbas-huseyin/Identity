@@ -10,7 +10,7 @@ namespace IdentityRepository
 {
     public class UserRoleRepo
     {
-        private MongoDbRepository<User> userRepository = new MongoDbRepository<User>();
+        
         private RoleRepo roleRepo = new RoleRepo();
         private UserRepo userRepo = new UserRepo();
         private Result result = new Result();
