@@ -14,7 +14,7 @@ namespace IdentityRepository
 
         public bool Insert(RolePermission rolePermission)
         {
-            RolePermission _role = this.GetByUserIdAndPermissionId(rolePermission.OwnerId, rolePermission.UserId, rolePermission._id);
+            RolePermission _role = this.GetByUserIdAndPermissionId( rolePermission.UserId, rolePermission._id);
             if (_role == null)
             {
                 mongoContext.Insert(rolePermission);
@@ -27,9 +27,9 @@ namespace IdentityRepository
             return mongoContext.Update(rolePermission);
         }
 
-        public bool Delete(string OwnerId, string UserId, String Id)
+        public bool Delete(string UserId, String Id)
         {
-            RolePermission _permission = this.GetById(OwnerId, UserId, Id);
+            RolePermission _permission = this.GetById(UserId, Id);
             if (_permission == null)
             {
                 return true;
@@ -37,22 +37,22 @@ namespace IdentityRepository
             return mongoContext.Delete(_permission);
         }
 
-        public RolePermission GetById(string OwnerId, string UserId, String Id)
+        public RolePermission GetById(string UserId, String Id)
         {
-            RolePermission rolePermission = mongoContext.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId && p._id == Id).FirstOrDefault();
+            RolePermission rolePermission = mongoContext.SearchFor(p =>  p.UserId == UserId && p._id == Id).FirstOrDefault();
             return rolePermission;
         }
 
-        public List<RolePermission> GetByOwnerIdAndUserId(string OwnerId, String UserId)
+        public List<RolePermission> GetByUserIdAndRoleId( String UserId, string RoleId)
         {
             //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
-            List<RolePermission> rolePermissionList = mongoContext.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId).ToList();
+            List<RolePermission> rolePermissionList = mongoContext.SearchFor(p => p.UserId == UserId && p.RoleId==RoleId).ToList();
             return rolePermissionList;
         }
 
-        public RolePermission GetByUserIdAndPermissionId(string OwnerId, string UserId, String RolePermissionId)
+        public RolePermission GetByUserIdAndPermissionId( string UserId, String RolePermissionId)
         {
-            RolePermission rolePermission = mongoContext.SearchFor(p => p.OwnerId == OwnerId && p.UserId == UserId && p.PermissionId == RolePermissionId).FirstOrDefault();
+            RolePermission rolePermission = mongoContext.SearchFor(p =>  p.UserId == UserId && p.PermissionId == RolePermissionId).FirstOrDefault();
             return rolePermission;
         }
 

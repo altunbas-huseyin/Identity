@@ -25,20 +25,11 @@ namespace Identity.Controllers.api.v1
 
         // GET: api/values
         [HttpGet("{Id}")]
-        public CommonApiResponse Get(string Id)
+        public CommonApiResponse Get(string RoleId)
         {
             jwt = ViewBag.Jwt;
-            List<RolePermission> list = rolePermissionRepo.GetByOwnerIdAndUserId(jwt.UserId, Id);
+            List<RolePermission> list = rolePermissionRepo.GetByUserIdAndRoleId(jwt.UserId, RoleId);
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, list, null);
-        }
-
-        // GET api/values/5
-        [HttpGet]
-        public CommonApiResponse Get(string UserId, String Id)
-        {
-            jwt = ViewBag.Jwt;
-            RolePermission rolePermission = rolePermissionRepo.GetByUserIdAndPermissionId(jwt.UserId, UserId, Id);
-            return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, rolePermission, null);
         }
 
         // POST api/values
@@ -47,7 +38,7 @@ namespace Identity.Controllers.api.v1
         {
             jwt = ViewBag.Jwt;
             RolePermission rolePermission = new RolePermission();
-            rolePermission.OwnerId = jwt.UserId; //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
+            //rolePermission.OwnerId = jwt.UserId; //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
             rolePermission.UserId = rolePermissionCrudView.UserId;
             rolePermission.PermissionId = rolePermissionCrudView.PermissionId;
             rolePermission.RoleId = rolePermissionCrudView.RoleId;
@@ -63,10 +54,10 @@ namespace Identity.Controllers.api.v1
 
         // DELETE api/values/5
         [HttpDelete]
-        public CommonApiResponse Delete(string UserId, String Id)
+        public CommonApiResponse Delete(String RoleId)
         {
             jwt = ViewBag.Jwt;
-            bool result = rolePermissionRepo.Delete(jwt.UserId, UserId, Id);
+            bool result = rolePermissionRepo.Delete(jwt.UserId, RoleId);
 
             if (result)
             { return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
