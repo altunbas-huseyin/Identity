@@ -25,23 +25,24 @@ namespace Identity.Controllers.api.v1
 
         // GET: api/values
         [HttpGet("{Id}")]
-        public CommonApiResponse Get(string RoleId)
+        public CommonApiResponse Get(string Id)
         {
             jwt = ViewBag.Jwt;
-            List<RolePermission> list = rolePermissionRepo.GetByUserIdAndRoleId(jwt.UserId, RoleId);
+            List<RolePermission> list = rolePermissionRepo.GetByUserIdAndRoleId(jwt.UserId, Id);
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, list, null);
         }
 
         // POST api/values
-        [HttpPost]
-        public CommonApiResponse Post(RolePermissionCrudView rolePermissionCrudView)
+        [HttpPost("{RoleId}/{PermissionId}")]
+        public CommonApiResponse Post(string RoleId, string PermissionId)
         {
             jwt = ViewBag.Jwt;
             RolePermission rolePermission = new RolePermission();
             //rolePermission.OwnerId = jwt.UserId; //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
-            rolePermission.UserId = rolePermissionCrudView.UserId;
-            rolePermission.PermissionId = rolePermissionCrudView.PermissionId;
-            rolePermission.RoleId = rolePermissionCrudView.RoleId;
+            //rolePermission.UserId = rolePermissionCrudView.UserId;
+            rolePermission.UserId = jwt.UserId;
+            rolePermission.PermissionId = PermissionId;
+            rolePermission.RoleId = RoleId;
 
             bool result = rolePermissionRepo.Insert(rolePermission);
 
@@ -53,11 +54,11 @@ namespace Identity.Controllers.api.v1
 
 
         // DELETE api/values/5
-        [HttpDelete]
-        public CommonApiResponse Delete(String RoleId)
+        [HttpDelete("{Id}")]
+        public CommonApiResponse Delete(string Id)
         {
             jwt = ViewBag.Jwt;
-            bool result = rolePermissionRepo.Delete(jwt.UserId, RoleId);
+            bool result = rolePermissionRepo.Delete(jwt.UserId, Id);
 
             if (result)
             { return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }

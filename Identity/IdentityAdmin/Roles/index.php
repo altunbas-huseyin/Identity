@@ -91,6 +91,7 @@
                    field: "description",
                    title: "Description"
                },
+               { field: "id", title: "id", width:"190px", template: "<a class='k-button k-button-icontext' target='_blank' href='/RolePermissions/index.php?roleId=#=id#'> Role Permissions </a>" },
                {
                    command: ["edit", "destroy"],
                    width: "400px"

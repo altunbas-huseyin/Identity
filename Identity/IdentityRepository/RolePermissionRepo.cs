@@ -27,9 +27,9 @@ namespace IdentityRepository
             return mongoContext.Update(rolePermission);
         }
 
-        public bool Delete(string UserId, String Id)
+        public bool Delete(string UserId, String RolePermissionId)
         {
-            RolePermission _permission = this.GetById(UserId, Id);
+            RolePermission _permission = this.GetById(UserId, RolePermissionId);
             if (_permission == null)
             {
                 return true;

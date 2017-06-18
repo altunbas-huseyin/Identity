@@ -13,14 +13,17 @@
     </main>
 </div>
 
-<?php $_id = $_GET['_id']; ?>
+<?php $roleId = $_GET['roleId']; ?>
 
-<script>   
 
+<script>
+   
 function onChange() {
+    debugger;
     var ddl = $("#name").data("kendoDropDownList");
     var id = ddl.element.val();
-    $('#grid').data('kendoGrid').dataSource.transport.options.create.url = apiUrl + "api/UserRoles/<?=$_id?>/"+id;
+    $('#grid').data('kendoGrid').dataSource.transport.options.create.url = apiUrl + "api/RolePermission/<?=$roleId?>/"+id;
+    
 }
 
    window.onload = function() {
@@ -34,11 +37,11 @@ function onChange() {
            pageSize: 20,
            transport: {
                read: {
-                   url: apiUrl + "api/UserRoles/<?=$_id?>",
+                   url: apiUrl + "api/RolePermission/<?=$roleId?>",
                    dataType: "json",
                },
                create: {
-                   url: "",
+                   url: apiUrl + "",
                    dataType: "json",
                    type: "POST",
                },
@@ -48,7 +51,7 @@ function onChange() {
                //    type: "PUT",
                //},
                destroy: {
-                   url: apiUrl + "api/UserRoles/",
+                   url: apiUrl + "api/RolePermission/",
                    dataType: "json",
                    type: "DELETE"
                }
@@ -68,7 +71,7 @@ function onChange() {
            dataSource: remoteDataSource,
            toolbar: [{
                name: "create",
-               text: "Create Role"
+               text: "Create Role Permission"
            }],
            editable: "popup",
            scrollable: true,
@@ -82,17 +85,16 @@ function onChange() {
            columns: [
 
                 { field: "id", title: "Id" },
-                //{ field: "name", title: "Name" },
-                 { field: "name", title: "name", width: "180px", editor: categoryDropDownEditor, template: "#=name#" },
+                { field: "permissionId", title: "permissionId" },
+                { field: "name", title: "name", width: "180px", editor: categoryDropDownEditor, template: "#=name#" },
                 { field: "description", title: "Description" },
-
                //{
                 //   command: ["destroy"],//edit butonu olmayacak kullanıcıya sadece rol ekleme ve silme olacak
                 //   width: "400px"
                //},
                {
                         command: [
-                                      { text: "Delete", click: roleDelete }
+                                      { text: "Delete", click: rolePermissionDelete }
                                  ],  title: "Delete", width: "10%"
                     },
 
@@ -118,7 +120,7 @@ function onChange() {
                                 },
                                 transport: {
                                     read: {
-                                        url: apiUrl + "api/Roles",
+                                        url: apiUrl + "api/Permissions",
                                         dataType: "json",
                                         data: {
                                            // _id: _id
@@ -135,7 +137,7 @@ function onChange() {
 
 
 
-  function roleDelete(e) {
+  function rolePermissionDelete(e) {
             e.preventDefault();
             //Get Data Info
             var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
@@ -153,7 +155,7 @@ function onChange() {
                          
                          $.ajax({
                             type: "DELETE",
-                            url: apiUrl + "api/UserRoles/<?=$_id?>/"+dataItem._id,
+                            url: apiUrl + "api/RolePermission/"+dataItem._id,
                             ajaxasync: true,
                             data: {  },
                             success: function (data) {
