@@ -23,7 +23,7 @@ function onChange() {
     var id = ddl.element.val();
     roleId = id;
 
-    $('#grid').data('kendoGrid').dataSource.transport.options.create.url = apiUrl + "api/UserRole/<?=$_id?>/"+roleId;
+    $('#grid').data('kendoGrid').dataSource.transport.options.create.url = apiUrl + "api/UserRoles/<?=$_id?>/"+roleId;
 }
 
    window.onload = function() {
@@ -37,7 +37,7 @@ function onChange() {
            pageSize: 20,
            transport: {
                read: {
-                   url: apiUrl + "api/UserRole/<?=$_id?>",
+                   url: apiUrl + "api/UserRoles/<?=$_id?>",
                    dataType: "json",
                },
                create: {
@@ -51,7 +51,7 @@ function onChange() {
                //    type: "PUT",
                //},
                destroy: {
-                   url: apiUrl + "api/UserRole",
+                   url: apiUrl + "api/UserRoles/",
                    dataType: "json",
                    type: "DELETE"
                }
@@ -156,7 +156,7 @@ function onChange() {
                          
                          $.ajax({
                             type: "DELETE",
-                            url: apiUrl + "api/UserRole/<?=$_id?>/"+dataItem._id,
+                            url: apiUrl + "api/UserRoles/<?=$_id?>/"+dataItem._id,
                             ajaxasync: true,
                             data: {  },
                             success: function (data) {

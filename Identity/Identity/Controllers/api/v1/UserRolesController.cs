@@ -17,7 +17,7 @@ namespace Identity.Controllers1
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
     [ValidateModel("SystemAdmin,AppAdmin")]
-    public class UserRoleController : Controller
+    public class UserRolesController : Controller
     {
         Jwt jwt = new Jwt();
         UserRoleRepo userRoleRepo = new UserRoleRepo();

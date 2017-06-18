@@ -43,7 +43,7 @@ namespace Identity.Controllers.api.v1
 
         // POST api/values
         [HttpPost]
-        public CommonApiResponse Post([FromBody]RolePermissionCrudView rolePermissionCrudView)
+        public CommonApiResponse Post(RolePermissionCrudView rolePermissionCrudView)
         {
             jwt = ViewBag.Jwt;
             RolePermission rolePermission = new RolePermission();
