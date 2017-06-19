@@ -19,7 +19,7 @@
 <script>
    
 function onChange() {
-    debugger;
+    
     var ddl = $("#name").data("kendoDropDownList");
     var id = ddl.element.val();
     $('#grid').data('kendoGrid').dataSource.transport.options.create.url = apiUrl + "api/RolePermission/<?=$roleId?>/"+id;
@@ -162,7 +162,8 @@ function onChange() {
                                if(data.status)
                                {
                                    swal("Succes");
-                                   runKendo();
+                                   //runKendo();
+                                   location.reload();
                                }
                             },
                             error: function (data) {

@@ -1,4 +1,5 @@
 ﻿using IdentityModels;
+using IdentityModels.Permissions;
 using IdentityModels.RolePermissions;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,50 @@ namespace IdentityRepository
             RolePermission rolePermission = mongoContext.SearchFor(p =>  p.UserId == UserId && p.PermissionId == RolePermissionId).FirstOrDefault();
             return rolePermission;
         }
+
+        public dynamic GetByUserIdWithJoinPermission(string UserId, string RoleId)
+        {
+            PermissionRepo permissionRepo = new PermissionRepo();
+            List<Permission> permissionList = permissionRepo.GetByUserId(UserId);
+            List<RolePermission> rolePermissionList = this.GetByUserIdAndRoleId(UserId, RoleId);
+
+            var result = from rolePermission in rolePermissionList
+                         join permission in permissionList
+                              on rolePermission.PermissionId equals permission._id
+                         select new
+                         {
+                             rolePermission._id,
+                             rolePermission.PermissionId,
+                             rolePermission.RoleId,
+                             permission.Name,
+                             permission.Description
+                         };
+
+            return result;
+        }
+
+        public dynamic GetByUserIdAndIdWithJoinPermission(string UserId, string RoleId, string Id)
+        {
+            PermissionRepo permissionRepo = new PermissionRepo();
+            List<Permission> permissionList = permissionRepo.GetByUserId(UserId);
+            List<RolePermission> rolePermissionList = new List<RolePermission>();
+            rolePermissionList.Add(this.GetById(UserId, Id));
+
+            var result = from rolePermission in rolePermissionList
+                         join permission in permissionList
+                              on rolePermission.PermissionId equals permission._id
+                         select new
+                         {
+                             rolePermission._id,
+                             rolePermission.PermissionId,
+                             rolePermission.RoleId,
+                             permission.Name,
+                             permission.Description
+                         };
+
+            return result;
+        }
+
 
         public bool AddUniqIndex()
         {

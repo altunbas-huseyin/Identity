@@ -1,5 +1,6 @@
 ﻿using IdentityModels;
 using IdentityModels.Permissions;
+using IdentityModels.RolePermissions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace IdentityRepository
     {
         
         private StatusRepo statusRepo = new StatusRepo();
-
+        private RolePermissionRepo rolePermissionRepo = new RolePermissionRepo();
         public bool Insert(Permission permission)
         {
             // Permission _role = this.GetByName(permission.UserId, permission.Name);
@@ -57,6 +58,7 @@ namespace IdentityRepository
             return permission;
         }
 
+      
         public bool AddUniqIndex()
         {
             List<string> list = new List<string>();
