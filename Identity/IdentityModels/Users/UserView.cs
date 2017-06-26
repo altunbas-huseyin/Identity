@@ -11,7 +11,7 @@ namespace IdentityModels.Users
     {
         public string ProjectName { get; set; }
         public string ProjectCode { get; set; }
-        public string ParentId { get; set; }
+        public string Parent_Id { get; set; }
         public List<Role> Role { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }

@@ -17,22 +17,22 @@ namespace IdentityRepository
             Status status = statusRepo.GetByName("Active");
 
             Jwt jwt = new Jwt();
-            var jwtOld = mongoContext.SearchFor(p => p.UserId == UserId);
+            var jwtOld = mongoContext.SearchFor(p => p.User_Id == UserId);
             if (jwtOld.Count > 0)
             {
                 jwt = jwtOld[0];
                 jwt.Token = Token;
-                jwt.DeadLine = DeadLine;
+                jwt.Dead_Line = DeadLine;
 
                 mongoContext.Update(jwt);
             }
             else
             {
 
-                jwt.UserId = UserId;
+                jwt.User_Id = UserId;
                 jwt.Token = Token;
-                jwt.DeadLine = DeadLine;
-                jwt.Status = status;
+                jwt.Dead_Line = DeadLine;
+                jwt.Status_Id = status.Id;
 
                 mongoContext.Insert(jwt);
             }
@@ -59,7 +59,7 @@ namespace IdentityRepository
 
         public Result GetByUserId(string UserId)
         {
-            Jwt jwt = mongoContext.SearchFor(p => p.UserId == UserId).FirstOrDefault();
+            Jwt jwt = mongoContext.SearchFor(p => p.User_Id == UserId).FirstOrDefault();
             return result = new Result(jwt, true);
         }
 

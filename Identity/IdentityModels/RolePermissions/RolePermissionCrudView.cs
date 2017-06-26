@@ -6,9 +6,9 @@ namespace IdentityModels.RolePermissions
 {
     public class RolePermissionCrudView
     {
-        public string OwnerId { get; set; } //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
-        public string UserId { get; set; }
-        public string PermissionId { get; set; }
-        public string RoleId { get; set; }
+       // public string Owner_Id { get; set; } //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
+        public string User_Id { get; set; }
+        public string Permission_Id { get; set; }
+        public string Role_Id { get; set; }
     }
 }

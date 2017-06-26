@@ -62,8 +62,8 @@ public class MongoDbRepository<TEntity> :
     public bool Insert(TEntity entity)
     {
         //entity._id = Guid.NewGuid();
-        entity.CreateDate = DateTime.Now.AddHours(3);
-        entity.UpdateDate = entity.CreateDate;
+        entity.Create_Date = DateTime.Now.AddHours(3);
+        entity.Update_Date = entity.Create_Date;
         collection.Insert(entity);
 
         return true;//Burası tekrar kontrol edilecek

@@ -18,7 +18,7 @@ namespace IdentityModels.Users
 
             RuleFor(p => p.Password).Length(4, 20).WithMessage("Şifreniz 4 ila 20 karakter olmalıdır.");
 
-            RuleFor(p => p.ParentId).Must(ParentId).WithMessage("ParentId alanını kontrol ediniz.");
+            RuleFor(p => p.Parent_Id).Must(ParentId).WithMessage("ParentId alanını kontrol ediniz.");
         }
 
         private bool ParentId(string postcode)
