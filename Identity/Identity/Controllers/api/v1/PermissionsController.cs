@@ -64,7 +64,7 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             Permission permission = new Permission();
-            permission._id = permissionView._id;
+            permission.Id = permissionView.Id;
             permission.User_Id = jwt.User_Id;
             permission.Name = permissionView.Name;
             permission.Description = permissionView.Description;
@@ -81,7 +81,7 @@ namespace Identity.Controllers1
         public void Delete(PermissionCrudView permissionView)
         {
             jwt = ViewBag.Jwt;
-            bool result = permissionRepo.Delete(jwt.User_Id, permissionView._id);
+            bool result = permissionRepo.Delete(jwt.User_Id, permissionView.Id);
             //if (result)
             //{ return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
             //

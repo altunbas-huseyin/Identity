@@ -55,7 +55,7 @@ namespace IdentityRepository
 
         public Role GetById(string UserId, string Id)
         {
-            Role role = mongoContext.SearchFor(p => p._id == Id && p.User_Id == UserId).First();
+            Role role = mongoContext.SearchFor(p => p.Id == Id && p.User_Id == UserId).First();
             return role;
         }
 

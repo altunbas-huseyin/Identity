@@ -50,7 +50,7 @@ namespace IdentityRepository
             bool resultIsAdded = IsAddedRole(user, RoleId);
             if (resultIsAdded)
             {
-                Role role = user.Role.Where(p => p._id == RoleId).First();
+                Role role = user.Role.Where(p => p.Id == RoleId).First();
                 user.Role.Remove(role);
                 return userRepo.Update(user);
             }
@@ -60,7 +60,7 @@ namespace IdentityRepository
 
         public bool IsAddedRole(User user, string RoleId)
         {
-            Role role = user.Role.Where(p => p._id == RoleId).FirstOrDefault();
+            Role role = user.Role.Where(p => p.Id == RoleId).FirstOrDefault();
             if (role != null)
             {
                 return true;

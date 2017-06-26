@@ -48,7 +48,7 @@ namespace IdentityRepository
 
         public Permission GetById(string UserId, String Id)
         {
-            Permission permission = mongoContext.SearchFor(p => p.User_Id == UserId && p._id == Id).FirstOrDefault();
+            Permission permission = mongoContext.SearchFor(p => p.User_Id == UserId && p.Id == Id).FirstOrDefault();
             return permission;
         }
 

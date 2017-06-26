@@ -48,7 +48,7 @@ namespace IdentityRepository
             {
                 jwt = _token[0];
 
-                if (jwt.DeadLine < DateTime.Now)
+                if (jwt.Dead_Line < DateTime.Now)
                 {
                     jwt = null;
                 }

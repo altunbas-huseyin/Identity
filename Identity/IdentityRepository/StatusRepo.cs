@@ -11,7 +11,7 @@ namespace IdentityRepository
         public string Insert(Status status)
         {
             mongoContext.Insert(status);
-            return status._id;
+            return status.Id;
         }
 
         public Status GetByName(string Name)

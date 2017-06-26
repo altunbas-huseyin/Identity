@@ -17,7 +17,7 @@ namespace IdentityModels
 
         public EntityBase()
         {
-           // this._id = Guid.NewGuid().ToString();
+           // this.Id = Guid.NewGuid().ToString();
            
         }
 

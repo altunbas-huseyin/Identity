@@ -30,12 +30,12 @@ namespace IdentityTest
             Role role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", "AppAdmin");
 
             user = new User();
-            user._id = "bra6b053-f21b-4304-8844-93f073465630";
+            user.Id = "bra6b053-f21b-4304-8844-93f073465630";
             user.Email = "test@test.com";
             user.Password = "1111";
             user.Name = "Hüseyin";
             user.SurName = "Altunbaş";
-            user.Status = status.Status;
+            user.Status_Id = status.Status_Id;
             user.Role = new List<Role>();
             user.Role.Add(role);
         }
@@ -69,13 +69,13 @@ namespace IdentityTest
         [TestMethod]
         public void UserAddJwt()
         {
-            Jwt jwt = (Jwt)jwtRepo.Add(user._id, Guid.NewGuid().ToString(), DateTime.Now.AddDays(5)).Data;
+            Jwt jwt = (Jwt)jwtRepo.Add(user.Id, Guid.NewGuid().ToString(), DateTime.Now.AddDays(5)).Data;
         }
 
         [TestMethod]
         public void UserJwtTest()
         {
-            Jwt jwt = (Jwt)jwtRepo.GetByUserId(user._id.ToString()).Data;
+            Jwt jwt = (Jwt)jwtRepo.GetByUserId(user.Id.ToString()).Data;
             Jwt jwtCheckToken = (Jwt)jwtRepo.CheckToken(jwt.Token).Data;
         }
 
@@ -89,13 +89,13 @@ namespace IdentityTest
             if (userRepo.GetByEmail("altunbas.huseyin@gmail.com") == null)
             {
                 User user = new User();
-                user._id = "1c823a7d-7475-4c09-ad13-3b94a53ca943";
+                user.Id = "1c823a7d-7475-4c09-ad13-3b94a53ca943";
                 user.Email = "altunbas.huseyin@gmail.com";
-                user.ParentId = "00000000-0000-0000-0000-000000000000";
+                user.Parent_Id = "00000000-0000-0000-0000-000000000000";
                 user.Password = "1111";
                 user.Name = "Hüseyin";
                 user.SurName = "Altunbaş";
-                user.Status = status.Status;
+                user.Status_Id = status.Status_Id;
                 user.Role = new List<Role>();
                 user.Role.Add(role);
 
@@ -109,7 +109,7 @@ namespace IdentityTest
         [TestMethod]
         public void Login()
         {
-            Jwt jwt = (Jwt)jwtRepo.GetByUserId(user._id.ToString()).Data;
+            Jwt jwt = (Jwt)jwtRepo.GetByUserId(user.Id.ToString()).Data;
             Identity.Controllers1.LoginController userController = new Identity.Controllers1.LoginController();
             UserView userView = userRepo.LoginByEmail(user.Email, user.Password);
 
@@ -134,7 +134,7 @@ namespace IdentityTest
         [TestMethod]
         public void DeleteUser()
         {
-            bool result = userRepo.Delete(user._id);
+            bool result = userRepo.Delete(user.Id);
             Assert.AreEqual(result, true);
 
         }

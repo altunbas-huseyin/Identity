@@ -51,7 +51,7 @@ namespace Identity.Controllers1
             role.Name = roleRegisterView.Name;
             role.User_Id = jwt.User_Id;
             role.Description = roleRegisterView.Description;
-            role.Status = statusRepo.GetByName("Active");
+            role.Status_Id = statusRepo.GetByName("Active").Id;
 
             bool result = roleRepo.Insert(role);
             if (result)
@@ -69,7 +69,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Put(RoleUpdateView roleUpdateView)
         {
             jwt = ViewBag.Jwt;
-            Role role = roleRepo.GetById(jwt.User_Id, roleUpdateView._id);
+            Role role = roleRepo.GetById(jwt.User_Id, roleUpdateView.Id);
             if (role == null)
             {
                 return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, null, FluentValidationHelper.GenerateErrorList("Rol bulunamadı."));

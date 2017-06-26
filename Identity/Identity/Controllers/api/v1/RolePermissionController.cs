@@ -35,10 +35,10 @@ namespace Identity.Controllers.api.v1
             //
             //var result = from rolePermission in rolePermissionList
             //            join permission in permissionList
-            //                 on rolePermission.PermissionId equals permission._id
+            //                 on rolePermission.PermissionId equals permission.Id
             //            select new
             //            {
-            //                rolePermission._id,
+            //                rolePermission.Id,
             //                rolePermission.PermissionId,
             //                rolePermission.RoleId,
             //                permission.Name,
@@ -58,8 +58,8 @@ namespace Identity.Controllers.api.v1
             //rolePermission.OwnerId = jwt.User_Id; //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
             //rolePermission.User_Id = rolePermissionCrudView.User_Id;
             rolePermission.User_Id = jwt.User_Id;
-            rolePermission.PermissionId = PermissionId;
-            rolePermission.RoleId = RoleId;
+            rolePermission.Permission_Id = PermissionId;
+            rolePermission.Role_Id = RoleId;
 
             bool result = false;
             string error = "";
@@ -76,7 +76,7 @@ namespace Identity.Controllers.api.v1
 
             if (result)
             {
-                var result1 = rolePermissionRepo.GetByUserIdAndIdWithJoinPermission(jwt.User_Id, RoleId, rolePermission._id);
+                var result1 = rolePermissionRepo.GetByUserIdAndIdWithJoinPermission(jwt.User_Id, RoleId, rolePermission.Id);
 
                 return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, result1, null);
             }

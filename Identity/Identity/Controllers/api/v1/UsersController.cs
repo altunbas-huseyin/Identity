@@ -80,12 +80,12 @@ namespace Identity.Controllers1
                 User tempUser = userRepo.GetById(jwt.User_Id);
                 User user = new User();
 
-                user.ParentId = jwt.User_Id;
+                user.Parent_Id = jwt.User_Id;
                 user.Email = userView.Email;
                 user.Password = userView.Password;
                 user.Name = userView.Name;
                 user.SurName = userView.SurName;
-                user.Status = statusRepo.GetByName("WaitingForApproval");
+                user.Status_Id = statusRepo.GetByName("WaitingForApproval").Id;
                 user.Role = new List<Role>();
 
                 List<ValidationFailure> list = UserValidator.FieldValidate(user).ToList();
@@ -109,7 +109,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Put(UserUpdateView userUpdateView)
         {
             jwt = ViewBag.Jwt;
-            User user = userRepo.GetById(jwt.User_Id, userUpdateView._id);
+            User user = userRepo.GetById(jwt.User_Id, userUpdateView.Id);
 
             if (user == null)
             {
@@ -136,13 +136,13 @@ namespace Identity.Controllers1
         public CommonApiResponse Delete(UserUpdateView userUpdateView)
         {
             jwt = ViewBag.Jwt;
-            User user = userRepo.GetById(jwt.User_Id, userUpdateView._id);
+            User user = userRepo.GetById(jwt.User_Id, userUpdateView.Id);
             if (user == null)
             {
                 return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, false, null, "Üye bulunamadı");
             }
 
-            bool result = userRepo.Delete(user._id);
+            bool result = userRepo.Delete(user.Id);
             if (result)
             {
                 return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "işlem başarılı", null);

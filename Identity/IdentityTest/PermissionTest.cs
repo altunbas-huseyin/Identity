@@ -16,7 +16,7 @@ namespace IdentityTest
 
         public PermissionTest()
         {
-            permission = new Permission { UserId = "11127a7e-eb62-442b-b0dd-05cc0102ebc1", _id= "11127a7e-eb62-442b-b0dd-05cc0102ebc1", Name = "Test", Description = "Test" };
+            permission = new Permission { User_Id = "11127a7e-eb62-442b-b0dd-05cc0102ebc1", Id= "11127a7e-eb62-442b-b0dd-05cc0102ebc1", Name = "Test", Description = "Test" };
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace IdentityTest
         [TestMethod]
         public void DeletePermission()
         {
-            bool result = permissionRepo.Delete(permission.User_Id, permission._id);
+            bool result = permissionRepo.Delete(permission.User_Id, permission.Id);
             Assert.AreEqual(result, true);
         }
     }
