@@ -7,19 +7,28 @@ using Microsoft.OData;
 using Identity.Filters;
 using Identity.Middleware;
 using IdentityHelper;
+using IdentityRepository;
+using IdentityModels;
 
 namespace Identity.Controllers1
 {
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
-    [ValidateModel]
     public class ValuesController : Controller
     {
+        
         // GET api/values
         [HttpGet]
         public CommonApiResponse Get()
         {
-
+            CustomerRepository repo = new CustomerRepository();
+            Customer cus = new Customer();
+            cus.Address="adress";
+            cus.Email="email";
+            cus.Name="name";
+            cus.Phone="phone";
+            repo
+            .Add(cus);
 
             var t = CommonApiResponse.Create(System.Net.HttpStatusCode.Accepted,true,"","");
             //  return new string[] { "value1", "value2" };
