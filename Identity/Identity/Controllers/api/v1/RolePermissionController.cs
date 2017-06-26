@@ -54,7 +54,7 @@ namespace Identity.Controllers.api.v1
         public CommonApiResponse Post(string RoleId, string PermissionId)
         {
             jwt = ViewBag.Jwt;
-            RolePermission rolePermission = new RolePermission();
+            Role_Permission rolePermission = new Role_Permission();
             //rolePermission.OwnerId = jwt.User_Id; //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
             //rolePermission.User_Id = rolePermissionCrudView.User_Id;
             rolePermission.User_Id = jwt.User_Id;

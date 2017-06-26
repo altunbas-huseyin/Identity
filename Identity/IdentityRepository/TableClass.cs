@@ -17,12 +17,12 @@ namespace IdentityRepository
                 // Add the rest of your CLR Types to SQL Types mapping here
                 Dictionary<Type, String> dataMapper = new Dictionary<Type, string>();
                 dataMapper.Add(typeof(int), "BIGINT");
-                dataMapper.Add(typeof(string), "NVARCHAR(500)");
+                dataMapper.Add(typeof(string), "varchar");
                 dataMapper.Add(typeof(bool), "BIT");
-                dataMapper.Add(typeof(DateTime), "DATETIME");
-                dataMapper.Add(typeof(float), "FLOAT");
-                dataMapper.Add(typeof(decimal), "DECIMAL(18,0)");
-                dataMapper.Add(typeof(Guid), "UNIQUEIDENTIFIER");
+                dataMapper.Add(typeof(DateTime), "DATE");
+                dataMapper.Add(typeof(float), "DECIMAL");
+                dataMapper.Add(typeof(decimal), "DECIMAL");
+                dataMapper.Add(typeof(Guid), "uuid ");
 
                 return dataMapper;
             }
@@ -36,7 +36,7 @@ namespace IdentityRepository
 
         public string ClassName
         {
-            get { return this._className; }
+            get { return this._className.ToLower(); }
             set { this._className = value; }
         }
 
@@ -56,21 +56,21 @@ namespace IdentityRepository
         {
             System.Text.StringBuilder script = new StringBuilder();
 
-            script.AppendLine("CREATE TABLE " + this.ClassName);
+            script.AppendLine("CREATE TABLE \"" + this.ClassName + "\"");
             script.AppendLine("(");
-            script.AppendLine("\t ID BIGINT,");
+           // script.AppendLine("\t ID BIGINT,");
             for (int i = 0; i < this.Fields.Count; i++)
             {
                 KeyValuePair<String, Type> field = this.Fields[i];
 
                 if (dataMapper.ContainsKey(field.Value))
                 {
-                    script.Append("\t " + field.Key + " " + dataMapper[field.Value]);
+                    script.Append("\t \"" + field.Key.ToLower().Replace("ı","i") + "\" " + dataMapper[field.Value]);
                 }
                 else
                 {
                     // Complex Type? 
-                    script.Append("\t " + field.Key + " BIGINT");
+                    script.Append("\t \"" + field.Key.ToLower().Replace("ı", "i") + "\"  varchar");
                 }
 
                 if (i != this.Fields.Count - 1)

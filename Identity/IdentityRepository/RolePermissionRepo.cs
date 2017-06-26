@@ -8,14 +8,14 @@ using System.Text;
 
 namespace IdentityRepository
 {
-    public class RolePermissionRepo : BaseRepo<RolePermission>
+    public class RolePermissionRepo : BaseRepo<Role_Permission>
     {
         
         private StatusRepo statusRepo = new StatusRepo();
 
-        public bool Insert(RolePermission rolePermission)
+        public bool Insert(Role_Permission rolePermission)
         {
-            RolePermission _role = this.GetByUserIdAndPermissionId( rolePermission.User_Id, rolePermission.Id);
+            Role_Permission _role = this.GetByUserIdAndPermissionId( rolePermission.User_Id, rolePermission.Id);
             if (_role == null)
             {
                 mongoContext.Insert(rolePermission);
@@ -23,14 +23,14 @@ namespace IdentityRepository
             return true;
         }
 
-        public bool Update(RolePermission rolePermission)
+        public bool Update(Role_Permission rolePermission)
         {
             return mongoContext.Update(rolePermission);
         }
 
         public bool Delete(string UserId, String RolePermissionId)
         {
-            RolePermission _permission = this.GetById(UserId, RolePermissionId);
+            Role_Permission _permission = this.GetById(UserId, RolePermissionId);
             if (_permission == null)
             {
                 return true;
@@ -38,22 +38,22 @@ namespace IdentityRepository
             return mongoContext.Delete(_permission);
         }
 
-        public RolePermission GetById(string UserId, String Id)
+        public Role_Permission GetById(string UserId, String Id)
         {
-            RolePermission rolePermission = mongoContext.SearchFor(p =>  p.User_Id == UserId && p.Id == Id).FirstOrDefault();
+            Role_Permission rolePermission = mongoContext.SearchFor(p =>  p.User_Id == UserId && p.Id == Id).FirstOrDefault();
             return rolePermission;
         }
 
-        public List<RolePermission> GetByUserIdAndRoleId( String UserId, string RoleId)
+        public List<Role_Permission> GetByUserIdAndRoleId( String UserId, string RoleId)
         {
             //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
-            List<RolePermission> rolePermissionList = mongoContext.SearchFor(p => p.User_Id == UserId && p.Role_Id==RoleId).ToList();
+            List<Role_Permission> rolePermissionList = mongoContext.SearchFor(p => p.User_Id == UserId && p.Role_Id==RoleId).ToList();
             return rolePermissionList;
         }
 
-        public RolePermission GetByUserIdAndPermissionId( string UserId, String RolePermissionId)
+        public Role_Permission GetByUserIdAndPermissionId( string UserId, String RolePermissionId)
         {
-            RolePermission rolePermission = mongoContext.SearchFor(p =>  p.User_Id == UserId && p.Permission_Id == RolePermissionId).FirstOrDefault();
+            Role_Permission rolePermission = mongoContext.SearchFor(p =>  p.User_Id == UserId && p.Permission_Id == RolePermissionId).FirstOrDefault();
             return rolePermission;
         }
 
@@ -61,7 +61,7 @@ namespace IdentityRepository
         {
             PermissionRepo permissionRepo = new PermissionRepo();
             List<Permission> permissionList = permissionRepo.GetByUserId(UserId);
-            List<RolePermission> rolePermissionList = this.GetByUserIdAndRoleId(UserId, RoleId);
+            List<Role_Permission> rolePermissionList = this.GetByUserIdAndRoleId(UserId, RoleId);
 
             var result = from rolePermission in rolePermissionList
                          join permission in permissionList
@@ -82,7 +82,7 @@ namespace IdentityRepository
         {
             PermissionRepo permissionRepo = new PermissionRepo();
             List<Permission> permissionList = permissionRepo.GetByUserId(UserId);
-            List<RolePermission> rolePermissionList = new List<RolePermission>();
+            List<Role_Permission> rolePermissionList = new List<Role_Permission>();
             rolePermissionList.Add(this.GetById(UserId, Id));
 
             var result = from rolePermission in rolePermissionList

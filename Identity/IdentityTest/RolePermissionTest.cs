@@ -12,11 +12,11 @@ namespace IdentityTest
     public class RolePermissionTest
     {
         RolePermissionRepo permissionRepo = new RolePermissionRepo();
-        RolePermission permission = new RolePermission();
+        Role_Permission permission = new Role_Permission();
 
         public RolePermissionTest()
         {
-            permission = new RolePermission();
+            permission = new Role_Permission();
             permission.Id = "11127a7e-eb62-442b-b0dd-05cc0102ebc1";
             //permission.OwnerId = "21127a7e-eb62-442b-b0dd-05cc0102ebc1"; //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
             permission.User_Id = "31127a7e-eb62-442b-b0dd-05cc0102ebc1";

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace IdentityModels.RolePermissions
 {
-    public class RolePermission : EntityBase
+    public class Role_Permission : EntityBase
     {
         //public string OwnerId { get; set; } //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
         public string User_Id { get; set; }

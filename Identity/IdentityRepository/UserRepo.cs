@@ -1,4 +1,7 @@
 ﻿using IdentityModels;
+using IdentityModels.Permissions;
+using IdentityModels.RolePermissions;
+using IdentityModels.Roles;
 using IdentityModels.Users;
 using System;
 using System.Collections.Generic;
@@ -14,7 +17,8 @@ namespace IdentityRepository
         private UserConvertRepo _userConvertRepo = new UserConvertRepo();
         public bool Add(User user)
         {
-            TableClass TableClass = new TableClass(user.GetType());
+            Status r = new Status();
+            TableClass TableClass = new TableClass(r.GetType());
             string s = TableClass.CreateTableScript();
             string sss = DapperManager.getSqlParameterString<User>(user);
             user.Password = IdentityHelper.Encripty.EncryptString(user.Password);
