@@ -1,13 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\IdentityHelper\IdentityHelper.csproj" />
     <ProjectReference Include="..\MongoDbRepository\MongoDbRepository.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.50.2" />
-    <PackageReference Include="Npgsql" Version="3.2.4.1" />
-  </ItemGroup>
+
 </Project>

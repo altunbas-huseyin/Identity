@@ -7,7 +7,7 @@ using System.Text;
 
 namespace IdentityModels
 {
-    public abstract class EntityBase : BaseEntityPG
+    public abstract class EntityBase
     {
         [BsonId]
         public string _id { get; set; }
