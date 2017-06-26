@@ -27,7 +27,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Get(string Id)
         {
             jwt = ViewBag.Jwt;
-            User user = userRepo.GetById(jwt.UserId, Id);
+            User user = userRepo.GetById(jwt.User_Id, Id);
             List<Role> userRole = user.Role;
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, userRole, null);
         }
@@ -38,9 +38,9 @@ namespace Identity.Controllers1
         public CommonApiResponse Post(string UserId, String RoleId)
         {
             jwt = ViewBag.Jwt;
-            Result result = userRoleRepo.UserAddRole(jwt.UserId, UserId, RoleId);
+            Result result = userRoleRepo.UserAddRole(jwt.User_Id, UserId, RoleId);
 
-            User user = userRepo.GetById(jwt.UserId, UserId);
+            User user = userRepo.GetById(jwt.User_Id, UserId);
             List<Role> userRole = user.Role;
             
             return CommonApiResponse.Create(Response, userRole.LastOrDefault(), result);
@@ -53,7 +53,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Delete(String UserId, String RoleId)
         {
             jwt = ViewBag.Jwt;
-            bool result = userRoleRepo.UserRemoveRole(jwt.UserId, UserId.ToString(), RoleId.ToString());
+            bool result = userRoleRepo.UserRemoveRole(jwt.User_Id, UserId.ToString(), RoleId.ToString());
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, result, null, null);
         }
     }

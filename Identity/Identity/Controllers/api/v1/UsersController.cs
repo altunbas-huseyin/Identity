@@ -34,7 +34,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Get()
         {
             jwt = ViewBag.Jwt;
-            List<User> userList = userRepo.GetByParentId(jwt.UserId);
+            List<User> userList = userRepo.GetByParentId(jwt.User_Id);
 
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, userList, null);
         }
@@ -61,7 +61,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Get(string Id)
         {
             jwt = ViewBag.Jwt;
-            User user = userRepo.GetById(jwt.UserId, Id);
+            User user = userRepo.GetById(jwt.User_Id, Id);
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, user, null);
         }
 
@@ -77,10 +77,10 @@ namespace Identity.Controllers1
                 {
                     return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, false, null, "Bu mail adresi sistemimize kayıtlıdır.");
                 }
-                User tempUser = userRepo.GetById(jwt.UserId);
+                User tempUser = userRepo.GetById(jwt.User_Id);
                 User user = new User();
 
-                user.ParentId = jwt.UserId;
+                user.ParentId = jwt.User_Id;
                 user.Email = userView.Email;
                 user.Password = userView.Password;
                 user.Name = userView.Name;
@@ -109,7 +109,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Put(UserUpdateView userUpdateView)
         {
             jwt = ViewBag.Jwt;
-            User user = userRepo.GetById(jwt.UserId, userUpdateView._id);
+            User user = userRepo.GetById(jwt.User_Id, userUpdateView._id);
 
             if (user == null)
             {
@@ -136,7 +136,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Delete(UserUpdateView userUpdateView)
         {
             jwt = ViewBag.Jwt;
-            User user = userRepo.GetById(jwt.UserId, userUpdateView._id);
+            User user = userRepo.GetById(jwt.User_Id, userUpdateView._id);
             if (user == null)
             {
                 return CommonApiResponse.Create(System.Net.HttpStatusCode.Conflict, false, null, "Üye bulunamadı");

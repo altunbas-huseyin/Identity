@@ -44,7 +44,7 @@ namespace IdentityTest
         [TestMethod]
         public void DeletePermission()
         {
-            bool result = permissionRepo.Delete(permission.UserId, permission._id);
+            bool result = permissionRepo.Delete(permission.User_Id, permission._id);
             Assert.AreEqual(result, true);
         }
     }

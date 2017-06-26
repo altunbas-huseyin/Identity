@@ -29,7 +29,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Get()
         {
             jwt = ViewBag.Jwt;
-            List<Role> roleList = roleRepo.GetByUserId(jwt.UserId);
+            List<Role> roleList = roleRepo.GetByUserId(jwt.User_Id);
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, roleList, null);
         }
 
@@ -38,7 +38,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Get(string Id)
         {
             jwt = ViewBag.Jwt;
-            Role role = roleRepo.GetById(jwt.UserId, Id);
+            Role role = roleRepo.GetById(jwt.User_Id, Id);
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, role, null);
         }
 
@@ -49,7 +49,7 @@ namespace Identity.Controllers1
             jwt = ViewBag.Jwt;
             Role role = new Role();
             role.Name = roleRegisterView.Name;
-            role.UserId = jwt.UserId;
+            role.User_Id = jwt.User_Id;
             role.Description = roleRegisterView.Description;
             role.Status = statusRepo.GetByName("Active");
 
@@ -69,7 +69,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Put(RoleUpdateView roleUpdateView)
         {
             jwt = ViewBag.Jwt;
-            Role role = roleRepo.GetById(jwt.UserId, roleUpdateView._id);
+            Role role = roleRepo.GetById(jwt.User_Id, roleUpdateView._id);
             if (role == null)
             {
                 return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, null, FluentValidationHelper.GenerateErrorList("Rol bulunamadı."));

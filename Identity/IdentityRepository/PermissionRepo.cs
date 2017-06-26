@@ -15,7 +15,7 @@ namespace IdentityRepository
         private RolePermissionRepo rolePermissionRepo = new RolePermissionRepo();
         public bool Insert(Permission permission)
         {
-            // Permission _role = this.GetByName(permission.UserId, permission.Name);
+            // Permission _role = this.GetByName(permission.User_Id, permission.Name);
             // if (_role == null)
             // {
             //     mongoContext.Insert(permission);
@@ -42,19 +42,19 @@ namespace IdentityRepository
 
         public Permission GetByName(string UserId, String Name)
         {
-            Permission permission = mongoContext.SearchFor(p => p.UserId == UserId && p.Name == Name).FirstOrDefault();
+            Permission permission = mongoContext.SearchFor(p => p.User_Id == UserId && p.Name == Name).FirstOrDefault();
             return permission;
         }
 
         public Permission GetById(string UserId, String Id)
         {
-            Permission permission = mongoContext.SearchFor(p => p.UserId == UserId && p._id == Id).FirstOrDefault();
+            Permission permission = mongoContext.SearchFor(p => p.User_Id == UserId && p._id == Id).FirstOrDefault();
             return permission;
         }
 
         public List<Permission> GetByUserId(string UserId)
         {
-            List<Permission> permission = mongoContext.SearchFor(p => p.UserId == UserId).ToList();
+            List<Permission> permission = mongoContext.SearchFor(p => p.User_Id == UserId).ToList();
             return permission;
         }
 

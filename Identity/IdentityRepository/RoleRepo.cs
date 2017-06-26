@@ -23,7 +23,7 @@ namespace IdentityRepository
 
         public bool Insert(Role role)
         {
-            Role _role = this.GetByName(role.UserId, role.Name);
+            Role _role = this.GetByName(role.User_Id, role.Name);
             if (_role == null)
             {
                 mongoContext.Insert(role);
@@ -43,19 +43,19 @@ namespace IdentityRepository
 
         public Role GetByName(string UserId, string Name)
         {
-            Role role = mongoContext.SearchFor(p => p.UserId == UserId && p.Name == Name).FirstOrDefault();
+            Role role = mongoContext.SearchFor(p => p.User_Id == UserId && p.Name == Name).FirstOrDefault();
             return role;
         }
 
         public List<Role> GetByUserId(string UserId)
         {
-            List<Role> roleList = mongoContext.SearchFor(p => p.UserId == UserId).ToList();
+            List<Role> roleList = mongoContext.SearchFor(p => p.User_Id == UserId).ToList();
             return roleList;
         }
 
         public Role GetById(string UserId, string Id)
         {
-            Role role = mongoContext.SearchFor(p => p._id == Id && p.UserId == UserId).First();
+            Role role = mongoContext.SearchFor(p => p._id == Id && p.User_Id == UserId).First();
             return role;
         }
 

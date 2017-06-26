@@ -28,7 +28,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Get()
         {
             jwt = ViewBag.Jwt;
-            List<Permission> list = permissionRepo.GetByUserId(jwt.UserId);
+            List<Permission> list = permissionRepo.GetByUserId(jwt.User_Id);
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, list, null);
         }
 
@@ -37,7 +37,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Get(string Id)
         {
             jwt = ViewBag.Jwt;
-            Permission permission = permissionRepo.GetById(jwt.UserId, Id);
+            Permission permission = permissionRepo.GetById(jwt.User_Id, Id);
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, permission, null);
         }
 
@@ -47,7 +47,7 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             Permission permission = new Permission();
-            permission.UserId = jwt.UserId;
+            permission.User_Id = jwt.User_Id;
             permission.Name = permissionView.Name;
             permission.Description = permissionView.Description;
 
@@ -65,7 +65,7 @@ namespace Identity.Controllers1
             jwt = ViewBag.Jwt;
             Permission permission = new Permission();
             permission._id = permissionView._id;
-            permission.UserId = jwt.UserId;
+            permission.User_Id = jwt.User_Id;
             permission.Name = permissionView.Name;
             permission.Description = permissionView.Description;
 
@@ -81,7 +81,7 @@ namespace Identity.Controllers1
         public void Delete(PermissionCrudView permissionView)
         {
             jwt = ViewBag.Jwt;
-            bool result = permissionRepo.Delete(jwt.UserId, permissionView._id);
+            bool result = permissionRepo.Delete(jwt.User_Id, permissionView._id);
             //if (result)
             //{ return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
             //

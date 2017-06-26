@@ -30,8 +30,8 @@ namespace Identity.Controllers.api.v1
         public CommonApiResponse Get(string Id)
         {
             jwt = ViewBag.Jwt;
-            //List<Permission> permissionList = permissionRepo.GetByUserId(jwt.UserId);
-            //List<RolePermission> rolePermissionList = rolePermissionRepo.GetByUserIdAndRoleId(jwt.UserId, Id);
+            //List<Permission> permissionList = permissionRepo.GetByUserId(jwt.User_Id);
+            //List<RolePermission> rolePermissionList = rolePermissionRepo.GetByUserIdAndRoleId(jwt.User_Id, Id);
             //
             //var result = from rolePermission in rolePermissionList
             //            join permission in permissionList
@@ -45,7 +45,7 @@ namespace Identity.Controllers.api.v1
             //                permission.Description
             //            };
 
-            var result = rolePermissionRepo.GetByUserIdWithJoinPermission(jwt.UserId, Id);
+            var result = rolePermissionRepo.GetByUserIdWithJoinPermission(jwt.User_Id, Id);
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, result, null);
         }
 
@@ -55,9 +55,9 @@ namespace Identity.Controllers.api.v1
         {
             jwt = ViewBag.Jwt;
             RolePermission rolePermission = new RolePermission();
-            //rolePermission.OwnerId = jwt.UserId; //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
-            //rolePermission.UserId = rolePermissionCrudView.UserId;
-            rolePermission.UserId = jwt.UserId;
+            //rolePermission.OwnerId = jwt.User_Id; //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
+            //rolePermission.User_Id = rolePermissionCrudView.User_Id;
+            rolePermission.User_Id = jwt.User_Id;
             rolePermission.PermissionId = PermissionId;
             rolePermission.RoleId = RoleId;
 
@@ -76,7 +76,7 @@ namespace Identity.Controllers.api.v1
 
             if (result)
             {
-                var result1 = rolePermissionRepo.GetByUserIdAndIdWithJoinPermission(jwt.UserId, RoleId, rolePermission._id);
+                var result1 = rolePermissionRepo.GetByUserIdAndIdWithJoinPermission(jwt.User_Id, RoleId, rolePermission._id);
 
                 return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, result1, null);
             }
@@ -90,7 +90,7 @@ namespace Identity.Controllers.api.v1
         public CommonApiResponse Delete(string Id)
         {
             jwt = ViewBag.Jwt;
-            bool result = rolePermissionRepo.Delete(jwt.UserId, Id);
+            bool result = rolePermissionRepo.Delete(jwt.User_Id, Id);
 
             if (result)
             { return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }

@@ -67,7 +67,7 @@ namespace Identity.Filters
                 try
                 {
                     var controller = context.Controller as Controller;
-                    User user = userRepo.GetById(jwt.UserId);
+                    User user = userRepo.GetById(jwt.User_Id);
                     if (user == null)
                     {
                         CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Kullanıcı bulunamadı.");
