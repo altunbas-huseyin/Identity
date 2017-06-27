@@ -87,10 +87,9 @@ namespace Identity.Controllers1
                 }
                 User tempUser = userRepo.GetById(jwt.User_Id);
                 User user = new User();
-
                 user.Parent_Id = jwt.User_Id;
                 user.Email = userView.Email;
-                user.Password = userView.Password;
+                user.Password = IdentityHelper.Encripty.EncryptString(userView.Password);
                 user.Name = userView.Name;
                 user.SurName = userView.SurName;
                 user.Status_Id = statusRepo.GetByName("WaitingForApproval").Id;

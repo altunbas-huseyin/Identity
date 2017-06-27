@@ -36,14 +36,12 @@ namespace IdentityTest
             jwtRepo = new JwtRepo(configuration);
             statusRepo = new StatusRepo(configuration);
 
-
             Status status = statusRepo.GetByName("Active");
             Role role = roleRepo.GetByName(1, "AppAdmin");
 
             user = new User();
-            //user.Id = 1;
             user.Email = "test@test.com";
-            user.Password = "1111";
+            user.Password = IdentityHelper.Encripty.EncryptString("1111");
             user.Name = "Hüseyin";
             user.SurName = "Altunbaş";
             user.Status_Id = 1;//"4b36afc8-5205-49c1-af16-4dc6f96db984"; //status.Status_Id;
@@ -105,7 +103,7 @@ namespace IdentityTest
                 user.Id = 1;  //1c823a7d-7475-4c09-ad13-3b94a53ca943";
                 user.Email = "altunbas.huseyin@gmail.com";
                 user.Parent_Id = 0;//"00000000-0000-0000-0000-000000000000";
-                user.Password = "1111";
+                user.Password = IdentityHelper.Encripty.EncryptString("1111");
                 user.Name = "Hüseyin";
                 user.SurName = "Altunbaş";
                 user.Status_Id = status.Status_Id;

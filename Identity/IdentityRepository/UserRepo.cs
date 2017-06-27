@@ -21,7 +21,6 @@ namespace IdentityRepository
 
         public UserRepo(IConfiguration configuration) : base(configuration)
         {
-
             _configuration = configuration;
             jwtRepo = new JwtRepo(configuration);
             dapperManager = new DapperManager(_configuration);
@@ -29,10 +28,8 @@ namespace IdentityRepository
 
         public int Add(User user)
         {
-            user.Password = IdentityHelper.Encripty.EncryptString(user.Password);
             //return mongoContext.Insert(user);
             int result = dapperManager.Insert<User>(connectionString, user);
-
             return result;
         }
 
@@ -64,7 +61,9 @@ namespace IdentityRepository
 
         public bool Update(User user)
         {
-            return mongoContext.Update(user);
+            //return mongoContext.Update(user);
+            bool result = dapperManager.Update<User>(connectionString, user);
+            return result;
         }
 
         public bool Delete(long Id)

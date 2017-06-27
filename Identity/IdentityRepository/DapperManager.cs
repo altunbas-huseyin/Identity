@@ -75,17 +75,28 @@ public class DapperManager : BaseRepo<EntityBase>
         using (IDbConnection dbConnection = Connection)
         {
             dbConnection.Open();
-            string sql = getSqlParameterString(type);
+            string sql = getTypeInsertQuery(type);
             result = dbConnection.ExecuteScalar<int>(sql, type);
         }
         return result;
     }
 
+    public bool Update<TType>(string con, TType type)
+    {
+        bool result = false;
+        using (IDbConnection dbConnection = Connection)
+        {
+            dbConnection.Open();
+            string sql = getTypeUpdateQuery(type);
+            dynamic d = dbConnection.Query(sql, type);
+            result = true;
+        }
+        return result;
+    }
 
     public static object Insert<TType>(SqlConnection conn, SqlTransaction trans, TType type)
     {
-
-        string sql = getSqlParameterString(type);
+        string sql = getTypeInsertQuery(type);
         object resut = conn.Query<int>(sql, type).Single();
         conn.Close();
         conn.Dispose();
@@ -93,7 +104,7 @@ public class DapperManager : BaseRepo<EntityBase>
     }
 
 
-    public static string getSqlParameterString<TType>(TType type)
+    public static string getTypeInsertQuery<TType>(TType type)
     {
         List<string> columnsList = new List<string>();
         List<string> columnsValueList = new List<string>();
@@ -108,8 +119,26 @@ public class DapperManager : BaseRepo<EntityBase>
             columnsValueList.Add("@" + propertyInfo.Name);
         }
 
-        string sql = "insert into \"" + type.GetType().Name.ToLower() + "\" (" + string.Join(",", columnsList.ToArray()) + ") values(" + string.Join(",", columnsValueList.ToArray()) + "); SELECT currval(pg_get_serial_sequence('user', 'id'));";
+        string sql = "insert into \"" + type.GetType().Name.ToLower() + "\" (" + string.Join(",", columnsList.ToArray()) + ") values(" + string.Join(",", columnsValueList.ToArray()) + "); SELECT currval(pg_get_serial_sequence('"+ type.GetType().Name.ToLower() + "', 'id'));";
 
+        return sql;
+    }
+
+    public static string getTypeUpdateQuery<TType>(TType type)
+    {
+        List<string> columnsList = new List<string>();
+        
+        foreach (PropertyInfo propertyInfo in type.GetType().GetProperties())
+        {
+            object o = propertyInfo.GetValue(type, null);
+            if (o == null) { continue; }
+            if (propertyInfo.Name == "Id") { continue; }
+            string column = propertyInfo.Name.ToLower().Replace("ı", "i") + " = @" + propertyInfo.Name;
+            columnsList.Add(column);
+            
+        }
+
+        string sql = "UPDATE \"" + type.GetType().Name.ToLower() + "\" SET "+ string.Join(",", columnsList.ToArray()) + " WHERE id = @Id";
         return sql;
     }
 
