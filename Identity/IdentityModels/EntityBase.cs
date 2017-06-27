@@ -17,8 +17,8 @@ namespace IdentityModels
 
         public EntityBase()
         {
-           // this.Id = Guid.NewGuid().ToString();
-           
+            //this.Id = Guid.NewGuid().ToString();
+           Guid dd = IdentityHelper.SequentialGuidGenerator.NewSequentialGuid(IdentityHelper.SequentialGuidType.SequentialAsString);
         }
 
     }

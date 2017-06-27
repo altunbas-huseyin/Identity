@@ -3590,6 +3590,7 @@
       "identitymodels/1.0.0": {
         "dependencies": {
           "FluentValidation.AspNetCore": "7.0.3",
+          "IdentityHelper": "1.0.0",
           "mongocsharpdriver": "2.4.3"
         },
         "runtime": {

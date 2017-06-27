@@ -5,3 +5,5 @@ C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityModels\obj\Debug\n
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityModels\obj\Debug\netcoreapp1.0\IdentityModels.AssemblyInfo.cs
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityModels\obj\Debug\netcoreapp1.0\IdentityModels.dll
 C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityModels\obj\Debug\netcoreapp1.0\IdentityModels.pdb
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityModels\bin\Debug\netcoreapp1.0\IdentityHelper.dll
+C:\Users\haltunbas\Documents\GitHub\Identity\Identity\IdentityModels\bin\Debug\netcoreapp1.0\IdentityHelper.pdb

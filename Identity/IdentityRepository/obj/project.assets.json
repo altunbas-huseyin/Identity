@@ -3866,6 +3866,7 @@
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "FluentValidation.AspNetCore": "7.0.0",
+          "IdentityHelper": "1.0.0",
           "Microsoft.NETCore.App": "1.0.4",
           "mongocsharpdriver": "2.4.3"
         }

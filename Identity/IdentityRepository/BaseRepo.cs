@@ -10,7 +10,7 @@ namespace IdentityRepository
 {
     public class BaseRepo<T>  where T : EntityBase
     {
-        public MongoDbRepository<T> mongoContext = new MongoDbRepository<T>();
+        public MongoDbRepository<T> mongoContext;
 
         public string connectionString;
         //public BaseRepo(IConfiguration configuration)
@@ -20,7 +20,8 @@ namespace IdentityRepository
 
         public BaseRepo(IConfiguration configuration)
         {
-            connectionString = configuration.GetValue<string>("DBInfo:ConnectionString");
+            mongoContext = new MongoDbRepository<T>();
+            connectionString = "User ID=postgres;Password=Huso7474;Host=138.68.80.239;Port=5432;Database=myDataBase;Pooling=true;";//configuration.GetValue<string>("DBInfo:ConnectionString");
         }
 
         public IDbConnection Connection

@@ -16,19 +16,22 @@ namespace IdentityRepository
 
         private JwtRepo jwtRepo;
         private UserConvertRepo _userConvertRepo = new UserConvertRepo();
-
+        IConfiguration _configuration;
         public UserRepo(IConfiguration configuration) : base(configuration)
         {
-            jwtRepo = new JwtRepo(configuration);
+            _configuration = configuration;
+               jwtRepo = new JwtRepo(configuration);
         }
 
         public bool Add(User user)
         {
-           
+
             string sss = DapperManager.getSqlParameterString<User>(user);
             user.Password = IdentityHelper.Encripty.EncryptString(user.Password);
-            return mongoContext.Insert(user);
-
+            //return mongoContext.Insert(user);
+            DapperManager dapperManager = new DapperManager(_configuration);
+            object o = dapperManager.Insert<User>(connectionString, user);
+            return true;
         }
 
         public object nativequery()

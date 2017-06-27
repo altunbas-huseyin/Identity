@@ -46,7 +46,7 @@ namespace IdentityTest
             user.Password = "1111";
             user.Name = "Hüseyin";
             user.SurName = "Altunbaş";
-            user.Status_Id = status.Status_Id;
+            user.Status_Id = Guid.NewGuid().ToString(); //status.Status_Id;
             user.Role = new List<Role>();
             user.Role.Add(role);
         }

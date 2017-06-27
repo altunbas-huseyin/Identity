@@ -10,9 +10,11 @@ using IdentityModels;
 using IdentityRepository;
 using Microsoft.Extensions.Configuration;
 
-public class DapperManager
+public class DapperManager : BaseRepo<EntityBase>
 {
-   
+    public DapperManager(IConfiguration configuration) : base(configuration)
+    {
+    }
 
     public static List<TType> GetData<TType>(string con, string sql)
     {
@@ -66,15 +68,18 @@ public class DapperManager
         return list;
     }
 
-    public static object Insert<TType>(string con, TType type)
+    public object Insert<TType>(string con, TType type)
     {
+        using (IDbConnection dbConnection = Connection)
+        {
+            dbConnection.Open();
+            string sql = getSqlParameterString(type);
+            dbConnection.Execute(sql, type);
+        }
+        
 
-        string sql = getSqlParameterString(type);
-        SqlConnection conn = new SqlConnection(con);
-        object resut = conn.Query<int>(sql, type).Single();
-        conn.Close();
-        conn.Dispose();
-        return resut;
+  
+        return 1;
     }
 
 
@@ -103,7 +108,7 @@ public class DapperManager
             columnsValueList.Add("@" + propertyInfo.Name);
         }
 
-        string sql = "insert into " + type.GetType().Name + "(" + string.Join(",", columnsList.ToArray()) + ") values(" + string.Join(",", columnsValueList.ToArray()) + ") ";
+        string sql = "insert into \"" + type.GetType().Name.ToLower() + "\" (" + string.Join(",", columnsList.ToArray()) + ") values(" + string.Join(",", columnsValueList.ToArray()) + ") ";
 
         return sql;
     }
