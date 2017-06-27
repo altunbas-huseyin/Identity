@@ -5,14 +5,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityRepository
 {
     public class PermissionRepo : BaseRepo<Permission>
     {
-        
-        private StatusRepo statusRepo = new StatusRepo();
-        private RolePermissionRepo rolePermissionRepo = new RolePermissionRepo();
+
+        private StatusRepo statusRepo;
+        private RolePermissionRepo rolePermissionRepo;
+
+        public PermissionRepo(IConfiguration configuration) : base(configuration)
+        {
+            rolePermissionRepo = new RolePermissionRepo(configuration);
+            statusRepo = new StatusRepo(configuration);
+        }
+
         public bool Insert(Permission permission)
         {
             // Permission _role = this.GetByName(permission.User_Id, permission.Name);

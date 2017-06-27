@@ -9,34 +9,42 @@ using System.Linq;
 using System.Threading.Tasks;
 using IdentityModels.Users;
 using IdentityModels.Roles;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Identity.Filters
 {
     public class ValidateModelAttribute : ActionFilterAttribute
     {
-        JwtRepo jwtRepo = new JwtRepo();
-        UserRepo userRepo = new UserRepo();
-        RoleRepo roleRepo = new RoleRepo();
+        JwtRepo jwtRepo;
+        UserRepo userRepo;
+        RoleRepo roleRepo;
         List<string> requiredRoleList = new List<string>();
 
         Microsoft.Extensions.Primitives.StringValues _Token = "";
         bool IsAcces = false;
-        public ValidateModelAttribute()
-        {
-
-        }
+        
         public ValidateModelAttribute(string _role)
         {
             requiredRoleList = _role.Split(new char[] { ',' }).ToList();
         }
+
         public override void OnActionExecuting(ActionExecutingContext context)
         {
+
+            //context.HttpContext.RequestServices.GetService<IConfiguration>();
+            //var logger = context.HttpContext.RequestServices.GetRequiredService<IConfiguration>();
 
             if (!context.ModelState.IsValid)
             {
                 context.Result = new BadRequestObjectResult(context.ModelState);
             }
 
+            IConfiguration configuration = context.HttpContext.RequestServices.GetService<IConfiguration>();
+            jwtRepo = new JwtRepo(configuration);
+            userRepo = new UserRepo(configuration);
+            roleRepo = new RoleRepo(configuration);
 
             context.HttpContext.Request.Headers.TryGetValue("Token", out _Token);
             if (_Token.Count > 0)
@@ -92,7 +100,7 @@ namespace Identity.Filters
                         }
                         if (!IsAcces)
                         {
-                            
+
                             CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Yetkiniz yok.");
                             BadRequestObjectResult badReq = new BadRequestObjectResult(response);
                             context.Result = badReq;
@@ -116,7 +124,7 @@ namespace Identity.Filters
                 CommonApiResponse response = CommonApiResponse.Create(System.Net.HttpStatusCode.OK, false, null, "Header Token bulunamadı.");
                 ObjectResult badReq = new ObjectResult(response);
                 context.Result = badReq;
-               
+
             }
         }
     }

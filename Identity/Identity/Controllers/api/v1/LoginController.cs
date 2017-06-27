@@ -7,6 +7,7 @@ using IdentityModels.Users;
 using Identity.Middleware;
 using IdentityRepository;
 using IdentityHelper;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,11 +17,21 @@ namespace Identity.Controllers1
     [Route("api/[controller]")]
     public class LoginController : Controller
     {
-        private UserRepo userRepo = new UserRepo();
-        private StatusRepo statusRepo = new StatusRepo();
-        private RoleRepo roleRepo = new RoleRepo();
+        private UserRepo userRepo;
+        private StatusRepo statusRepo;
+        private RoleRepo roleRepo;
         private string error = "";
         private bool status = false;
+
+
+        public LoginController(IConfiguration configuration)
+        {
+            userRepo = new UserRepo(configuration);
+            statusRepo = new StatusRepo(configuration);
+            roleRepo = new RoleRepo(configuration);
+        }
+
+
         // GET: /<controller>/
         public IActionResult Index()
         {

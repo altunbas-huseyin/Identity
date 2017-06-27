@@ -16,7 +16,7 @@ namespace IdentityHelper
             string EcriptedData = string.Empty;
             byte[] txt_encode = new byte[item.Length];
             txt_encode = Encoding.UTF8.GetBytes(item);
-            EcriptedData = Convert.ToBase64String(txt_encode);
+            EcriptedData = System.Convert.ToBase64String(txt_encode);
             return EcriptedData;
         }
 
@@ -25,7 +25,7 @@ namespace IdentityHelper
             UTF8Encoding encode_pwd = new UTF8Encoding();
             string DecryptedData = string.Empty;
             Decoder Decode = encode_pwd.GetDecoder();
-            byte[] todecodeByte = Convert.FromBase64String(item);
+            byte[] todecodeByte = System.Convert.FromBase64String(item);
             int charCount = Decode.GetCharCount(
                                                 todecodeByte,
                                                 0,

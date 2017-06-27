@@ -4,13 +4,23 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using IdentityModels;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityTest
 {
     [TestClass]
     public class StatusTest
     {
-        StatusRepo statusRepo = new StatusRepo();
+        StatusRepo statusRepo;
+
+        public StatusTest()
+        {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+               .AddJsonFile("appsettings.json.config", optional: true)
+               .Build();
+
+            statusRepo = new StatusRepo(configuration);
+        }
 
         [TestMethod]
         public void AddUniqIndex()

@@ -11,21 +11,32 @@ using IdentityModels.Roles;
 using Microsoft.AspNetCore.Http;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityTest
 {
     [TestClass]
     public class UserTest
     {
-        UserRepo userRepo = new UserRepo();
-        RoleRepo roleRepo = new RoleRepo();
-        JwtRepo jwtRepo = new JwtRepo();
-        StatusRepo statusRepo = new StatusRepo();
+        UserRepo userRepo;
+        RoleRepo roleRepo;
+        JwtRepo jwtRepo;
+        StatusRepo statusRepo;
 
         private User user = null;
 
         public UserTest()
         {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json.config", optional: true)
+                .Build();
+
+            userRepo = new UserRepo(configuration);
+            roleRepo = new RoleRepo(configuration);
+            jwtRepo = new JwtRepo(configuration);
+            statusRepo = new StatusRepo(configuration);
+
+
             Status status = statusRepo.GetByName("Active");
             Role role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", "AppAdmin");
 
@@ -109,8 +120,11 @@ namespace IdentityTest
         [TestMethod]
         public void Login()
         {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                 .AddJsonFile("appsettings.json.config", optional: true)
+                 .Build();
             Jwt jwt = (Jwt)jwtRepo.GetByUserId(user.Id.ToString()).Data;
-            Identity.Controllers1.LoginController userController = new Identity.Controllers1.LoginController();
+            Identity.Controllers1.LoginController userController = new Identity.Controllers1.LoginController(configuration);
             UserView userView = userRepo.LoginByEmail(user.Email, user.Password);
 
             Assert.AreNotEqual(userView, null);

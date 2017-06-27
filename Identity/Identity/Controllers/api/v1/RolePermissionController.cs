@@ -10,6 +10,7 @@ using IdentityRepository;
 using IdentityModels.RolePermissions;
 using IdentityHelper;
 using IdentityModels.Permissions;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,10 +21,17 @@ namespace Identity.Controllers.api.v1
     [ValidateModel("SystemAdmin,AppAdmin")]
     public class RolePermissionController : Controller
     {
-        RolePermissionRepo rolePermissionRepo = new RolePermissionRepo();
-        PermissionRepo permissionRepo = new PermissionRepo();
-        private StatusRepo statusRepo = new StatusRepo();
+        RolePermissionRepo rolePermissionRepo;
+        PermissionRepo permissionRepo;
+        private StatusRepo statusRepo;
         Jwt jwt = new Jwt();
+
+        public RolePermissionController(IConfiguration configuration)
+        {
+            rolePermissionRepo = new RolePermissionRepo(configuration);
+            permissionRepo = new PermissionRepo(configuration);
+            statusRepo = new StatusRepo(configuration);
+        }
 
         // GET: api/values
         [HttpGet("{Id}")]

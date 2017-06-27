@@ -7,15 +7,22 @@ using Microsoft.OData;
 using Identity.Filters;
 using Identity.Middleware;
 using IdentityHelper;
+using Microsoft.Extensions.Configuration;
 
 namespace Identity.Controllers1
 {
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
-    [ValidateModel]
+    
     public class ValuesController : Controller
     {
+        IConfiguration configuration;
+        public ValuesController(IConfiguration _configuration)
+        {
+            configuration = _configuration;
+        }
         // GET api/values
+        [ValidateModel("")]
         [HttpGet]
         public CommonApiResponse Get()
         {

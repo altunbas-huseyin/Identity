@@ -5,15 +5,23 @@ using System.Text;
 using System.Linq;
 using IdentityModels.Roles;
 using IdentityModels;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityRepository
 {
     public class UserRoleRepo
     {
         
-        private RoleRepo roleRepo = new RoleRepo();
-        private UserRepo userRepo = new UserRepo();
+        private RoleRepo roleRepo;
+        private UserRepo userRepo;
         private Result result = new Result();
+
+        public UserRoleRepo(IConfiguration configuration)
+        {
+            roleRepo = new RoleRepo(configuration);
+            userRepo = new UserRepo(configuration);
+        }
+
         public Result UserAddRole(string ParentId, string UserId, string RoleId)
         {
             User user = userRepo.GetById(ParentId, UserId);

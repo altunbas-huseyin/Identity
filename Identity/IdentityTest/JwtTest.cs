@@ -4,13 +4,23 @@ using IdentityRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityTest
 {
     [TestClass]
     public class JwtTest
     {
-        JwtRepo jwtRepo = new JwtRepo();
+        JwtRepo jwtRepo;
+
+        public JwtTest()
+        {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+               .AddJsonFile("appsettings.json.config", optional: true)
+               .Build();
+
+            jwtRepo = new JwtRepo(configuration);
+        }
 
         [TestMethod]
         public void AddUniqIndex()

@@ -7,19 +7,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityRepository
 {
     public class UserRepo : BaseRepo<User>
     {
 
-        private JwtRepo jwtRepo = new JwtRepo();
+        private JwtRepo jwtRepo;
         private UserConvertRepo _userConvertRepo = new UserConvertRepo();
+
+        public UserRepo(IConfiguration configuration) : base(configuration)
+        {
+            jwtRepo = new JwtRepo(configuration);
+        }
+
         public bool Add(User user)
         {
-            Status r = new Status();
-            TableClass TableClass = new TableClass(r.GetType());
-            string s = TableClass.CreateTableScript();
+           
             string sss = DapperManager.getSqlParameterString<User>(user);
             user.Password = IdentityHelper.Encripty.EncryptString(user.Password);
             return mongoContext.Insert(user);

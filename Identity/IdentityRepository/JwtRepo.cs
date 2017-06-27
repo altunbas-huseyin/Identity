@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using IdentityModels;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityRepository
 {
@@ -11,7 +12,13 @@ namespace IdentityRepository
     public class JwtRepo : BaseRepo<Jwt>
     {
         private Result result = new Result();
-        private StatusRepo statusRepo = new StatusRepo();
+        private StatusRepo statusRepo;
+
+        public JwtRepo(IConfiguration configuration) : base(configuration)
+        {
+            statusRepo = new StatusRepo(configuration);
+        }
+
         public Result Add(String UserId, string Token, DateTime DeadLine)
         {
             Status status = statusRepo.GetByName("Active");

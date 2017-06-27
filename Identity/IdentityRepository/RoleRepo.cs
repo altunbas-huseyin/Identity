@@ -4,12 +4,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityRepository
 {
     public class RoleRepo : BaseRepo<Role>
     {
-       
+        public RoleRepo(IConfiguration configuration) : base(configuration)
+        {
+        }
+
         public bool Update(Role role)
         {
             return mongoContext.Update(role);

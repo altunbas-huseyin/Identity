@@ -17,7 +17,7 @@ namespace Identity
     {
         public Startup(IHostingEnvironment env)
         {
-           
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -52,14 +52,18 @@ namespace Identity
 
             services.AddApplicationInsightsTelemetry(Configuration);
 
-          // services.AddMvc(options => options.MaxModelValidationErrors = 50)
-          //      .AddJsonOptions(option =>
-          //      {   //Dönen Json'ı camelCase olarak formatlar.
-          //          option.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
-          //      }); 
-
-            
-            
+            //services.AddMvc(options => options.MaxModelValidationErrors = 50)
+            //     .AddJsonOptions(option =>
+            //     {   //Dönen Json'ı camelCase olarak formatlar.
+            //         option.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+            //
+            //     });
+            //services.AddMvc(mvc =>
+            //{
+            //    mvc.Filters.Add(typeof(ValidateModelAttribute));
+            //});
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddTransient<ValidateModelAttribute>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

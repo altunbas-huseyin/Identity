@@ -15,6 +15,7 @@ using IdentityModels.Users;
 using IdentityHelper;
 using FluentValidation.Results;
 using IdentityModels.Roles;
+using Microsoft.Extensions.Configuration;
 
 namespace Identity.Controllers1
 {
@@ -23,11 +24,18 @@ namespace Identity.Controllers1
     [ValidateModel("SystemAdmin,AppAdmin")]
     public class UsersController : Controller
     {
-        private UserRepo userRepo = new UserRepo();
-        private StatusRepo statusRepo = new StatusRepo();
-        private RoleRepo roleRepo = new RoleRepo();
+        private UserRepo userRepo;
+        private StatusRepo statusRepo;
+        private RoleRepo roleRepo;
         private UserConvertRepo _userConvertRepo = new UserConvertRepo();
         Jwt jwt = new Jwt();
+
+        public UsersController(IConfiguration configuration)
+        {
+            userRepo = new UserRepo(configuration);
+            statusRepo = new StatusRepo(configuration);
+            roleRepo = new RoleRepo(configuration);
+        }
 
         // GET api/values
         [HttpGet]

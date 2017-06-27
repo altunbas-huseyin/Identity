@@ -1,6 +1,7 @@
 ﻿using IdentityModels;
 using IdentityModels.Permissions;
 using IdentityRepository;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,15 @@ namespace IdentityTest
     [TestClass]
     public class PermissionTest
     {
-        PermissionRepo permissionRepo = new PermissionRepo();
+        PermissionRepo permissionRepo;
         Permission permission = new Permission();
 
         public PermissionTest()
         {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                 .AddJsonFile("appsettings.json.config", optional: true)
+                 .Build();
+            permissionRepo = new PermissionRepo(configuration);
             permission = new Permission { User_Id = "11127a7e-eb62-442b-b0dd-05cc0102ebc1", Id= "11127a7e-eb62-442b-b0dd-05cc0102ebc1", Name = "Test", Description = "Test" };
         }
 

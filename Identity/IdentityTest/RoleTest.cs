@@ -5,13 +5,22 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using IdentityModels.Roles;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityTest
 {
     [TestClass]
     public class RoleTest
     {
-        RoleRepo roleRepo = new RoleRepo();
+        RoleRepo roleRepo;
+
+        public RoleTest()
+        {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+               .AddJsonFile("appsettings.json.config", optional: true)
+               .Build();
+            roleRepo = new RoleRepo(configuration);
+        }
 
         [TestMethod]
         public void AddUniqIndex()

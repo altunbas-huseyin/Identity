@@ -5,13 +5,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityRepository
 {
     public class RolePermissionRepo : BaseRepo<Role_Permission>
     {
-        
-        private StatusRepo statusRepo = new StatusRepo();
+
+        private StatusRepo statusRepo;
+        PermissionRepo permissionRepo;
+        public RolePermissionRepo(IConfiguration configuration) : base(configuration)
+        {
+            permissionRepo = new PermissionRepo(configuration);
+            statusRepo = new StatusRepo(configuration);
+        }
 
         public bool Insert(Role_Permission rolePermission)
         {
@@ -59,7 +66,6 @@ namespace IdentityRepository
 
         public dynamic GetByUserIdWithJoinPermission(string UserId, string RoleId)
         {
-            PermissionRepo permissionRepo = new PermissionRepo();
             List<Permission> permissionList = permissionRepo.GetByUserId(UserId);
             List<Role_Permission> rolePermissionList = this.GetByUserIdAndRoleId(UserId, RoleId);
 
@@ -80,7 +86,7 @@ namespace IdentityRepository
 
         public dynamic GetByUserIdAndIdWithJoinPermission(string UserId, string RoleId, string Id)
         {
-            PermissionRepo permissionRepo = new PermissionRepo();
+            
             List<Permission> permissionList = permissionRepo.GetByUserId(UserId);
             List<Role_Permission> rolePermissionList = new List<Role_Permission>();
             rolePermissionList.Add(this.GetById(UserId, Id));

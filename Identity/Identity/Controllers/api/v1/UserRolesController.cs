@@ -9,6 +9,7 @@ using IdentityRepository;
 using Identity.Middleware;
 using IdentityModels.Roles;
 using IdentityModels.Users;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,8 +21,15 @@ namespace Identity.Controllers1
     public class UserRolesController : Controller
     {
         Jwt jwt = new Jwt();
-        UserRoleRepo userRoleRepo = new UserRoleRepo();
-        UserRepo userRepo = new UserRepo();
+        UserRoleRepo userRoleRepo;
+        UserRepo userRepo;
+
+        public UserRolesController(IConfiguration configuratiom)
+        {
+            userRoleRepo = new UserRoleRepo(configuratiom);
+            userRepo = new UserRepo(configuratiom);
+        }
+
         // GET api/values/5
         [HttpGet("{Id}")]
         public CommonApiResponse Get(string Id)

@@ -10,6 +10,7 @@ using IdentityModels.Roles;
 using Identity.Middleware;
 using FluentValidation.Results;
 using IdentityHelper;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,11 +21,17 @@ namespace Identity.Controllers1
     [ValidateModel("SystemAdmin,AppAdmin")]
     public class RolesController : Controller
     {
-        // GET: api/values
-        private RoleRepo roleRepo = new RoleRepo();
-        private StatusRepo statusRepo = new StatusRepo();
+        private RoleRepo roleRepo;
+        private StatusRepo statusRepo;
         Jwt jwt = new Jwt();
 
+        public RolesController(IConfiguration Config)
+        {
+            statusRepo = new StatusRepo(Config);
+            roleRepo = new RoleRepo(Config);
+        }
+
+        // GET: api/values
         [HttpGet]
         public CommonApiResponse Get()
         {
