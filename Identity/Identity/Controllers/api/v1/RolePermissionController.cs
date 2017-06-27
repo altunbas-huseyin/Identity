@@ -35,7 +35,7 @@ namespace Identity.Controllers.api.v1
 
         // GET: api/values
         [HttpGet("{Id}")]
-        public CommonApiResponse Get(string Id)
+        public CommonApiResponse Get(long Id)
         {
             jwt = ViewBag.Jwt;
             //List<Permission> permissionList = permissionRepo.GetByUserId(jwt.User_Id);
@@ -59,7 +59,7 @@ namespace Identity.Controllers.api.v1
 
         // POST api/values
         [HttpPost("{RoleId}/{PermissionId}")]
-        public CommonApiResponse Post(string RoleId, string PermissionId)
+        public CommonApiResponse Post(long RoleId, long PermissionId)
         {
             jwt = ViewBag.Jwt;
             Role_Permission rolePermission = new Role_Permission();
@@ -95,7 +95,7 @@ namespace Identity.Controllers.api.v1
 
         // DELETE api/values/5
         [HttpDelete("{Id}")]
-        public CommonApiResponse Delete(string Id)
+        public CommonApiResponse Delete(long Id)
         {
             jwt = ViewBag.Jwt;
             bool result = rolePermissionRepo.Delete(jwt.User_Id, Id);

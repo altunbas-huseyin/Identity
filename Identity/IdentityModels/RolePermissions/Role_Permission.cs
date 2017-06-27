@@ -9,8 +9,8 @@ namespace IdentityModels.RolePermissions
     public class Role_Permission : EntityBase
     {
         //public string OwnerId { get; set; } //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
-        public string User_Id { get; set; }
-        public string Permission_Id { get; set; }
-        public string Role_Id { get; set; }
+        public long User_Id { get; set; }
+        public long Permission_Id { get; set; }
+        public long Role_Id { get; set; }
     }
 }

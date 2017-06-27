@@ -88,15 +88,15 @@ namespace Identity.Filters
                     {
                         foreach (string requiredRoleName in requiredRoleList)
                         {
-                            foreach (var userRole in user.Role)
-                            {
-                                if (requiredRoleName == userRole.Name)
-                                {
-                                    Role _role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", requiredRoleName);
-                                    if (_role != null)
-                                    { IsAcces = true; break; }
-                                }
-                            }
+                            //foreach (var userRole in user.Role)
+                            //{
+                            //    if (requiredRoleName == userRole.Name)
+                            //    {
+                            //        Role _role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", requiredRoleName);
+                            //        if (_role != null)
+                            //        { IsAcces = true; break; }
+                            //    }
+                            //}
                         }
                         if (!IsAcces)
                         {

@@ -6,8 +6,8 @@ namespace IdentityModels.Roles
 {
     public class RoleUpdateView
     {
-        public string Id { get; set; }
-        public string User_Id { get; set; }
+        public long Id { get; set; }
+        public long User_Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     }

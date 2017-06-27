@@ -41,7 +41,7 @@ namespace Identity.Controllers1
 
         // GET api/values/5
         [HttpGet("{Id}")]
-        public CommonApiResponse Get(string Id)
+        public CommonApiResponse Get(long Id)
         {
             jwt = ViewBag.Jwt;
             Permission permission = permissionRepo.GetById(jwt.User_Id, Id);

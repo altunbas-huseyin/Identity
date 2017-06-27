@@ -9,6 +9,7 @@ using System.Data;
 using IdentityModels;
 using IdentityRepository;
 using Microsoft.Extensions.Configuration;
+using IdentityModels.Users;
 
 public class DapperManager : BaseRepo<EntityBase>
 {
@@ -68,18 +69,16 @@ public class DapperManager : BaseRepo<EntityBase>
         return list;
     }
 
-    public object Insert<TType>(string con, TType type)
+    public int Insert<TType>(string con, TType type)
     {
+        int result = 0;
         using (IDbConnection dbConnection = Connection)
         {
             dbConnection.Open();
             string sql = getSqlParameterString(type);
-            dbConnection.Execute(sql, type);
+            result = dbConnection.ExecuteScalar<int>(sql, type);
         }
-        
-
-  
-        return 1;
+        return result;
     }
 
 
@@ -103,12 +102,13 @@ public class DapperManager : BaseRepo<EntityBase>
         {
             object o = propertyInfo.GetValue(type, null);
             if (o == null) { continue; }
+            if (propertyInfo.Name == "Id") { continue; }
 
             columnsList.Add(propertyInfo.Name.ToLower().Replace("ı", "i"));
             columnsValueList.Add("@" + propertyInfo.Name);
         }
 
-        string sql = "insert into \"" + type.GetType().Name.ToLower() + "\" (" + string.Join(",", columnsList.ToArray()) + ") values(" + string.Join(",", columnsValueList.ToArray()) + ") ";
+        string sql = "insert into \"" + type.GetType().Name.ToLower() + "\" (" + string.Join(",", columnsList.ToArray()) + ") values(" + string.Join(",", columnsValueList.ToArray()) + "); SELECT currval(pg_get_serial_sequence('user', 'id'));";
 
         return sql;
     }

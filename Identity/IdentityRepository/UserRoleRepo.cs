@@ -22,7 +22,7 @@ namespace IdentityRepository
             userRepo = new UserRepo(configuration);
         }
 
-        public Result UserAddRole(string ParentId, string UserId, string RoleId)
+        public Result UserAddRole(long ParentId, long UserId, long RoleId)
         {
             User user = userRepo.GetById(ParentId, UserId);
             if (user == null)
@@ -40,16 +40,16 @@ namespace IdentityRepository
             }
 
             Role role = roleRepo.GetById(ParentId, RoleId);
-            if (user.Role.Count < 1)
-            { user.Role = new List<Role>(); }
-            user.Role.Add(role);
+            //if (user.Role.Count < 1)
+            //{ user.Role = new List<Role>(); }
+            //user.Role.Add(role);
 
             bool userUpdateResult = userRepo.Update(user);
             result.Status = userUpdateResult;
             return result;
         }
 
-        public bool UserRemoveRole(string ParentId, string UserId, string RoleId)
+        public bool UserRemoveRole(long ParentId, long UserId, long RoleId)
         {
             User user = userRepo.GetById(ParentId, UserId);
             if (user == null)
@@ -58,17 +58,17 @@ namespace IdentityRepository
             bool resultIsAdded = IsAddedRole(user, RoleId);
             if (resultIsAdded)
             {
-                Role role = user.Role.Where(p => p.Id == RoleId).First();
-                user.Role.Remove(role);
+                //Role role = user.Role.Where(p => p.Id == RoleId).First();
+                //user.Role.Remove(role);
                 return userRepo.Update(user);
             }
 
             return false;
         }
 
-        public bool IsAddedRole(User user, string RoleId)
+        public bool IsAddedRole(User user, long RoleId)
         {
-            Role role = user.Role.Where(p => p.Id == RoleId).FirstOrDefault();
+            Role role = new Role(); //user.Role.Where(p => p.Id == RoleId).FirstOrDefault();
             if (role != null)
             {
                 return true;

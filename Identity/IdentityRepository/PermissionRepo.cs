@@ -38,7 +38,7 @@ namespace IdentityRepository
             return mongoContext.Update(permission);
         }
 
-        public bool Delete(string UserId,String Id)
+        public bool Delete(long UserId, long Id)
         {
             Permission _permission = this.GetById(UserId, Id);
             if (_permission == null)
@@ -48,19 +48,19 @@ namespace IdentityRepository
             return mongoContext.Delete(_permission);
         }
 
-        public Permission GetByName(string UserId, String Name)
+        public Permission GetByName(long UserId, String Name)
         {
             Permission permission = mongoContext.SearchFor(p => p.User_Id == UserId && p.Name == Name).FirstOrDefault();
             return permission;
         }
 
-        public Permission GetById(string UserId, String Id)
+        public Permission GetById(long UserId, long Id)
         {
             Permission permission = mongoContext.SearchFor(p => p.User_Id == UserId && p.Id == Id).FirstOrDefault();
             return permission;
         }
 
-        public List<Permission> GetByUserId(string UserId)
+        public List<Permission> GetByUserId(long UserId)
         {
             List<Permission> permission = mongoContext.SearchFor(p => p.User_Id == UserId).ToList();
             return permission;

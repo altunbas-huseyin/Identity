@@ -42,7 +42,7 @@ namespace Identity.Controllers1
 
         // GET api/values/5
         [HttpGet("{Id}")]
-        public CommonApiResponse Get(string Id)
+        public CommonApiResponse Get(long Id)
         {
             jwt = ViewBag.Jwt;
             Role role = roleRepo.GetById(jwt.User_Id, Id);
@@ -98,7 +98,7 @@ namespace Identity.Controllers1
 
         // DELETE api/values/5
         [HttpDelete]
-        public CommonApiResponse Delete(string UserId, String Id)
+        public CommonApiResponse Delete(long UserId, long Id)
         {
             jwt = ViewBag.Jwt;
             bool result = roleRepo.Delete(UserId, Id);

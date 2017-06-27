@@ -19,7 +19,7 @@ namespace IdentityRepository
             statusRepo = new StatusRepo(configuration);
         }
 
-        public Result Add(String UserId, string Token, DateTime DeadLine)
+        public Result Add(long UserId, string Token, DateTime DeadLine)
         {
             Status status = statusRepo.GetByName("Active");
 
@@ -64,7 +64,7 @@ namespace IdentityRepository
             return new Result(jwt, true);
         }
 
-        public Result GetByUserId(string UserId)
+        public Result GetByUserId(long UserId)
         {
             Jwt jwt = mongoContext.SearchFor(p => p.User_Id == UserId).FirstOrDefault();
             return result = new Result(jwt, true);

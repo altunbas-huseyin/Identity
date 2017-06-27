@@ -32,7 +32,7 @@ namespace IdentityTest
         [TestMethod]
         public void AddToken()
         {
-           jwtRepo.Add("fcbe54b8-8798-4d30-b695-8ffb6539911c", "fcbe54b8-8798-4d30-b695-8ffb6539911c", DateTime.Now.AddDays(5));
+           jwtRepo.Add(1, "fcbe54b8-8798-4d30-b695-8ffb6539911c", DateTime.Now.AddDays(5));
         }
 
         [TestMethod]

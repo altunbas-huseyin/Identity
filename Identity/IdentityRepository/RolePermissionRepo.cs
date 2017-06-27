@@ -35,7 +35,7 @@ namespace IdentityRepository
             return mongoContext.Update(rolePermission);
         }
 
-        public bool Delete(string UserId, String RolePermissionId)
+        public bool Delete(long UserId, long RolePermissionId)
         {
             Role_Permission _permission = this.GetById(UserId, RolePermissionId);
             if (_permission == null)
@@ -45,26 +45,26 @@ namespace IdentityRepository
             return mongoContext.Delete(_permission);
         }
 
-        public Role_Permission GetById(string UserId, String Id)
+        public Role_Permission GetById(long UserId, long Id)
         {
             Role_Permission rolePermission = mongoContext.SearchFor(p =>  p.User_Id == UserId && p.Id == Id).FirstOrDefault();
             return rolePermission;
         }
 
-        public List<Role_Permission> GetByUserIdAndRoleId( String UserId, string RoleId)
+        public List<Role_Permission> GetByUserIdAndRoleId(long UserId, long RoleId)
         {
             //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
             List<Role_Permission> rolePermissionList = mongoContext.SearchFor(p => p.User_Id == UserId && p.Role_Id==RoleId).ToList();
             return rolePermissionList;
         }
 
-        public Role_Permission GetByUserIdAndPermissionId( string UserId, String RolePermissionId)
+        public Role_Permission GetByUserIdAndPermissionId(long UserId, long RolePermissionId)
         {
             Role_Permission rolePermission = mongoContext.SearchFor(p =>  p.User_Id == UserId && p.Permission_Id == RolePermissionId).FirstOrDefault();
             return rolePermission;
         }
 
-        public dynamic GetByUserIdWithJoinPermission(string UserId, string RoleId)
+        public dynamic GetByUserIdWithJoinPermission(long UserId, long RoleId)
         {
             List<Permission> permissionList = permissionRepo.GetByUserId(UserId);
             List<Role_Permission> rolePermissionList = this.GetByUserIdAndRoleId(UserId, RoleId);
@@ -84,7 +84,7 @@ namespace IdentityRepository
             return result;
         }
 
-        public dynamic GetByUserIdAndIdWithJoinPermission(string UserId, string RoleId, string Id)
+        public dynamic GetByUserIdAndIdWithJoinPermission(long UserId, long RoleId, long Id)
         {
             
             List<Permission> permissionList = permissionRepo.GetByUserId(UserId);

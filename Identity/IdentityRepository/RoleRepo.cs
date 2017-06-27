@@ -19,7 +19,7 @@ namespace IdentityRepository
             return mongoContext.Update(role);
         }
 
-        public bool Delete(string UserId, String Id)
+        public bool Delete(long UserId, long Id)
         {
             Role role = this.GetById(UserId, Id);
             return mongoContext.Delete(role);
@@ -45,19 +45,19 @@ namespace IdentityRepository
             return true;
         }
 
-        public Role GetByName(string UserId, string Name)
+        public Role GetByName(long UserId, string Name)
         {
             Role role = mongoContext.SearchFor(p => p.User_Id == UserId && p.Name == Name).FirstOrDefault();
             return role;
         }
 
-        public List<Role> GetByUserId(string UserId)
+        public List<Role> GetByUserId(long UserId)
         {
             List<Role> roleList = mongoContext.SearchFor(p => p.User_Id == UserId).ToList();
             return roleList;
         }
 
-        public Role GetById(string UserId, string Id)
+        public Role GetById(long UserId, long Id)
         {
             Role role = mongoContext.SearchFor(p => p.Id == Id && p.User_Id == UserId).First();
             return role;

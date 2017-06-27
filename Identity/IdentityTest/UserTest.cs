@@ -38,17 +38,18 @@ namespace IdentityTest
 
 
             Status status = statusRepo.GetByName("Active");
-            Role role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", "AppAdmin");
+            Role role = roleRepo.GetByName(1, "AppAdmin");
 
             user = new User();
-            user.Id = "bra6b053-f21b-4304-8844-93f073465630";
+            //user.Id = 1;
             user.Email = "test@test.com";
             user.Password = "1111";
             user.Name = "Hüseyin";
             user.SurName = "Altunbaş";
-            user.Status_Id = Guid.NewGuid().ToString(); //status.Status_Id;
-            user.Role = new List<Role>();
-            user.Role.Add(role);
+            user.Status_Id = 1;//"4b36afc8-5205-49c1-af16-4dc6f96db984"; //status.Status_Id;
+            user.Parent_Id = 0; //"4b36afc8-5205-49c1-af16-4dc6f96db984";
+            //user.Role = new List<Role>();
+            //user.Role.Add(role);
         }
 
         [TestMethod]
@@ -66,8 +67,9 @@ namespace IdentityTest
         [TestMethod]
         public void AddUser()
         {
-            bool result = userRepo.Add(user);
-            Assert.AreEqual(result, true);
+
+            int result = userRepo.Add(user);
+            Assert.AreNotEqual(result, 0);
         }
 
         [TestMethod]
@@ -86,34 +88,34 @@ namespace IdentityTest
         [TestMethod]
         public void UserJwtTest()
         {
-            Jwt jwt = (Jwt)jwtRepo.GetByUserId(user.Id.ToString()).Data;
+            Jwt jwt = (Jwt)jwtRepo.GetByUserId(user.Id).Data;
             Jwt jwtCheckToken = (Jwt)jwtRepo.CheckToken(jwt.Token).Data;
         }
 
         [TestMethod]
         public void AddSystemUser()
         {
-            Role role = roleRepo.GetByName("1c823a7d-7475-4c09-ad13-3b94a53ca943", "SystemAdmin");
+            Role role = roleRepo.GetByName(1, "SystemAdmin");
             Assert.AreNotEqual(role, null);
 
             Status status = statusRepo.GetByName("Active");
             if (userRepo.GetByEmail("altunbas.huseyin@gmail.com") == null)
             {
                 User user = new User();
-                user.Id = "1c823a7d-7475-4c09-ad13-3b94a53ca943";
+                user.Id = 1;  //1c823a7d-7475-4c09-ad13-3b94a53ca943";
                 user.Email = "altunbas.huseyin@gmail.com";
-                user.Parent_Id = "00000000-0000-0000-0000-000000000000";
+                user.Parent_Id = 0;//"00000000-0000-0000-0000-000000000000";
                 user.Password = "1111";
                 user.Name = "Hüseyin";
                 user.SurName = "Altunbaş";
                 user.Status_Id = status.Status_Id;
-                user.Role = new List<Role>();
-                user.Role.Add(role);
+                //user.Role = new List<Role>();
+                //user.Role.Add(role);
 
                 userRepo.Add(user);
             }
 
-            User _user = userRepo.GetByParentId("00000000-0000-0000-0000-000000000000", "1c823a7d-7475-4c09-ad13-3b94a53ca943");
+            User _user = userRepo.GetByParentId(0, 1);
 
         }
 
@@ -123,7 +125,7 @@ namespace IdentityTest
             IConfigurationRoot configuration = new ConfigurationBuilder()
                  .AddJsonFile("appsettings.json.config", optional: true)
                  .Build();
-            Jwt jwt = (Jwt)jwtRepo.GetByUserId(user.Id.ToString()).Data;
+            Jwt jwt = (Jwt)jwtRepo.GetByUserId(user.Id).Data;
             Identity.Controllers1.LoginController userController = new Identity.Controllers1.LoginController(configuration);
             UserView userView = userRepo.LoginByEmail(user.Email, user.Password);
 

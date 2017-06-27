@@ -66,7 +66,7 @@ namespace Identity.Controllers1
 
         // GET api/values/5
         [HttpGet("{Id}")]
-        public CommonApiResponse Get(string Id)
+        public CommonApiResponse Get(long Id)
         {
             jwt = ViewBag.Jwt;
             User user = userRepo.GetById(jwt.User_Id, Id);
@@ -94,7 +94,7 @@ namespace Identity.Controllers1
                 user.Name = userView.Name;
                 user.SurName = userView.SurName;
                 user.Status_Id = statusRepo.GetByName("WaitingForApproval").Id;
-                user.Role = new List<Role>();
+                //user.Role = new List<Role>();
 
                 List<ValidationFailure> list = UserValidator.FieldValidate(user).ToList();
                 if (list.Count > 0)
@@ -102,7 +102,7 @@ namespace Identity.Controllers1
                    return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.NotFound, false, null, list);
                 }
 
-                bool result = userRepo.Add(user);
+                int result = userRepo.Add(user);
 
                 return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, user, null);
             }

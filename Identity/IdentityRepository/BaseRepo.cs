@@ -8,11 +8,11 @@ using System.Text;
 
 namespace IdentityRepository
 {
-    public class BaseRepo<T>  where T : EntityBase
+    public class BaseRepo<T> where T : EntityBase
     {
-        public MongoDbRepository<T> mongoContext;
-
+        public MongoDbRepository<T> mongoContext = null;
         public string connectionString;
+       
         //public BaseRepo(IConfiguration configuration)
         //{
         //    connectionString = configuration.GetValue<string>("DBInfo:ConnectionString");
@@ -20,7 +20,11 @@ namespace IdentityRepository
 
         public BaseRepo(IConfiguration configuration)
         {
-            mongoContext = new MongoDbRepository<T>();
+            if (mongoContext == null)
+            {
+                mongoContext = new MongoDbRepository<T>();
+            }
+
             connectionString = "User ID=postgres;Password=Huso7474;Host=138.68.80.239;Port=5432;Database=myDataBase;Pooling=true;";//configuration.GetValue<string>("DBInfo:ConnectionString");
         }
 

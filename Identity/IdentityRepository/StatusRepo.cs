@@ -13,7 +13,7 @@ namespace IdentityRepository
         {
         }
 
-        public string Insert(Status status)
+        public long Insert(Status status)
         {
             mongoContext.Insert(status);
             return status.Id;

@@ -24,11 +24,11 @@ namespace IdentityTest
             permissionRepo = new RolePermissionRepo(configuration);
 
             permission = new Role_Permission();
-            permission.Id = "11127a7e-eb62-442b-b0dd-05cc0102ebc1";
+            permission.Id = 1;//"11127a7e-eb62-442b-b0dd-05cc0102ebc1";
             //permission.OwnerId = "21127a7e-eb62-442b-b0dd-05cc0102ebc1"; //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
-            permission.User_Id = "31127a7e-eb62-442b-b0dd-05cc0102ebc1";
-            permission.Permission_Id = "41127a7e-eb62-442b-b0dd-05cc0102ebc1";
-            permission.Role_Id = "51127a7e-eb62-442b-b0dd-05cc0102ebc1";
+            permission.User_Id = 1;//"31127a7e-eb62-442b-b0dd-05cc0102ebc1";
+            permission.Permission_Id = 1;//"41127a7e-eb62-442b-b0dd-05cc0102ebc1";
+            permission.Role_Id = 1;//"51127a7e-eb62-442b-b0dd-05cc0102ebc1";
         }
 
         [TestMethod]

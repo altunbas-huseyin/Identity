@@ -14,7 +14,7 @@ namespace IdentityRepository
             userView.Extra1 = user.Extra1;
             userView.Extra2 = user.Extra2;
             userView.Id = user.Id;
-            userView.Role = user.Role;
+            //userView.Role = user.Role;
             userView.Name = user.Name;
             userView.SurName = user.SurName;
             userView.Update_Date = user.Update_Date;

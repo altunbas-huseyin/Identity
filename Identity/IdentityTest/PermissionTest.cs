@@ -21,7 +21,7 @@ namespace IdentityTest
                  .AddJsonFile("appsettings.json.config", optional: true)
                  .Build();
             permissionRepo = new PermissionRepo(configuration);
-            permission = new Permission { User_Id = "11127a7e-eb62-442b-b0dd-05cc0102ebc1", Id= "11127a7e-eb62-442b-b0dd-05cc0102ebc1", Name = "Test", Description = "Test" };
+            permission = new Permission { User_Id = 1, Id= 1, Name = "Test", Description = "Test" };
         }
 
         [TestMethod]
