@@ -8,12 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using Dapper;
+using System.Data.SqlClient;
 
 namespace IdentityRepository
 {
     public class UserRepo : BaseRepo<User>
     {
-
         private JwtRepo jwtRepo;
         private UserConvertRepo _userConvertRepo = new UserConvertRepo();
         IConfiguration _configuration;
@@ -35,7 +36,6 @@ namespace IdentityRepository
 
         public object nativequery()
         {
-
             object rr = mongoContext.NativeQuery();
             return rr;
         }
@@ -43,8 +43,16 @@ namespace IdentityRepository
         public UserView LoginByEmail(String Email, string Password)
         {
             UserView userView = null;
-            Password = IdentityHelper.Encripty.EncryptString(Password);
+            Password = "MTExMQ==";//IdentityHelper.Encripty.EncryptString(Password);
+
+            List<SqlParameter> SqlParameterList = new List<SqlParameter>();
+            SqlParameterList.Add(new SqlParameter("@Email", Email));
+            SqlParameterList.Add(new SqlParameter("@Password", Password));
+
+            dapperManager.GetData<User>(connectionString, "select * from \"user\" where email=@Email And password=@Password", SqlParameterList);
+
             User user = mongoContext.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
+
             if (user != null)
             {
                 userView = _userConvertRepo.UserToUserView(user);

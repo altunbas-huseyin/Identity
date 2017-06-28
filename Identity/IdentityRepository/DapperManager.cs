@@ -10,6 +10,7 @@ using IdentityModels;
 using IdentityRepository;
 using Microsoft.Extensions.Configuration;
 using IdentityModels.Users;
+using System.Linq.Expressions;
 
 public class DapperManager : BaseRepo<EntityBase>
 {
@@ -17,20 +18,18 @@ public class DapperManager : BaseRepo<EntityBase>
     {
     }
 
-    public static List<TType> GetData<TType>(string con, string sql)
+    public List<TType> GetData<TType>(string con, string sql)
     {
-        List<TType> list = new List<TType>();
-
-        using (var connection = new SqlConnection(con))
+        List<TType> result;
+        using (IDbConnection dbConnection = Connection)
         {
-            list = connection.Query<TType>(sql, null).ToList();
-            connection.Close();
-            connection.Dispose();
-        }
+            dbConnection.Open();
 
-        return list;
+            result = dbConnection.Query<TType>(sql).ToList();
+        }
+        return result;
     }
-    public static List<TType> GetData<TType>(string con, string sql, List<SqlParameter> SqlParameterList)
+    public List<TType> GetData<TType>(string con, string sql, List<SqlParameter> SqlParameterList)
     {
         var _DynamicParameters = new DynamicParameters();
 
@@ -38,16 +37,15 @@ public class DapperManager : BaseRepo<EntityBase>
         {
             _DynamicParameters.Add(item.ParameterName, item.Value);
         }
-        List<TType> list = new List<TType>();
-        using (var connection = new SqlConnection(con))
+
+        List<TType> result = new List<TType>();
+        using (IDbConnection dbConnection = Connection)
         {
-            //list = connection.Query<TType>(sql, null).ToList();
-            list = connection.Query<TType>(sql, _DynamicParameters, commandType: CommandType.Text).ToList();
-            connection.Close();
-            connection.Dispose();
+            dbConnection.Open();
+            result = dbConnection.Query<TType>(sql, _DynamicParameters).ToList();
         }
 
-        return list;
+        return result;
     }
     public static List<TType> GetDataStoredProcedure<TType>(string con, string sql, List<SqlParameter> SqlParameterList)
     {
@@ -94,7 +92,7 @@ public class DapperManager : BaseRepo<EntityBase>
         return result;
     }
 
-    public static object Insert<TType>(SqlConnection conn, SqlTransaction trans, TType type)
+    public object Insert<TType>(SqlConnection conn, SqlTransaction trans, TType type)
     {
         string sql = getTypeInsertQuery(type);
         object resut = conn.Query<int>(sql, type).Single();
@@ -103,8 +101,7 @@ public class DapperManager : BaseRepo<EntityBase>
         return resut;
     }
 
-
-    public static string getTypeInsertQuery<TType>(TType type)
+    public string getTypeInsertQuery<TType>(TType type)
     {
         List<string> columnsList = new List<string>();
         List<string> columnsValueList = new List<string>();
@@ -119,15 +116,15 @@ public class DapperManager : BaseRepo<EntityBase>
             columnsValueList.Add("@" + propertyInfo.Name);
         }
 
-        string sql = "insert into \"" + type.GetType().Name.ToLower() + "\" (" + string.Join(",", columnsList.ToArray()) + ") values(" + string.Join(",", columnsValueList.ToArray()) + "); SELECT currval(pg_get_serial_sequence('"+ type.GetType().Name.ToLower() + "', 'id'));";
+        string sql = "insert into \"" + type.GetType().Name.ToLower() + "\" (" + string.Join(",", columnsList.ToArray()) + ") values(" + string.Join(",", columnsValueList.ToArray()) + "); SELECT currval(pg_get_serial_sequence('" + type.GetType().Name.ToLower() + "', 'id'));";
 
         return sql;
     }
 
-    public static string getTypeUpdateQuery<TType>(TType type)
+    public string getTypeUpdateQuery<TType>(TType type)
     {
         List<string> columnsList = new List<string>();
-        
+
         foreach (PropertyInfo propertyInfo in type.GetType().GetProperties())
         {
             object o = propertyInfo.GetValue(type, null);
@@ -135,14 +132,14 @@ public class DapperManager : BaseRepo<EntityBase>
             if (propertyInfo.Name == "Id") { continue; }
             string column = propertyInfo.Name.ToLower().Replace("ı", "i") + " = @" + propertyInfo.Name;
             columnsList.Add(column);
-            
+
         }
 
-        string sql = "UPDATE \"" + type.GetType().Name.ToLower() + "\" SET "+ string.Join(",", columnsList.ToArray()) + " WHERE id = @Id";
+        string sql = "UPDATE \"" + type.GetType().Name.ToLower() + "\" SET " + string.Join(",", columnsList.ToArray()) + " WHERE id = @Id";
         return sql;
     }
 
-    public static List<SqlParameter> getSqlParameter<TType>(TType type)
+    public List<SqlParameter> getSqlParameter<TType>(TType type)
     {
 
         List<SqlParameter> list = new List<SqlParameter>();
