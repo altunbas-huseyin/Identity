@@ -43,15 +43,14 @@ namespace IdentityRepository
         public UserView LoginByEmail(String Email, string Password)
         {
             UserView userView = null;
-            Password = "MTExMQ==";//IdentityHelper.Encripty.EncryptString(Password);
-
+           
             List<SqlParameter> SqlParameterList = new List<SqlParameter>();
             SqlParameterList.Add(new SqlParameter("@Email", Email));
             SqlParameterList.Add(new SqlParameter("@Password", Password));
 
-            dapperManager.GetData<User>(connectionString, "select * from \"user\" where email=@Email And password=@Password", SqlParameterList);
+            User user = dapperManager.GetData<User>(connectionString, "select * from \"user\" where email=@Email And password=@Password", SqlParameterList).FirstOrDefault();
 
-            User user = mongoContext.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
+            //User user = mongoContext.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
 
             if (user != null)
             {
