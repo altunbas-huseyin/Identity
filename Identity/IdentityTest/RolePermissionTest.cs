@@ -1,7 +1,6 @@
 ﻿using IdentityModels;
 using IdentityModels.RolePermissions;
 using IdentityRepository;
-using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -12,23 +11,17 @@ namespace IdentityTest
     [TestClass]
     public class RolePermissionTest
     {
-        RolePermissionRepo permissionRepo;
-        Role_Permission permission = new Role_Permission();
+        RolePermissionRepo permissionRepo = new RolePermissionRepo();
+        RolePermission permission = new RolePermission();
 
         public RolePermissionTest()
         {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-               .AddJsonFile("appsettings.json.config", optional: true)
-               .Build();
-
-            permissionRepo = new RolePermissionRepo(configuration);
-
-            permission = new Role_Permission();
-            permission.Id = 1;//"11127a7e-eb62-442b-b0dd-05cc0102ebc1";
+            permission = new RolePermission();
+            permission._id = "11127a7e-eb62-442b-b0dd-05cc0102ebc1";
             //permission.OwnerId = "21127a7e-eb62-442b-b0dd-05cc0102ebc1"; //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
-            permission.User_Id = 1;//"31127a7e-eb62-442b-b0dd-05cc0102ebc1";
-            permission.Permission_Id = 1;//"41127a7e-eb62-442b-b0dd-05cc0102ebc1";
-            permission.Role_Id = 1;//"51127a7e-eb62-442b-b0dd-05cc0102ebc1";
+            permission.UserId = "31127a7e-eb62-442b-b0dd-05cc0102ebc1";
+            permission.PermissionId = "41127a7e-eb62-442b-b0dd-05cc0102ebc1";
+            permission.RoleId = "51127a7e-eb62-442b-b0dd-05cc0102ebc1";
         }
 
         [TestMethod]
@@ -56,7 +49,7 @@ namespace IdentityTest
         [TestMethod]
         public void DeletePermission()
         {
-            bool result = permissionRepo.Delete(permission.User_Id, permission.Id);
+            bool result = permissionRepo.Delete(permission.UserId, permission._id);
             Assert.AreEqual(result, true);
         }
     }

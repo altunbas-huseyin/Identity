@@ -6,7 +6,7 @@ namespace IdentityModels.Permissions
 {
     public class PermissionCrudView
     {
-        public long Id { get; set; }
+        public string _id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     }

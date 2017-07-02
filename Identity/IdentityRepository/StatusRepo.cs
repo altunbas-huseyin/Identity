@@ -3,20 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using Microsoft.Extensions.Configuration;
 
 namespace IdentityRepository
 {
     public class StatusRepo : BaseRepo<Status>
     {
-        public StatusRepo(IConfiguration configuration) : base(configuration)
-        {
-        }
-
-        public long Insert(Status status)
+        public string Insert(Status status)
         {
             mongoContext.Insert(status);
-            return status.Id;
+            return status._id;
         }
 
         public Status GetByName(string Name)

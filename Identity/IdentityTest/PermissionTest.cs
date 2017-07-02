@@ -1,7 +1,6 @@
 ﻿using IdentityModels;
 using IdentityModels.Permissions;
 using IdentityRepository;
-using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -12,16 +11,12 @@ namespace IdentityTest
     [TestClass]
     public class PermissionTest
     {
-        PermissionRepo permissionRepo;
+        PermissionRepo permissionRepo = new PermissionRepo();
         Permission permission = new Permission();
 
         public PermissionTest()
         {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                 .AddJsonFile("appsettings.json.config", optional: true)
-                 .Build();
-            permissionRepo = new PermissionRepo(configuration);
-            permission = new Permission { User_Id = 1, Id= 1, Name = "Test", Description = "Test" };
+            permission = new Permission { UserId = "11127a7e-eb62-442b-b0dd-05cc0102ebc1", _id= "11127a7e-eb62-442b-b0dd-05cc0102ebc1", Name = "Test", Description = "Test" };
         }
 
         [TestMethod]
@@ -49,7 +44,7 @@ namespace IdentityTest
         [TestMethod]
         public void DeletePermission()
         {
-            bool result = permissionRepo.Delete(permission.User_Id, permission.Id);
+            bool result = permissionRepo.Delete(permission.UserId, permission._id);
             Assert.AreEqual(result, true);
         }
     }

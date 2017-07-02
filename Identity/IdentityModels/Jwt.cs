@@ -8,8 +8,8 @@ namespace IdentityModels
 {
     public class Jwt : EntityBase
     {
-        public long User_Id { get; set; }
+        public string UserId { get; set; }
         public string Token { get; set; }
-        public DateTime Dead_Line { get; set; }
+        public DateTime DeadLine { get; set; }
     }
 }

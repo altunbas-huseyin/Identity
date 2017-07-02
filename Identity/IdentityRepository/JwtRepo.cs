@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using IdentityModels;
-using Microsoft.Extensions.Configuration;
 
 namespace IdentityRepository
 {
@@ -12,34 +11,28 @@ namespace IdentityRepository
     public class JwtRepo : BaseRepo<Jwt>
     {
         private Result result = new Result();
-        private StatusRepo statusRepo;
-
-        public JwtRepo(IConfiguration configuration) : base(configuration)
-        {
-            statusRepo = new StatusRepo(configuration);
-        }
-
-        public Result Add(long UserId, string Token, DateTime DeadLine)
+        private StatusRepo statusRepo = new StatusRepo();
+        public Result Add(String UserId, string Token, DateTime DeadLine)
         {
             Status status = statusRepo.GetByName("Active");
 
             Jwt jwt = new Jwt();
-            var jwtOld = mongoContext.SearchFor(p => p.User_Id == UserId);
+            var jwtOld = mongoContext.SearchFor(p => p.UserId == UserId);
             if (jwtOld.Count > 0)
             {
                 jwt = jwtOld[0];
                 jwt.Token = Token;
-                jwt.Dead_Line = DeadLine;
+                jwt.DeadLine = DeadLine;
 
                 mongoContext.Update(jwt);
             }
             else
             {
 
-                jwt.User_Id = UserId;
+                jwt.UserId = UserId;
                 jwt.Token = Token;
-                jwt.Dead_Line = DeadLine;
-                jwt.Status_Id = status.Id;
+                jwt.DeadLine = DeadLine;
+                jwt.Status = status;
 
                 mongoContext.Insert(jwt);
             }
@@ -55,7 +48,7 @@ namespace IdentityRepository
             {
                 jwt = _token[0];
 
-                if (jwt.Dead_Line < DateTime.Now)
+                if (jwt.DeadLine < DateTime.Now)
                 {
                     jwt = null;
                 }
@@ -64,9 +57,9 @@ namespace IdentityRepository
             return new Result(jwt, true);
         }
 
-        public Result GetByUserId(long UserId)
+        public Result GetByUserId(string UserId)
         {
-            Jwt jwt = mongoContext.SearchFor(p => p.User_Id == UserId).FirstOrDefault();
+            Jwt jwt = mongoContext.SearchFor(p => p.UserId == UserId).FirstOrDefault();
             return result = new Result(jwt, true);
         }
 

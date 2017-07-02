@@ -9,7 +9,7 @@ namespace IdentityModels
     public class UserRole : EntityBase
     {
 
-        public long User_Id { get; set; }
-        public long Role_Id { get; set; }
+        public Guid UserId { get; set; }
+        public Guid RoleId { get; set; }
     }
 }

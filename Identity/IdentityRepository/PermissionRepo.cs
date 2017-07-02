@@ -5,25 +5,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace IdentityRepository
 {
     public class PermissionRepo : BaseRepo<Permission>
     {
-
-        private StatusRepo statusRepo;
-        private RolePermissionRepo rolePermissionRepo;
-
-        public PermissionRepo(IConfiguration configuration) : base(configuration)
-        {
-            rolePermissionRepo = new RolePermissionRepo(configuration);
-            statusRepo = new StatusRepo(configuration);
-        }
-
+        
+        private StatusRepo statusRepo = new StatusRepo();
+        private RolePermissionRepo rolePermissionRepo = new RolePermissionRepo();
         public bool Insert(Permission permission)
         {
-            // Permission _role = this.GetByName(permission.User_Id, permission.Name);
+            // Permission _role = this.GetByName(permission.UserId, permission.Name);
             // if (_role == null)
             // {
             //     mongoContext.Insert(permission);
@@ -38,7 +30,7 @@ namespace IdentityRepository
             return mongoContext.Update(permission);
         }
 
-        public bool Delete(long UserId, long Id)
+        public bool Delete(string UserId,String Id)
         {
             Permission _permission = this.GetById(UserId, Id);
             if (_permission == null)
@@ -48,21 +40,21 @@ namespace IdentityRepository
             return mongoContext.Delete(_permission);
         }
 
-        public Permission GetByName(long UserId, String Name)
+        public Permission GetByName(string UserId, String Name)
         {
-            Permission permission = mongoContext.SearchFor(p => p.User_Id == UserId && p.Name == Name).FirstOrDefault();
+            Permission permission = mongoContext.SearchFor(p => p.UserId == UserId && p.Name == Name).FirstOrDefault();
             return permission;
         }
 
-        public Permission GetById(long UserId, long Id)
+        public Permission GetById(string UserId, String Id)
         {
-            Permission permission = mongoContext.SearchFor(p => p.User_Id == UserId && p.Id == Id).FirstOrDefault();
+            Permission permission = mongoContext.SearchFor(p => p.UserId == UserId && p._id == Id).FirstOrDefault();
             return permission;
         }
 
-        public List<Permission> GetByUserId(long UserId)
+        public List<Permission> GetByUserId(string UserId)
         {
-            List<Permission> permission = mongoContext.SearchFor(p => p.User_Id == UserId).ToList();
+            List<Permission> permission = mongoContext.SearchFor(p => p.UserId == UserId).ToList();
             return permission;
         }
 

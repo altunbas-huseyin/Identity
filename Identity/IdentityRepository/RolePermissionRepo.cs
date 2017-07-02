@@ -5,24 +5,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace IdentityRepository
 {
-    public class RolePermissionRepo : BaseRepo<Role_Permission>
+    public class RolePermissionRepo : BaseRepo<RolePermission>
     {
+        
+        private StatusRepo statusRepo = new StatusRepo();
 
-        private StatusRepo statusRepo;
-        PermissionRepo permissionRepo;
-        public RolePermissionRepo(IConfiguration configuration) : base(configuration)
+        public bool Insert(RolePermission rolePermission)
         {
-            permissionRepo = new PermissionRepo(configuration);
-            statusRepo = new StatusRepo(configuration);
-        }
-
-        public bool Insert(Role_Permission rolePermission)
-        {
-            Role_Permission _role = this.GetByUserIdAndPermissionId( rolePermission.User_Id, rolePermission.Id);
+            RolePermission _role = this.GetByUserIdAndPermissionId( rolePermission.UserId, rolePermission._id);
             if (_role == null)
             {
                 mongoContext.Insert(rolePermission);
@@ -30,14 +23,14 @@ namespace IdentityRepository
             return true;
         }
 
-        public bool Update(Role_Permission rolePermission)
+        public bool Update(RolePermission rolePermission)
         {
             return mongoContext.Update(rolePermission);
         }
 
-        public bool Delete(long UserId, long RolePermissionId)
+        public bool Delete(string UserId, String RolePermissionId)
         {
-            Role_Permission _permission = this.GetById(UserId, RolePermissionId);
+            RolePermission _permission = this.GetById(UserId, RolePermissionId);
             if (_permission == null)
             {
                 return true;
@@ -45,38 +38,39 @@ namespace IdentityRepository
             return mongoContext.Delete(_permission);
         }
 
-        public Role_Permission GetById(long UserId, long Id)
+        public RolePermission GetById(string UserId, String Id)
         {
-            Role_Permission rolePermission = mongoContext.SearchFor(p =>  p.User_Id == UserId && p.Id == Id).FirstOrDefault();
+            RolePermission rolePermission = mongoContext.SearchFor(p =>  p.UserId == UserId && p._id == Id).FirstOrDefault();
             return rolePermission;
         }
 
-        public List<Role_Permission> GetByUserIdAndRoleId(long UserId, long RoleId)
+        public List<RolePermission> GetByUserIdAndRoleId( String UserId, string RoleId)
         {
             //OwnerId sahip kullanıcı yani AppAdmin rolüne sahip olan kullanıcıdır.
-            List<Role_Permission> rolePermissionList = mongoContext.SearchFor(p => p.User_Id == UserId && p.Role_Id==RoleId).ToList();
+            List<RolePermission> rolePermissionList = mongoContext.SearchFor(p => p.UserId == UserId && p.RoleId==RoleId).ToList();
             return rolePermissionList;
         }
 
-        public Role_Permission GetByUserIdAndPermissionId(long UserId, long RolePermissionId)
+        public RolePermission GetByUserIdAndPermissionId( string UserId, String RolePermissionId)
         {
-            Role_Permission rolePermission = mongoContext.SearchFor(p =>  p.User_Id == UserId && p.Permission_Id == RolePermissionId).FirstOrDefault();
+            RolePermission rolePermission = mongoContext.SearchFor(p =>  p.UserId == UserId && p.PermissionId == RolePermissionId).FirstOrDefault();
             return rolePermission;
         }
 
-        public dynamic GetByUserIdWithJoinPermission(long UserId, long RoleId)
+        public dynamic GetByUserIdWithJoinPermission(string UserId, string RoleId)
         {
+            PermissionRepo permissionRepo = new PermissionRepo();
             List<Permission> permissionList = permissionRepo.GetByUserId(UserId);
-            List<Role_Permission> rolePermissionList = this.GetByUserIdAndRoleId(UserId, RoleId);
+            List<RolePermission> rolePermissionList = this.GetByUserIdAndRoleId(UserId, RoleId);
 
             var result = from rolePermission in rolePermissionList
                          join permission in permissionList
-                              on rolePermission.Permission_Id equals permission.Id
+                              on rolePermission.PermissionId equals permission._id
                          select new
                          {
-                             rolePermission.Id,
-                             rolePermission.Permission_Id,
-                             rolePermission.Role_Id,
+                             rolePermission._id,
+                             rolePermission.PermissionId,
+                             rolePermission.RoleId,
                              permission.Name,
                              permission.Description
                          };
@@ -84,21 +78,21 @@ namespace IdentityRepository
             return result;
         }
 
-        public dynamic GetByUserIdAndIdWithJoinPermission(long UserId, long RoleId, long Id)
+        public dynamic GetByUserIdAndIdWithJoinPermission(string UserId, string RoleId, string Id)
         {
-            
+            PermissionRepo permissionRepo = new PermissionRepo();
             List<Permission> permissionList = permissionRepo.GetByUserId(UserId);
-            List<Role_Permission> rolePermissionList = new List<Role_Permission>();
+            List<RolePermission> rolePermissionList = new List<RolePermission>();
             rolePermissionList.Add(this.GetById(UserId, Id));
 
             var result = from rolePermission in rolePermissionList
                          join permission in permissionList
-                              on rolePermission.Permission_Id equals permission.Id
+                              on rolePermission.PermissionId equals permission._id
                          select new
                          {
-                             rolePermission.Id,
-                             rolePermission.Permission_Id,
-                             rolePermission.Role_Id,
+                             rolePermission._id,
+                             rolePermission.PermissionId,
+                             rolePermission.RoleId,
                              permission.Name,
                              permission.Description
                          };

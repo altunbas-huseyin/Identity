@@ -1,41 +1,27 @@
 ﻿using IdentityModels;
-using IdentityModels.Permissions;
-using IdentityModels.RolePermissions;
-using IdentityModels.Roles;
 using IdentityModels.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Extensions.Configuration;
-using Dapper;
-using System.Data.SqlClient;
 
 namespace IdentityRepository
 {
     public class UserRepo : BaseRepo<User>
     {
-        private JwtRepo jwtRepo;
+       
+        private JwtRepo jwtRepo = new JwtRepo();
         private UserConvertRepo _userConvertRepo = new UserConvertRepo();
-        IConfiguration _configuration;
-        DapperManager dapperManager;
-
-        public UserRepo(IConfiguration configuration) : base(configuration)
+        public bool Add(User user)
         {
-            _configuration = configuration;
-            jwtRepo = new JwtRepo(configuration);
-            dapperManager = new DapperManager(_configuration);
-        }
+            user.Password = IdentityHelper.Encripty.EncryptString(user.Password);
+            return mongoContext.Insert(user);
 
-        public int Add(User user)
-        {
-            //return mongoContext.Insert(user);
-            int result = dapperManager.Insert<User>(connectionString, user);
-            return result;
         }
 
         public object nativequery()
         {
+
             object rr = mongoContext.NativeQuery();
             return rr;
         }
@@ -43,19 +29,12 @@ namespace IdentityRepository
         public UserView LoginByEmail(String Email, string Password)
         {
             UserView userView = null;
-           
-            List<SqlParameter> SqlParameterList = new List<SqlParameter>();
-            SqlParameterList.Add(new SqlParameter("@Email", Email));
-            SqlParameterList.Add(new SqlParameter("@Password", Password));
-
-            User user = dapperManager.GetData<User>(connectionString, "select * from \"user\" where email=@Email And password=@Password", SqlParameterList).FirstOrDefault();
-
-            //User user = mongoContext.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
-
+            Password = IdentityHelper.Encripty.EncryptString(Password);
+            User user = mongoContext.SearchFor(p => p.Email == Email && p.Password == Password).FirstOrDefault();
             if (user != null)
             {
                 userView = _userConvertRepo.UserToUserView(user);
-                Result result = jwtRepo.Add(user.Id, Guid.NewGuid().ToString(), DateTime.Now.AddDays(1));
+                Result result  = jwtRepo.Add(user._id.ToString(), Guid.NewGuid().ToString(), DateTime.Now.AddDays(1));
                 userView.Jwt = (Jwt)result.Data;
             }
             else
@@ -68,45 +47,43 @@ namespace IdentityRepository
 
         public bool Update(User user)
         {
-            //return mongoContext.Update(user);
-            bool result = dapperManager.Update<User>(connectionString, user);
-            return result;
+            return mongoContext.Update(user);
         }
 
-        public bool Delete(long Id)
+        public bool Delete(String Id)
         {
             User user = new User();
-            user.Id = Id;
+            user._id = Id;
             return mongoContext.Delete(user);
         }
 
-        public User GetById(long ParentId, long Id)
+        public User GetById(string ParentId, String Id)
         {
-            User user = mongoContext.SearchFor(p => p.Parent_Id == ParentId && p.Id == Id).FirstOrDefault();
+            User user = mongoContext.SearchFor(p => p.ParentId == ParentId && p._id == Id).FirstOrDefault();
             return user;
         }
 
-        public User GetById(long Id)
+        public User GetById(String Id)
         {
-            User user = mongoContext.SearchFor(p => p.Id == Id).FirstOrDefault();
+            User user = mongoContext.SearchFor(p => p._id == Id).FirstOrDefault();
             return user;
         }
 
-        public List<User> GetByParentId(long ParentId)
+        public List<User> GetByParentId(string ParentId)
         {
-            List<User> userList = mongoContext.SearchFor(p => p.Parent_Id == ParentId).ToList();
+            List<User> userList = mongoContext.SearchFor(p => p.ParentId == ParentId).ToList();
             return userList;
         }
 
-        public User GetByParentId(long ParentId, long Id)
+        public User GetByParentId(string ParentId, String Id)
         {
-            User user = mongoContext.SearchFor(p => p.Parent_Id == ParentId && p.Id == Id).First();
+            User user = mongoContext.SearchFor(p => p.ParentId == ParentId && p._id == Id).First();
             return user;
         }
 
-        public User GetByEmailAndParentId(long ParentId, string Email)
+        public User GetByEmailAndParentId(string ParentId, String Email)
         {
-            User user = mongoContext.SearchFor(p => p.Email == Email && p.Parent_Id == ParentId).FirstOrDefault();
+            User user = mongoContext.SearchFor(p => p.Email == Email && p.ParentId == ParentId).FirstOrDefault();
             return user;
         }
 
@@ -117,9 +94,9 @@ namespace IdentityRepository
         }
 
 
-        public User GetByEmail(long ParentId, string Email)
+        public User GetByEmail(string ParentId, string Email)
         {
-            User user = mongoContext.SearchFor(p => p.Parent_Id == ParentId && p.Email == Email).FirstOrDefault();
+            User user = mongoContext.SearchFor(p => p.ParentId == ParentId && p.Email == Email).FirstOrDefault();
             return user;
         }
 

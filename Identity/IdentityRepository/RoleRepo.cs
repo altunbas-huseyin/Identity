@@ -4,22 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace IdentityRepository
 {
     public class RoleRepo : BaseRepo<Role>
     {
-        public RoleRepo(IConfiguration configuration) : base(configuration)
-        {
-        }
-
+       
         public bool Update(Role role)
         {
             return mongoContext.Update(role);
         }
 
-        public bool Delete(long UserId, long Id)
+        public bool Delete(string UserId, String Id)
         {
             Role role = this.GetById(UserId, Id);
             return mongoContext.Delete(role);
@@ -27,7 +23,7 @@ namespace IdentityRepository
 
         public bool Insert(Role role)
         {
-            Role _role = this.GetByName(role.User_Id, role.Name);
+            Role _role = this.GetByName(role.UserId, role.Name);
             if (_role == null)
             {
                 mongoContext.Insert(role);
@@ -45,21 +41,21 @@ namespace IdentityRepository
             return true;
         }
 
-        public Role GetByName(long UserId, string Name)
+        public Role GetByName(string UserId, string Name)
         {
-            Role role = mongoContext.SearchFor(p => p.User_Id == UserId && p.Name == Name).FirstOrDefault();
+            Role role = mongoContext.SearchFor(p => p.UserId == UserId && p.Name == Name).FirstOrDefault();
             return role;
         }
 
-        public List<Role> GetByUserId(long UserId)
+        public List<Role> GetByUserId(string UserId)
         {
-            List<Role> roleList = mongoContext.SearchFor(p => p.User_Id == UserId).ToList();
+            List<Role> roleList = mongoContext.SearchFor(p => p.UserId == UserId).ToList();
             return roleList;
         }
 
-        public Role GetById(long UserId, long Id)
+        public Role GetById(string UserId, string Id)
         {
-            Role role = mongoContext.SearchFor(p => p.Id == Id && p.User_Id == UserId).First();
+            Role role = mongoContext.SearchFor(p => p._id == Id && p.UserId == UserId).First();
             return role;
         }
 

@@ -4,23 +4,13 @@ using IdentityRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace IdentityTest
 {
     [TestClass]
     public class JwtTest
     {
-        JwtRepo jwtRepo;
-
-        public JwtTest()
-        {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-               .AddJsonFile("appsettings.json.config", optional: true)
-               .Build();
-
-            jwtRepo = new JwtRepo(configuration);
-        }
+        JwtRepo jwtRepo = new JwtRepo();
 
         [TestMethod]
         public void AddUniqIndex()
@@ -32,7 +22,7 @@ namespace IdentityTest
         [TestMethod]
         public void AddToken()
         {
-           jwtRepo.Add(1, "fcbe54b8-8798-4d30-b695-8ffb6539911c", DateTime.Now.AddDays(5));
+           jwtRepo.Add("fcbe54b8-8798-4d30-b695-8ffb6539911c", "fcbe54b8-8798-4d30-b695-8ffb6539911c", DateTime.Now.AddDays(5));
         }
 
         [TestMethod]

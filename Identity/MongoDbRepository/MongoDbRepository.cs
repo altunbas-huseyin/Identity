@@ -61,10 +61,11 @@ public class MongoDbRepository<TEntity> :
 
     public bool Insert(TEntity entity)
     {
-        //entity.Id = Guid.NewGuid();
-        entity.Create_Date = DateTime.Now.AddHours(3);
-        entity.Update_Date = entity.Create_Date;
+        //entity._id = Guid.NewGuid();
+        entity.CreateDate = DateTime.Now.AddHours(3);
+        entity.UpdateDate = entity.CreateDate;
         collection.Insert(entity);
+
         return true;//Burası tekrar kontrol edilecek
     }
 
@@ -72,8 +73,8 @@ public class MongoDbRepository<TEntity> :
     public bool Update(TEntity entity)
     {
         //burada mobgo db'ye 3 saat eksik olarak kyıt yapıyordu bu şekilde çözdüm :-(
-        entity.Update_Date = DateTime.Now.AddHours(3);
-        if (entity.Id == null)
+        entity.UpdateDate = DateTime.Now.AddHours(3);
+        if (entity._id == null)
             return Insert(entity);
 
 
@@ -84,7 +85,7 @@ public class MongoDbRepository<TEntity> :
 
     public bool Delete(TEntity entity)
     {
-        return collection.Remove(Query.EQ("_id", entity.Id)).DocumentsAffected > 0;
+        return collection.Remove(Query.EQ("_id", entity._id)).DocumentsAffected > 0;
     }
 
     public IList<TEntity>

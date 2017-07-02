@@ -9,7 +9,6 @@ using Identity.Middleware;
 using IdentityModels;
 using IdentityModels.Permissions;
 using IdentityHelper;
-using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,31 +19,25 @@ namespace Identity.Controllers1
     [ValidateModel("SystemAdmin,AppAdmin")]
     public class PermissionsController : Controller
     {
-        PermissionRepo permissionRepo;
-        private StatusRepo statusRepo;
+        PermissionRepo permissionRepo = new PermissionRepo();
+        private StatusRepo statusRepo = new StatusRepo();
         Jwt jwt = new Jwt();
-
-        public PermissionsController(IConfiguration configuration)
-        {
-            permissionRepo = new PermissionRepo(configuration);
-            statusRepo = new StatusRepo(configuration);
-        }
 
         // GET: api/values
         [HttpGet]
         public CommonApiResponse Get()
         {
             jwt = ViewBag.Jwt;
-            List<Permission> list = permissionRepo.GetByUserId(jwt.User_Id);
+            List<Permission> list = permissionRepo.GetByUserId(jwt.UserId);
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, list, null);
         }
 
         // GET api/values/5
         [HttpGet("{Id}")]
-        public CommonApiResponse Get(long Id)
+        public CommonApiResponse Get(string Id)
         {
             jwt = ViewBag.Jwt;
-            Permission permission = permissionRepo.GetById(jwt.User_Id, Id);
+            Permission permission = permissionRepo.GetById(jwt.UserId, Id);
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, permission, null);
         }
 
@@ -54,7 +47,7 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             Permission permission = new Permission();
-            permission.User_Id = jwt.User_Id;
+            permission.UserId = jwt.UserId;
             permission.Name = permissionView.Name;
             permission.Description = permissionView.Description;
 
@@ -71,8 +64,8 @@ namespace Identity.Controllers1
         {
             jwt = ViewBag.Jwt;
             Permission permission = new Permission();
-            permission.Id = permissionView.Id;
-            permission.User_Id = jwt.User_Id;
+            permission._id = permissionView._id;
+            permission.UserId = jwt.UserId;
             permission.Name = permissionView.Name;
             permission.Description = permissionView.Description;
 
@@ -88,7 +81,7 @@ namespace Identity.Controllers1
         public void Delete(PermissionCrudView permissionView)
         {
             jwt = ViewBag.Jwt;
-            bool result = permissionRepo.Delete(jwt.User_Id, permissionView.Id);
+            bool result = permissionRepo.Delete(jwt.UserId, permissionView._id);
             //if (result)
             //{ return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, "İşlem başaılı", null); }
             //

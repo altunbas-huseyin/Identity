@@ -4,24 +4,21 @@ using MongoDB.Bson.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Npgsql;
-using System.ComponentModel.DataAnnotations;
 
 namespace IdentityModels
 {
     public abstract class EntityBase
     {
-        [Key]
-        public long Id { get; set; }
-        public DateTime Create_Date { get; set; }
-        public DateTime Update_Date { get; set; }
-        public long Status_Id { get; set; }
+        [BsonId]
+        public string _id { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
+        public Status Status { get; set; }
 
         public EntityBase()
         {
+            this._id = Guid.NewGuid().ToString();
            
-            //this.Id = Guid.NewGuid().ToString();
-           //Guid dd = IdentityHelper.SequentialGuidGenerator.NewSequentialGuid(IdentityHelper.SequentialGuidType.SequentialAsString);
         }
 
     }

@@ -10,7 +10,6 @@ using IdentityModels.Roles;
 using Identity.Middleware;
 using FluentValidation.Results;
 using IdentityHelper;
-using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,31 +20,25 @@ namespace Identity.Controllers1
     [ValidateModel("SystemAdmin,AppAdmin")]
     public class RolesController : Controller
     {
-        private RoleRepo roleRepo;
-        private StatusRepo statusRepo;
+        // GET: api/values
+        private RoleRepo roleRepo = new RoleRepo();
+        private StatusRepo statusRepo = new StatusRepo();
         Jwt jwt = new Jwt();
 
-        public RolesController(IConfiguration Config)
-        {
-            statusRepo = new StatusRepo(Config);
-            roleRepo = new RoleRepo(Config);
-        }
-
-        // GET: api/values
         [HttpGet]
         public CommonApiResponse Get()
         {
             jwt = ViewBag.Jwt;
-            List<Role> roleList = roleRepo.GetByUserId(jwt.User_Id);
+            List<Role> roleList = roleRepo.GetByUserId(jwt.UserId);
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, roleList, null);
         }
 
         // GET api/values/5
         [HttpGet("{Id}")]
-        public CommonApiResponse Get(long Id)
+        public CommonApiResponse Get(string Id)
         {
             jwt = ViewBag.Jwt;
-            Role role = roleRepo.GetById(jwt.User_Id, Id);
+            Role role = roleRepo.GetById(jwt.UserId, Id);
             return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, true, role, null);
         }
 
@@ -56,9 +49,9 @@ namespace Identity.Controllers1
             jwt = ViewBag.Jwt;
             Role role = new Role();
             role.Name = roleRegisterView.Name;
-            role.User_Id = jwt.User_Id;
+            role.UserId = jwt.UserId;
             role.Description = roleRegisterView.Description;
-            role.Status_Id = statusRepo.GetByName("Active").Id;
+            role.Status = statusRepo.GetByName("Active");
 
             bool result = roleRepo.Insert(role);
             if (result)
@@ -76,7 +69,7 @@ namespace Identity.Controllers1
         public CommonApiResponse Put(RoleUpdateView roleUpdateView)
         {
             jwt = ViewBag.Jwt;
-            Role role = roleRepo.GetById(jwt.User_Id, roleUpdateView.Id);
+            Role role = roleRepo.GetById(jwt.UserId, roleUpdateView._id);
             if (role == null)
             {
                 return CommonApiResponse.Create(Response, System.Net.HttpStatusCode.OK, false, null, FluentValidationHelper.GenerateErrorList("Rol bulunamadı."));
@@ -98,7 +91,7 @@ namespace Identity.Controllers1
 
         // DELETE api/values/5
         [HttpDelete]
-        public CommonApiResponse Delete(long UserId, long Id)
+        public CommonApiResponse Delete(string UserId, String Id)
         {
             jwt = ViewBag.Jwt;
             bool result = roleRepo.Delete(UserId, Id);

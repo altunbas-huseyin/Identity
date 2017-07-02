@@ -13,13 +13,13 @@ namespace IdentityRepository
             userView.Email = user.Email;
             userView.Extra1 = user.Extra1;
             userView.Extra2 = user.Extra2;
-            userView.Id = user.Id;
-            //userView.Role = user.Role;
+            userView._id = user._id;
+            userView.Role = user.Role;
             userView.Name = user.Name;
             userView.SurName = user.SurName;
-            userView.Update_Date = user.Update_Date;
-            userView.Parent_Id = user.Parent_Id;
-            userView.Status_Id = user.Status_Id;
+            userView.UpdateDate = user.UpdateDate;
+            userView.ParentId = user.ParentId;
+            userView.Status = user.Status;
 
             return userView;
         }
